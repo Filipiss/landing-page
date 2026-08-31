@@ -1,0 +1,108 @@
+{
+    "nav": {
+        "about": "About",
+        "projects": "Projects",
+        "contact": "Contact",
+        "language": "Language",
+        "theme": "Toggle Theme"
+    },
+    "hero": {
+        "greeting": "Hi, I am",
+        "role": "Fullstack Developer & Tech Enthusiast",
+        "tagline": "Creating beautiful, high-performance, and interactive web applications focusing on modern experiences and memorable interfaces.",
+        "cta_projects": "View Portfolio",
+        "cta_contact": "Get in Touch"
+    },
+    "about": {
+        "title": "About Me",
+        "subtitle": "A summary of who I am, my background, and what I do",
+        "bio_p1": "I am a Fullstack developer passionate about solving complex problems and creating fluid interfaces. I always seek to design clean, optimized, and aesthetically premium systems, merging software engineering with refined design.",
+        "bio_p2": "Away from development, I am the tutor of Chico Wagner (my loyal canine companion) and I love studying new advancements in Artificial Intelligence and computer graphics.",
+        "cv_download": "Download CV (PDF)",
+        "chico_title": "Chico Wagner",
+        "chico_desc": "The CEO (Chief Executive Officer of Barking) and official mascot of the portfolio. Ensures deadlines are met and that belly rub breaks happen every 30 minutes.",
+        "filip_title": "Fillipe (filipidios)",
+        "filip_desc": "Developer, 3D enthusiast, coffee lover, and the human responsible for translating coffee and treats into reactive lines of code.",
+        "skills_title": "Skills & Specialties",
+        "skills_categories": {
+            "ai": "Artificial Intelligence & Data",
+            "front": "Front-End",
+            "back": "Back-End & Infra",
+            "soft": "Soft Skills & Methodologies",
+            "languages": "Languages",
+            "tools": "Tools & Design"
+        }
+    },
+    "projects": {
+        "title": "Featured Projects",
+        "subtitle": "A curated selection of recent work and technical experiments",
+        "view_project": "View Details",
+        "back_to_portfolio": "Back to Portfolio",
+        "live_demo": "Live Project Demo",
+        "github_repo": "GitHub Repository",
+        "prev_project": "Previous Project",
+        "next_project": "Next Project",
+        "nav_what_is": "What is it",
+        "nav_how_i_did": "How I did it",
+        "nav_why_design": "Why I designed it so",
+        "nav_challenges": "Challenges & Solutions",
+        "items": {
+            "time-tracker": {
+                "title": "Time Trackerígena",
+                "short_desc": "Robust time-tracking system featuring multiple user workflows, calendar integrations, and a secure admin panel.",
+                "category": "Web App / Fullstack",
+                "description": "A comprehensive time management and tracking platform, developed with React and Flask integrated with PostgreSQL.",
+                "what_is": "Time Trackerígena is a corporate product designed for freelancers and teams who need analytical and detailed tracking of hours worked on specific projects, generating smart invoices and visual reports.",
+                "how_i_did": "The front-end architecture is modularized in React, leveraging the Context API for session persistence and translation keys. On the back-end, Flask with SQLAlchemy was used, establishing 1:N database relationships for calendar events, and encapsulated in PostgreSQL for higher scalability.",
+                "why_design": "For the design, we opted for a clean corporate dashboard style, with wide visibility of temporal filters (monthly, weekly) and real-time feedback via responsive modals and subtle transitions.",
+                "challenges": "The main challenge was decoupling the linear calendar architecture to support multiple independent task schedules without corrupting the original project state. We solved this by creating an intermediate events table with strict concurrency control in the database."
+            },
+            "space-portfolio": {
+                "title": "3D Space Portfolio",
+                "short_desc": "Space-themed landing page featuring 3D elements in Three.js, interactive particles, and scroll paralax animations.",
+                "category": "Interactive / WebGL",
+                "description": "An immersive 3D interactive journey through stars and planets, designed using React Three Fiber and Framer Motion.",
+                "what_is": "This is a high-fidelity visual web project simulating a space journey where each section of the page represents a different orbit or celestial body showcasing developer details.",
+                "how_i_did": "Built upon React Three Fiber (R3F) and @react-three/drei, it leverages the GPU loop via the `useFrame` hook to synchronize planet rotations and particle gravity points directly with the page's vertical scroll.",
+                "why_design": "A glassmorphism style was adopted with a procedurally generated galaxy background using custom fragment shaders in the particles, creating high-contrast blue and purple neon glows with modern typography.",
+                "challenges": "Maintaining high frame rates (60 FPS) on mobile devices and managing the sudden snapping camera behavior when scrolling. The solution involved implementing smooth transitions using linear interpolation (lerp) mathematical functions and dynamic performance levels to skip complex shadows on smaller screens."
+            },
+            "ai-assistant-integrator": {
+                "title": "AI Integrator & Organic Chatbot",
+                "short_desc": "Reactive interface connected to LLMs, featuring encrypted local history, vector search, and streaming responses.",
+                "category": "AI / Automation",
+                "description": "An intelligent chat panel integrated with multiple AI APIs supporting real-time text streaming.",
+                "what_is": "The AI Integrator is a tool for developers to easily experiment with different language models, also allowing document uploads and local query via vector similarity search (RAG).",
+                "how_i_did": "Developed with Node.js on the back-end and React on the front-end, the system uses network stream routes (Server-Sent Events) to continuously render incoming token answers in real-time from APIs (OpenAI, Gemini, and Claude).",
+                "why_design": "The interface features a reading-focused design, with dialog boxes in a futuristic terminal style, integrated markdown code codeblocks, and a responsive floating conversation layout.",
+                "challenges": "Managing the continuous flow of network-streamed tokens without causing sudden rendering lags on the viewport. This was solved by creating a custom React state hook that queues incoming chunk buffers and batches UI updates periodically."
+            }
+        }
+    },
+    "contact": {
+        "title": "Contact",
+        "subtitle": "Let's work together? Send me a message or find me on social media",
+        "label_name": "Name",
+        "label_email": "Email",
+        "label_message": "Message",
+        "placeholder_name": "Your name...",
+        "placeholder_email": "your@email.com",
+        "placeholder_message": "Your message here...",
+        "send_btn": "Send Message",
+        "sending": "Sending...",
+        "success": "Message sent successfully! Thank you.",
+        "error": "An error occurred while sending. Please try again.",
+        "direct_title": "Contact Information",
+        "direct_desc": "I am open to new job contracts, freelance opportunities, or creative development ideas."
+    },
+    "footer": {
+        "rights": "All rights reserved.",
+        "back_to_top": "Back to top",
+        "cookies_settings": "Cookie Settings",
+        "cookies_title": "Cookie Settings",
+        "cookies_desc": "We use simple cookies and local browser storage to personalize your theme and language preferences. By continuing, you agree with this usage.",
+        "cookies_accept": "Dismiss",
+        "cookies_panel_desc": "Manage your privacy settings. This website only stores functional keys (Theme and Language) necessary for your browsing experience.",
+        "cookies_save": "Save preferences"
+    }
+}

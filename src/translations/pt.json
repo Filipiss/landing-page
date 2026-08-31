@@ -1,0 +1,108 @@
+{
+    "nav": {
+        "about": "Sobre",
+        "projects": "Projetos",
+        "contact": "Contato",
+        "language": "Idioma",
+        "theme": "Alternar Tema"
+    },
+    "hero": {
+        "greeting": "Olá, eu sou",
+        "role": "Desenvolvedor Fullstack & Entusiasta Tech",
+        "tagline": "Criando aplicações web incríveis, performáticas e interativas com foco em experiências modernas e interfaces memoráveis.",
+        "cta_projects": "Ver Portfólio",
+        "cta_contact": "Entrar em Contato"
+    },
+    "about": {
+        "title": "Sobre Mim",
+        "subtitle": "Um resumo de quem sou, meu histórico e o que faço",
+        "bio_p1": "Sou desenvolvedor Fullstack apaixonado por resolver problemas complexos e criar interfaces fluidas. Busco sempre desenhar sistemas limpos, otimizados e esteticamente premium, unindo engenharia de software e design refinado.",
+        "bio_p2": "Fora do desenvolvimento, sou tutor do Chico Wagner (meu fiel companheiro canino) e adoro estudar novos avanços da Inteligência Artificial e computação gráfica.",
+        "cv_download": "Baixar CV (PDF)",
+        "chico_title": "Chico Wagner",
+        "chico_desc": "O CEO (Chief Executive Officer of Barking) e mascote oficial do portfólio. Garante que os prazos sejam cumpridos e que as pausas para cafuné aconteçam a cada 30 minutos.",
+        "filip_title": "Fillipe (filipidios)",
+        "filip_desc": "Desenvolvedor, entusiasta de 3D, amante de café e o humano responsável por traduzir café e petiscos em linhas de código reativas.",
+        "skills_title": "Habilidades & Especialidades",
+        "skills_categories": {
+            "ai": "Inteligência Artificial & Dados",
+            "front": "Front-End",
+            "back": "Back-End & Infra",
+            "soft": "Soft Skills & Metodologias",
+            "languages": "Idiomas",
+            "tools": "Ferramentas & Design"
+        }
+    },
+    "projects": {
+        "title": "Projetos em Destaque",
+        "subtitle": "Uma seleção de trabalhos recentes e experimentos técnicos",
+        "view_project": "Ver Projeto",
+        "back_to_portfolio": "Voltar ao Portfólio",
+        "live_demo": "Ver Projeto Ao Vivo",
+        "github_repo": "Repositório GitHub",
+        "prev_project": "Projeto Anterior",
+        "next_project": "Próximo Projeto",
+        "nav_what_is": "O que é",
+        "nav_how_i_did": "Como fiz",
+        "nav_why_design": "Por que fiz assim",
+        "nav_challenges": "Desafios & Soluções",
+        "items": {
+            "time-tracker": {
+                "title": "Time Trackerígena",
+                "short_desc": "Sistema robusto de controle de horas com múltiplos fluxos de usuários, calendarização e portal administrativo seguro.",
+                "category": "Web App / Fullstack",
+                "description": "Uma plataforma completa para gestão e acompanhamento de tempo, desenvolvida com React e Flask integrado com PostgreSQL.",
+                "what_is": "O Time Trackerígena é um produto corporativo desenhado para freelancers e equipes que necessitam de rastreamento analítico e detalhado de horas trabalhadas em projetos específicos, gerando faturas e relatórios visuais inteligentes.",
+                "how_i_did": "A arquitetura do front-end foi modularizada em React, aproveitando o Context API para fornecer persistência de sessão e chaves de tradução. No back-end, foi utilizado Flask com SQLAlchemy, estabelecendo relacionamentos de banco de dados do tipo 1:N para eventos de calendário, e encapsulamento em PostgreSQL para maior escalabilidade.",
+                "why_design": "Para o design, optou-se por um visual estilo Dashboard corporativo clean, com ampla visibilidade de filtros temporais (mensais, semanais) e feedbacks em tempo real via modais responsivos e transições leves.",
+                "challenges": "O principal desafio foi desacoplar a arquitetura de calendário linear para suportar múltiplos agendamentos independentes de tarefas sem corromper o estado original do projeto. Solucionamos isso criando uma tabela intermediária de eventos com controle estrito de concorrência no banco de dados."
+            },
+            "space-portfolio": {
+                "title": "Portfólio Espacial 3D",
+                "short_desc": "Landing page com temática espacial apresentando elementos 3D em Three.js, partículas interativas e efeitos de paralaxe de scroll.",
+                "category": "Interativo / WebGL",
+                "description": "Uma jornada interativa 3D imersiva pelas estrelas e planetas, desenhada usando React Three Fiber e Framer Motion.",
+                "what_is": "Este é um projeto conceitual de portfólio web de alta fidelidade visual, simulando uma viagem espacial onde cada seção da página representa uma órbita ou corpo celeste diferente com os dados do desenvolvedor.",
+                "how_i_did": "Construído sobre o React Three Fiber (R3F) e @react-three/drei, aproveita o loop da GPU pelo hook `useFrame` para sincronizar a rotação dos planetas e a gravidade dos pontos de partículas diretamente com o scroll vertical da página.",
+                "why_design": "Adotou-se o estilo 'glassmorphism' com um fundo de galáxia gerado proceduralmente por shaders de fragmento personalizados nas partículas, criando luzes de neon azul e roxa de alto contraste com fontes modernas.",
+                "challenges": "Manter FPS altos (60 FPS) em dispositivos móveis e gerenciar o comportamento brusco de snaps da câmera 3D ao saltar seções. A solução envolveu a implementação de transições amortecidas via funções matemáticas lerp (Linear Interpolation) e detecção dinâmica de performance para omitir sombras complexas em telas menores."
+            },
+            "ai-assistant-integrator": {
+                "title": "Integrador de IA & Chatbot Orgânico",
+                "short_desc": "Interface reativa conectada a LLMs via API, com histórico local criptografado, busca vetorial e streaming de respostas.",
+                "category": "AI / Automação",
+                "description": "Um painel de conversação inteligente integrado com múltiplas APIs de inteligência artificial com streaming de texto em tempo real.",
+                "what_is": "O Integrador de IA é uma ferramenta para desenvolvedores experimentarem diferentes modelos de linguagem com facilidade, permitindo também o upload de documentos e consulta local via busca por similaridade vetorial (RAG).",
+                "how_i_did": "Desenvolvido com Node.js no back-end e React no front-end, o sistema utiliza rotas de streaming (Server-Sent Events) para processar de forma contínua e em tempo real as respostas das APIs (OpenAI, Gemini e Claude).",
+                "why_design": "A interface possui um design focado na leitura, com caixas de diálogo no estilo terminal futurista, modo de visualização de código markdown integrado e layout responsivo de chat flutuante.",
+                "challenges": "Gerenciar o fluxo contínuo de tokens transmitidos no buffer de rede sem causar quebras repentinas na renderização na tela. Isso foi resolvido criando um hook customizado que enfileira as strings dos chunks obtidos do stream de rede e atualiza a UI periodicamente."
+            }
+        }
+    },
+    "contact": {
+        "title": "Contato",
+        "subtitle": "Bora bater um papo? Deixe sua mensagem ou me encontre nas redes",
+        "label_name": "Nome",
+        "label_email": "E-mail",
+        "label_message": "Mensagem",
+        "placeholder_name": "Seu nome...",
+        "placeholder_email": "seu@email.com",
+        "placeholder_message": "Sua mensagem aqui...",
+        "send_btn": "Enviar Mensagem",
+        "sending": "Enviando...",
+        "success": "Mensagem enviada com sucesso! Obrigado pelo contato.",
+        "error": "Ocorreu um erro ao enviar. Por favor, tente novamente.",
+        "direct_title": "Informações de Contato",
+        "direct_desc": "Estou aberto a novas oportunidades de contratação, projetos freelancer ou ideias criativas de desenvolvimento."
+    },
+    "footer": {
+        "rights": "Todos os direitos reservados.",
+        "back_to_top": "Voltar ao topo",
+        "cookies_settings": "Configurações de Cookies",
+        "cookies_title": "Configurações de Cookies",
+        "cookies_desc": "Nós utilizamos cookies simples e armazenamento local no seu navegador para personalizar sua preferência de temas e idiomas. Ao continuar navegando, você declara estar ciente.",
+        "cookies_accept": "Entendido",
+        "cookies_panel_desc": "Gerencie suas preferências de privacidade. Este site armazena somente chaves funcionais (Tema e Idioma) necessárias para sua experiência de navegação.",
+        "cookies_save": "Salvar preferências"
+    }
+}
