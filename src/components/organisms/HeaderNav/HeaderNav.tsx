@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import { useTheme } from '../../../context/ThemeContext';
-import { Menu, X, Sun, Moon, Globe, Terminal } from 'lucide-react';
+import { Menu, X, Sun, Moon, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import GithubIcon from '../../atoms/GithubIcon/GithubIcon';
 import LinkedinIcon from '../../atoms/LinkedinIcon/LinkedinIcon';
@@ -15,6 +15,31 @@ export default function HeaderNav({ currentProjectId }: HeaderNavProps) {
     const { t, language, setLanguage } = useLanguage();
     const { theme, toggleTheme } = useTheme();
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    // Detect scroll to collapse/dock nav to the top of viewport
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Automatically close mobile menu when viewport expands to desktop
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth > 820) {
+                setMobileOpen(false);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const toggleLanguage = () => {
         setLanguage(language === 'pt' ? 'en' : 'pt');
@@ -44,137 +69,142 @@ export default function HeaderNav({ currentProjectId }: HeaderNavProps) {
     };
 
     return (
-        <nav className="nav">
-            <div className="container nav-container">
-
+        <header className={`nav-wrapper ${isScrolled ? 'scrolled' : ''}`}>
+            <nav className={`nav-capsule ${isScrolled ? 'scrolled' : ''}`}>
                 {/* Brand Logo Identity */}
-                <a href="#/" className="nav-logo" aria-label="Home">
-                    <Terminal size={22} className="nav-logo-icon" />
-                    <span>filipidios</span>
+                <a href="#/" className="nav-brand" aria-label="Home">
+                    <span className="nav-brand-badge">F</span>
+                    <span className="nav-brand-text">Fillipe</span>
                 </a>
 
-                {/* 1. Desktop Navigation Anchors */}
-                <div className="nav-links hidden-mobile">
-                    <span onClick={() => handleAnchorLink('about')} className="nav-item">
+                {/* 1. Navigation Links (Evenly distributed across the available capsule space) */}
+                <div className="nav-menu">
+                    <span onClick={() => handleAnchorLink('home')} className="nav-link">
+                        Home
+                    </span>
+                    <span onClick={() => handleAnchorLink('about')} className="nav-link">
                         {t('nav.about')}
                     </span>
-                    <span onClick={() => handleAnchorLink('projects')} className="nav-item">
-                        {t('nav.projects')}
+                    <span onClick={() => handleAnchorLink('skills')} className="nav-link">
+                        {t('nav.skills')}
                     </span>
-                    <span onClick={() => handleAnchorLink('contact')} className="nav-item">
+                    <span onClick={() => handleAnchorLink('contact')} className="nav-link">
                         {t('nav.contact')}
                     </span>
-                    <span onClick={() => handleAnchorLink('portfolio')} className="nav-portfolio-link">
-                        {language === 'pt' ? 'Portfólio' : 'Portfolio'}
+                    <span onClick={() => handleAnchorLink('portfolio')} className="nav-link nav-link-highlight">
+                        {t('nav.portfolio')}
                     </span>
                 </div>
 
-                {/* 2. Toolbar Tools (Language, Theme, Secondary External Link) */}
-                <div className="nav-toolbar hidden-mobile">
+                {/* 2. Top Toolbar Actions (Visible only on wide desktop > 1080px) */}
+                <div className="nav-actions">
                     {/* Language Switch */}
                     <button
                         onClick={toggleLanguage}
-                        className="nav-toolbar-btn"
+                        className="nav-action-btn"
                         aria-label="Toggle language"
+                        title="Alternar Idioma"
                     >
-                        <Globe size={16} />
+                        <Globe size={14} />
                         <span>{language.toUpperCase()}</span>
                     </button>
 
                     {/* Theme Switcher Toggle */}
                     <button
                         onClick={toggleTheme}
-                        className="nav-toolbar-icon"
+                        className="nav-action-icon-btn"
                         aria-label="Toggle theme"
                         type="button"
+                        title="Alternar Tema"
                     >
-                        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                        {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
                     </button>
 
-                    <div className="nav-divider"></div>
+                    <div className="nav-action-separator"></div>
 
                     {/* Social links */}
-                    <a href="https://github.com/filipidios" target="_blank" rel="noopener noreferrer" className="nav-toolbar-icon" aria-label="GitHub">
-                        <GithubIcon size={20} />
+                    <a href="https://github.com/filipidios" target="_blank" rel="noopener noreferrer" className="nav-action-icon-btn" aria-label="GitHub">
+                        <GithubIcon size={18} />
                     </a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="nav-toolbar-icon" aria-label="LinkedIn">
-                        <LinkedinIcon size={20} />
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="nav-action-icon-btn" aria-label="LinkedIn">
+                        <LinkedinIcon size={18} />
                     </a>
                 </div>
 
-                {/* 3. Mobile Hamburger Indicator Trigger */}
+                {/* 3. Mobile Hamburger Indicator Trigger (Visible only on mobile <= 768px) */}
                 <button
                     onClick={() => setMobileOpen(!mobileOpen)}
-                    className="nav-menu-toggle hidden-desktop"
+                    className="nav-mobile-toggle"
                     aria-label="Toggle Navigation Menu"
                     type="button"
                 >
-                    {mobileOpen ? <X size={26} /> : <Menu size={26} />}
+                    {mobileOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
+            </nav>
 
-            </div>
-
-            {/* 4. Mobile Drawer Overlay Navigation Panel (Framer Motion Drawer) */}
+            {/* 4. Mobile Drawer Overlay Navigation Panel (Below 768px) */}
             <AnimatePresence>
                 {mobileOpen && (
                     <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="nav-mobile-drawer hidden-desktop"
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="nav-mobile-drawer"
                     >
                         <div className="nav-mobile-links">
+                            <span onClick={() => handleAnchorLink('home')} className="nav-mobile-item">
+                                Home
+                            </span>
                             <span onClick={() => handleAnchorLink('about')} className="nav-mobile-item">
                                 {t('nav.about')}
                             </span>
-                            <span onClick={() => handleAnchorLink('projects')} className="nav-mobile-item">
-                                {t('nav.projects')}
+                            <span onClick={() => handleAnchorLink('skills')} className="nav-mobile-item">
+                                {t('nav.skills')}
                             </span>
                             <span onClick={() => handleAnchorLink('contact')} className="nav-mobile-item">
                                 {t('nav.contact')}
                             </span>
-                            <span onClick={() => handleAnchorLink('portfolio')} className="nav-mobile-portfolio-link">
-                                {language === 'pt' ? 'Portfólio' : 'Portfolio'}
+                            <span onClick={() => handleAnchorLink('portfolio')} className="nav-mobile-item nav-mobile-portfolio">
+                                {t('nav.portfolio')}
                             </span>
+
                             <div className="nav-mobile-divider"></div>
 
                             {/* Mobile Toolbar Controls */}
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                <button
-                                    onClick={toggleLanguage}
-                                    className="nav-toolbar-btn"
-                                >
-                                    <Globe size={16} />
-                                    <span>{language.toUpperCase()}</span>
-                                </button>
+                            <div className="nav-mobile-controls">
+                                <div className="nav-mobile-prefs">
+                                    <button
+                                        onClick={toggleLanguage}
+                                        className="nav-action-btn"
+                                    >
+                                        <Globe size={14} />
+                                        <span>{language.toUpperCase()}</span>
+                                    </button>
 
-                                <button
-                                    onClick={toggleTheme}
-                                    className="nav-toolbar-icon"
-                                    aria-label="Toggle theme"
-                                    type="button"
-                                    style={{ transform: 'none', padding: '8px' }}
-                                >
-                                    {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
-                                </button>
-                            </div>
+                                    <button
+                                        onClick={toggleTheme}
+                                        className="nav-action-icon-btn"
+                                        aria-label="Toggle theme"
+                                        type="button"
+                                    >
+                                        {theme === 'dark' ? <Sun size={19} /> : <Moon size={19} />}
+                                    </button>
+                                </div>
 
-                            <div className="nav-mobile-divider"></div>
-
-                            {/* Mobile Social Drawer References */}
-                            <div className="nav-mobile-socials">
-                                <a href="https://github.com/filipidios" target="_blank" rel="noopener noreferrer" className="nav-mobile-social-icon" aria-label="GitHub">
-                                    <GithubIcon size={24} />
-                                </a>
-                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="nav-mobile-social-icon" aria-label="LinkedIn">
-                                    <LinkedinIcon size={24} />
-                                </a>
+                                <div className="nav-mobile-socials">
+                                    <a href="https://github.com/filipidios" target="_blank" rel="noopener noreferrer" className="nav-action-icon-btn" aria-label="GitHub">
+                                        <GithubIcon size={19} />
+                                    </a>
+                                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="nav-action-icon-btn" aria-label="LinkedIn">
+                                        <LinkedinIcon size={19} />
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
-
-        </nav>
+        </header>
     );
 }

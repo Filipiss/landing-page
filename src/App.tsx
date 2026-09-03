@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import HeaderNav from './components/organisms/HeaderNav/HeaderNav';
 import HomePage from './components/pages/HomePage/HomePage';
 import ProjectDetailPage from './components/pages/ProjectDetailPage/ProjectDetailPage';
@@ -6,6 +7,8 @@ import PortfolioPage from './components/pages/PortfolioPage/PortfolioPage';
 import ContactSection from './components/organisms/ContactSection/ContactSection';
 import Footer from './components/organisms/Footer/Footer';
 import CookiesModal from './components/organisms/CookiesModal/CookiesModal';
+import AccessibilityWidget from './components/organisms/AccessibilityWidget/AccessibilityWidget';
+import ScrollFadeSection from './components/atoms/ScrollFadeSection/ScrollFadeSection';
 
 function App() {
     const [currentProjectId, setCurrentProjectId] = useState<string | null>(() => {
@@ -67,11 +70,16 @@ function App() {
         };
 
         window.addEventListener('hashchange', handleHashChange);
-        // Initial run
         handleHashChange();
 
         return () => window.removeEventListener('hashchange', handleHashChange);
     }, []);
+
+    const activeRouteKey = currentProjectId 
+        ? `project-${currentProjectId}` 
+        : isPortfolio 
+        ? 'portfolio' 
+        : 'home';
 
     return (
         <>
@@ -80,25 +88,59 @@ function App() {
                 currentProjectId={currentProjectId}
             />
 
-            {/* Main viewport layouts */}
+            {/* Main viewport layouts with smooth page transition animations */}
             <main id="top">
-                {currentProjectId ? (
-                    // 1. Single Project Detail Page View
-                    <ProjectDetailPage projectId={currentProjectId} />
-                ) : isPortfolio ? (
-                    // 2. Full Portfolio List Page View
-                    <PortfolioPage />
-                ) : (
-                    // 3. Home Landing Sections
-                    <HomePage />
-                )}
+                <AnimatePresence mode="wait">
+                    {currentProjectId ? (
+                        // 1. Single Project Detail Page View
+                        <motion.div
+                            key={activeRouteKey}
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -15 }}
+                            transition={{ duration: 0.35, ease: 'easeInOut' }}
+                            className="page-transition-container"
+                        >
+                            <ProjectDetailPage projectId={currentProjectId} />
+                        </motion.div>
+                    ) : isPortfolio ? (
+                        // 2. Full Portfolio List Page View
+                        <motion.div
+                            key={activeRouteKey}
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -15 }}
+                            transition={{ duration: 0.35, ease: 'easeInOut' }}
+                            className="page-transition-container"
+                        >
+                            <PortfolioPage />
+                        </motion.div>
+                    ) : (
+                        // 3. Home Landing Sections
+                        <motion.div
+                            key={activeRouteKey}
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -15 }}
+                            transition={{ duration: 0.35, ease: 'easeInOut' }}
+                            className="page-transition-container"
+                        >
+                            <HomePage />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
                 {/* Global Sections representing Footer/Contact criteria */}
-                <ContactSection />
+                <ScrollFadeSection id="contact-wrapper">
+                    <ContactSection />
+                </ScrollFadeSection>
             </main>
 
             {/* Global Footer anchor details */}
             <Footer onOpenCookiesSettings={() => setCookiesModalOpen(true)} />
+
+            {/* Floating Accessibility Widget in bottom-right */}
+            <AccessibilityWidget />
 
             {/* Cookie banner and detailed settings overlay modal */}
             <CookiesModal

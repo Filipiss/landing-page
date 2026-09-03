@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import StarBorder from '../../atoms/StarBorder/StarBorder';
 import './ProfileCard.css';
 
 interface ProfileCardProps {
@@ -9,7 +10,7 @@ interface ProfileCardProps {
 
 export default function ProfileCard({ avatar, title, description }: ProfileCardProps) {
     return (
-        <div className="profile-card">
+        <StarBorder className="profile-card-star-wrapper" innerClassName="profile-card" speed="5s">
             <div className="profile-card-avatar">
                 {avatar}
             </div>
@@ -17,6 +18,6 @@ export default function ProfileCard({ avatar, title, description }: ProfileCardP
                 <h3 className="profile-card-title">{title}</h3>
                 <p className="profile-card-desc">{description}</p>
             </div>
-        </div>
+        </StarBorder>
     );
 }

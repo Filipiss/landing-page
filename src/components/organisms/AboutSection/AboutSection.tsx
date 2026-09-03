@@ -1,6 +1,10 @@
 import { useLanguage } from '../../../context/LanguageContext';
-import { FileText, Cpu, Layout, Database, Users, Languages, Wrench } from 'lucide-react';
+import { FileText, Cpu, Layout, Database, Users, Languages, Wrench, ArrowUpRight, Sparkles } from 'lucide-react';
 import ProfileCard from '../../molecules/ProfileCard/ProfileCard';
+import ScrollReveal from '../../atoms/ScrollReveal/ScrollReveal';
+import StarBorder from '../../atoms/StarBorder/StarBorder';
+import filipiImg from '../../../assets/filipi.jpg';
+import chicoImg from '../../../assets/CHICO WAGNER.png';
 import './AboutSection.css';
 
 export default function AboutSection() {
@@ -15,7 +19,7 @@ export default function AboutSection() {
         {
             key: 'front',
             icon: <Layout className="skills-category-icon" />,
-            items: ['React (v19)', 'JavaScript (ES6+)', 'HTML5 & CSS3', 'Framer Motion', 'Semantic CSS / BEM']
+            items: ['React (v19)', 'TypeScript', 'JavaScript (ES6+)', 'Framer Motion', 'HTML5 & Modern CSS']
         },
         {
             key: 'back',
@@ -40,110 +44,122 @@ export default function AboutSection() {
     ];
 
     return (
-        <section id="about" className="section">
+        <section id="about" className="section about-section-editorial">
             <div className="container">
 
-                {/* CV Details */}
+                {/* Section Header */}
+                <div className="about-header text-center">
+                    <span className="pretitle">
+                        <Sparkles size={14} />
+                        {t('about.title')}
+                    </span>
+                    <ScrollReveal
+                        tag="h2"
+                        containerClassName="section-title"
+                        baseOpacity={0.2}
+                        baseY={15}
+                    >
+                        {t('about.subtitle')}
+                    </ScrollReveal>
+                </div>
+
+                {/* Two-Column Grid: Profiles & Bio */}
                 <div className="about-grid">
-
-                    <div className="about-cv">
-                        <span className="pretitle">{t('about.title')}</span>
-                        <h2 className="section-title">{t('about.subtitle')}</h2>
-                        <p className="about-text">{t('about.bio_p1')}</p>
-                        <p className="about-text">{t('about.bio_p2')}</p>
-
-                        <a
-                            href="#"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                alert('MOCK CV (PDF) DOWNLOAD ACTION');
-                            }}
-                            className="btn btn-outline"
-                            style={{ marginTop: '20px', alignSelf: 'flex-start' }}
-                        >
-                            <FileText size={18} style={{ marginRight: '8px' }} />
-                            {t('about.cv_download')}
-                        </a>
-                    </div>
-
-                    {/* Mascots Section */}
-                    <div className="about-mascots">
+                    
+                    {/* Left Column: Profile Cards (Fillipe & Chico Wagner) */}
+                    <ScrollReveal baseY={25} blurStrength={3} containerClassName="about-profiles-column">
                         {/* Owner Profile */}
                         <ProfileCard
                             avatar={
-                                <svg className="profile-card-svg" viewBox="0 0 100 100">
-                                    <circle cx="50" cy="50" r="48" fill="var(--bg-secondary)" stroke="var(--accent-primary)" strokeWidth="2" />
-                                    {/* Hoodie body */}
-                                    <path d="M25,85 C25,70 35,62 50,62 C65,62 75,70 75,85" fill="var(--accent-glow)" stroke="var(--accent-primary)" strokeWidth="2" />
-                                    {/* Head */}
-                                    <circle cx="50" cy="45" r="16" fill="var(--bg-primary)" stroke="var(--accent-primary)" strokeWidth="2" />
-                                    {/* Glasses */}
-                                    <path d="M40,43 L47,43 M53,43 L60,43" stroke="var(--accent-secondary)" strokeWidth="2" />
-                                    <circle cx="43" cy="43" r="3" fill="none" stroke="var(--accent-secondary)" strokeWidth="2" />
-                                    <circle cx="57" cy="43" r="3" fill="none" stroke="var(--accent-secondary)" strokeWidth="2" />
-                                    {/* Laptop decoration */}
-                                    <rect x="35" y="75" width="30" height="15" rx="2" fill="var(--bg-secondary)" stroke="var(--accent-primary)" strokeWidth="1" />
-                                    <line x1="38" y1="85" x2="62" y2="85" stroke="var(--accent-secondary)" strokeWidth="2" />
-                                </svg>
+                                <img
+                                    src={filipiImg}
+                                    alt={t('about.filip_title')}
+                                    className="profile-card-img"
+                                />
                             }
                             title={t('about.filip_title')}
                             description={t('about.filip_desc')}
                         />
 
-                        {/* Chico Wagner (Pet Dog) */}
+                        {/* Chico Wagner (Pet Dog Mascot) */}
                         <ProfileCard
                             avatar={
-                                <svg className="profile-card-svg" viewBox="0 0 100 100">
-                                    <circle cx="50" cy="50" r="48" fill="var(--bg-secondary)" stroke="var(--accent-secondary)" strokeWidth="2" />
-                                    {/* Dog ears */}
-                                    <path d="M28,25 Q18,35 22,48" stroke="var(--accent-secondary)" strokeWidth="2.5" fill="var(--accent-glow)" strokeLinecap="round" />
-                                    <path d="M72,25 Q82,35 78,48" stroke="var(--accent-secondary)" strokeWidth="2.5" fill="var(--accent-glow)" strokeLinecap="round" />
-                                    {/* Dog head */}
-                                    <ellipse cx="50" cy="48" rx="20" ry="18" fill="var(--bg-primary)" stroke="var(--accent-secondary)" strokeWidth="2" />
-                                    {/* Snout */}
-                                    <ellipse cx="50" cy="54" rx="9" ry="7" fill="var(--text-muted)" opacity="0.2" />
-                                    {/* Dog nose */}
-                                    <polygon points="46,51 54,51 50,56" fill="var(--accent-secondary)" />
-                                    {/* Eyes */}
-                                    <circle cx="43" cy="42" r="2.5" fill="var(--accent-secondary)" />
-                                    <circle cx="57" cy="42" r="2.5" fill="var(--accent-secondary)" />
-                                    {/* Cute developer glasses for dog */}
-                                    <path d="M38,42 L47,42 M53,42 L62,42" stroke="var(--accent-primary)" strokeWidth="1.5" />
-                                    <rect x="38" y="38" width="10" height="8" rx="1.5" fill="none" stroke="var(--accent-primary)" strokeWidth="1.5" />
-                                    <rect x="52" y="38" width="10" height="8" rx="1.5" fill="none" stroke="var(--accent-primary)" strokeWidth="1.5" />
-                                    <path d="M48,42 L52,42" stroke="var(--accent-primary)" strokeWidth="1.5" />
-                                </svg>
+                                <img
+                                    src={chicoImg}
+                                    alt={t('about.chico_title')}
+                                    className="profile-card-img"
+                                />
                             }
                             title={t('about.chico_title')}
                             description={t('about.chico_desc')}
                         />
-                    </div>
+                    </ScrollReveal>
+
+                    {/* Right Column: Bio & Action */}
+                    <ScrollReveal baseY={25} blurStrength={3} containerClassName="about-bio-card-wrapper">
+                        <StarBorder className="about-bio-star-border" innerClassName="about-bio-card" speed="6s">
+                            <div className="about-bio-tag">Developer & Creator</div>
+                            <p className="about-bio-p">{t('about.bio_p1')}</p>
+                            <p className="about-bio-p">{t('about.bio_p2')}</p>
+                            <p className="about-bio-p">{t('about.bio_p3')}</p>
+
+                            <div className="about-cv-wrapper">
+                                <a
+                                    href="#"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        alert('Download do CV (Mock PDF)');
+                                    }}
+                                    className="btn btn-primary about-cv-btn"
+                                >
+                                    <FileText size={18} />
+                                    <span>{t('about.cv_download')}</span>
+                                    <ArrowUpRight size={16} />
+                                </a>
+                            </div>
+                        </StarBorder>
+                    </ScrollReveal>
 
                 </div>
 
-                {/* Skills Section */}
-                <div className="skills">
-                    <div className="text-center" style={{ marginBottom: '40px' }}>
-                        <span className="pretitle">{t('about.skills_title')}</span>
+                {/* Skills Grid */}
+                <div id="skills" className="skills-section-wrapper">
+                    <div className="text-center skills-section-header">
+                        <span className="pretitle">
+                            <Sparkles size={14} />
+                            {t('about.skills_title')}
+                        </span>
+                        <ScrollReveal
+                            tag="h3"
+                            containerClassName="section-title skills-section-subtitle"
+                            baseOpacity={0.2}
+                            baseY={15}
+                        >
+                            {t('about.skills_subtitle')}
+                        </ScrollReveal>
                     </div>
 
-                    <div className="skills-grid">
+                    <div className="skills-editorial-grid">
                         {skillsData.map((category) => (
-                            <div key={category.key} className="skills-category">
-                                <div className="skills-category-header">
-                                    {category.icon}
-                                    <h3 className="skills-category-title">
-                                        {t(`about.skills_categories.${category.key}`)}
-                                    </h3>
-                                </div>
-                                <div className="skills-list">
-                                    {category.items.map((skill, index) => (
-                                        <span key={index} className="skills-badge">
-                                            {skill}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
+                            <ScrollReveal key={category.key} baseY={20} blurStrength={2} containerClassName="skills-editorial-card-wrapper">
+                                <StarBorder className="skills-star-border" innerClassName="skills-editorial-card" speed="5s">
+                                    <div className="skills-card-header">
+                                        <div className="skills-icon-badge">
+                                            {category.icon}
+                                        </div>
+                                        <h4 className="skills-category-name">
+                                            {t(`about.skills_categories.${category.key}`)}
+                                        </h4>
+                                    </div>
+                                    <div className="skills-pills-list">
+                                        {category.items.map((skill, index) => (
+                                            <span key={index} className="skill-pill-item">
+                                                {skill}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </StarBorder>
+                            </ScrollReveal>
                         ))}
                     </div>
                 </div>

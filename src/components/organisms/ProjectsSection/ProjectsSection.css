@@ -1,5 +1,39 @@
-.projects-grid {
+.projects-section-editorial {
+    position: relative;
+}
+
+.projects-editorial-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+@media (max-width: 768px) {
+    .projects-editorial-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.projects-header-text {
+    max-width: 650px;
+}
+
+.projects-header-action {
+    flex-shrink: 0;
+    margin-bottom: 48px;
+}
+
+@media (max-width: 768px) {
+    .projects-header-action {
+        margin-bottom: 20px;
+    }
+}
+
+.projects-editorial-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 32px;
+    gap: 30px;
 }

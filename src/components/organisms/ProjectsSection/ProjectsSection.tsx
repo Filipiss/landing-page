@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
-import { Clock, Star, ArrowRight } from 'lucide-react';
+import { Clock, Orbit, Bot, ArrowUpRight, Sparkles } from 'lucide-react';
 import ProjectCard from '../../molecules/ProjectCard/ProjectCard';
 import './ProjectsSection.css';
 
@@ -8,25 +8,26 @@ interface ProjectsSectionList {
     id: string;
     tags: string[];
     icon: ReactNode;
-    gradient: string;
 }
 
 export default function ProjectsSection() {
     const { t } = useLanguage();
 
-    // Show a select subset (e.g., top 2 project demos) on the home page
     const projectsList: ProjectsSectionList[] = [
         {
             id: 'time-tracker',
-            tags: ['React', 'Flask', 'PostgreSQL', 'SQLAlchemy'],
-            icon: <Clock size={40} className="project-card-cover-icon" />,
-            gradient: 'linear-gradient(135deg, #1e1b4b 0%, #312e81 100%)'
+            tags: ['React 19', 'Flask', 'PostgreSQL', 'Fullstack'],
+            icon: <Clock size={36} />
         },
         {
             id: 'space-portfolio',
-            tags: ['React', 'CSS3', 'Framer Motion'],
-            icon: <Star size={40} className="project-card-cover-icon" />,
-            gradient: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)'
+            tags: ['Three.js', 'Framer Motion', 'Interactive 3D'],
+            icon: <Orbit size={36} />
+        },
+        {
+            id: 'ai-assistant-integrator',
+            tags: ['Node.js', 'LLMs APIs', 'Vector RAG', 'Streaming'],
+            icon: <Bot size={36} />
         }
     ];
 
@@ -39,21 +40,44 @@ export default function ProjectsSection() {
     };
 
     return (
-        <section id="projects" className="section">
+        <section id="projects" className="section projects-section-editorial">
             <div className="container">
-                <div className="text-center" style={{ marginBottom: '50px' }}>
-                    <span className="pretitle">{t('projects.title')}</span>
-                    <h2 className="section-title">{t('projects.subtitle')}</h2>
+                {/* Header with Title & "View All" Button */}
+                <div className="projects-editorial-header">
+                    <div className="projects-header-text">
+                        <span className="pretitle">
+                            <Sparkles size={14} />
+                            Portfólio
+                        </span>
+                        <h2 className="section-title">
+                            {t('projects.title')}{' '}
+                            <span className="highlight">{t('projects.title_highlight')}</span>
+                        </h2>
+                        <p className="section-subtitle">
+                            {t('projects.subtitle')}
+                        </p>
+                    </div>
+
+                    <div className="projects-header-action">
+                        <button
+                            type="button"
+                            onClick={handleGoToPortfolio}
+                            className="btn btn-primary"
+                        >
+                            <span>{t('projects.view_all')}</span>
+                            <ArrowUpRight size={18} />
+                        </button>
+                    </div>
                 </div>
 
-                <div className="projects-grid">
+                {/* Projects Cards Grid */}
+                <div className="projects-editorial-grid">
                     {projectsList.map((proj, index) => (
                         <ProjectCard
                             key={proj.id}
                             id={proj.id}
                             tags={proj.tags}
                             icon={proj.icon}
-                            gradient={proj.gradient}
                             category={t(`projects.items.${proj.id}.category`)}
                             title={t(`projects.items.${proj.id}.title`)}
                             shortDesc={t(`projects.items.${proj.id}.short_desc`)}
@@ -62,19 +86,6 @@ export default function ProjectsSection() {
                             index={index}
                         />
                     ))}
-                </div>
-
-                {/* Call-to-action button to view complete Portfolio page */}
-                <div className="text-center" style={{ marginTop: '50px' }}>
-                    <button
-                        type="button"
-                        onClick={handleGoToPortfolio}
-                        className="btn btn-primary"
-                        style={{ padding: '14px 32px', gap: '8px' }}
-                    >
-                        <span>Ver Portfólio Completo</span>
-                        <ArrowRight size={18} />
-                    </button>
                 </div>
             </div>
         </section>

@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, ReactNode } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import { Clock, Star, Terminal, ArrowLeft } from 'lucide-react';
-import { ReactNode } from 'react';
 import ProjectCard from '../../molecules/ProjectCard/ProjectCard';
 import './PortfolioPage.css';
 
@@ -9,7 +8,6 @@ interface ProjectsSectionList {
     id: string;
     tags: string[];
     icon: ReactNode;
-    gradient: string;
     categoryType: 'fullstack' | 'webgl' | 'ai';
 }
 
@@ -22,21 +20,18 @@ export default function PortfolioPage() {
             id: 'time-tracker',
             tags: ['React', 'Flask', 'PostgreSQL', 'SQLAlchemy'],
             icon: <Clock size={40} className="project-card-cover-icon" />,
-            gradient: 'linear-gradient(135deg, #1e1b4b 0%, #312e81 100%)',
             categoryType: 'fullstack'
         },
         {
             id: 'space-portfolio',
             tags: ['React', 'CSS3', 'Framer Motion'],
             icon: <Star size={40} className="project-card-cover-icon" />,
-            gradient: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)',
             categoryType: 'webgl'
         },
         {
             id: 'ai-assistant-integrator',
             tags: ['Node.js', 'Express', 'LLM API', 'Streaming'],
             icon: <Terminal size={40} className="project-card-cover-icon" />,
-            gradient: 'linear-gradient(135deg, #111827 0%, #030712 100%)',
             categoryType: 'ai'
         }
     ];
@@ -54,7 +49,7 @@ export default function PortfolioPage() {
             <div className="container">
                 <header className="portfolio-header">
                     <a href="#/" className="portfolio-back-btn">
-                        <ArrowLeft size={16} style={{ marginRight: '6px' }} />
+                        <ArrowLeft size={16} />
                         Voltar para Home
                     </a>
                     <h1 className="portfolio-title">Portfólio Completo</h1>
@@ -91,14 +86,13 @@ export default function PortfolioPage() {
                     </div>
                 </header>
 
-                <div className="projects-grid" style={{ paddingBottom: '80px' }}>
+                <div className="projects-grid">
                     {filteredProjects.map((proj, index) => (
                         <ProjectCard
                             key={proj.id}
                             id={proj.id}
                             tags={proj.tags}
                             icon={proj.icon}
-                            gradient={proj.gradient}
                             category={t(`projects.items.${proj.id}.category`)}
                             title={t(`projects.items.${proj.id}.title`)}
                             shortDesc={t(`projects.items.${proj.id}.short_desc`)}

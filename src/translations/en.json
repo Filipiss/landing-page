@@ -1,32 +1,60 @@
 {
     "nav": {
         "about": "About",
+        "skills": "Skills",
         "projects": "Projects",
         "contact": "Contact",
+        "portfolio": "Portfolio",
         "language": "Language",
         "theme": "Toggle Theme"
     },
     "hero": {
+        "badge_hello": "Hello!",
+        "badge_status": "Available for Projects",
         "greeting": "Hi, I am",
-        "role": "Fullstack Developer & Tech Enthusiast",
+        "name": "Fillipe",
+        "role": "Fullstack Developer",
         "tagline": "Creating beautiful, high-performance, and interactive web applications focusing on modern experiences and memorable interfaces.",
         "cta_projects": "View Portfolio",
-        "cta_contact": "Get in Touch"
+        "cta_contact": "Let's Talk",
+        "stat_quote": "Turning complex engineering challenges into clean architectures and fluid, impactful interfaces.",
+        "stat_projects_count": "50+",
+        "stat_projects_label": "Delivered Projects",
+        "stat_exp_count": "5+ Yrs",
+        "stat_exp_label": "Tech Experience",
+        "stat_rating_score": "5.0",
+        "stat_rating_label": "Rating & Quality"
+    },
+    "marquee": {
+        "items": [
+            "FULLSTACK DEVELOPER",
+            "REACT 19",
+            "TYPESCRIPT",
+            "PYTHON / FLASK",
+            "POSTGRESQL",
+            "NODE.JS & APIS",
+            "UI/UX CRAFT",
+            "FRAMER MOTION",
+            "AI INTEGRATION & RAG",
+            "CLEAN CODE"
+        ]
     },
     "about": {
         "title": "About Me",
-        "subtitle": "A summary of who I am, my background, and what I do",
-        "bio_p1": "I am a Fullstack developer passionate about solving complex problems and creating fluid interfaces. I always seek to design clean, optimized, and aesthetically premium systems, merging software engineering with refined design.",
-        "bio_p2": "Away from development, I am the tutor of Chico Wagner (my loyal canine companion) and I love studying new advancements in Artificial Intelligence and computer graphics.",
+        "subtitle": "Discover who I am, my companions, and my focus",
+        "bio_p1": "I am a Full Stack developer and I like transforming problems and ideas into projects that truly make sense.",
+        "bio_p2": "I enjoy working on both the code and the interface, always thinking about the details that make an application more beautiful, fluid, and enjoyable to use.",
+        "bio_p3": "Outside of programming, I like exploring new technologies, studying AI and computer graphics — usually in the company of Chico Wagner. 🐈",
         "cv_download": "Download CV (PDF)",
         "chico_title": "Chico Wagner",
-        "chico_desc": "The CEO (Chief Executive Officer of Barking) and official mascot of the portfolio. Ensures deadlines are met and that belly rub breaks happen every 30 minutes.",
+        "chico_desc": "CEO (Chief Executive Officer of Meowing) and official mascot of the portfolio. 🐈\n\nResponsible for supervising my work, interrupting coding sessions at the most crucial moments, and ensuring that petting breaks are strictly enforced.\n\nSo far, he has been doing an excellent job — mainly sleeping while I work.",
         "filip_title": "Fillipe (filipidios)",
-        "filip_desc": "Developer, 3D enthusiast, coffee lover, and the human responsible for translating coffee and treats into reactive lines of code.",
+        "filip_desc": "Curious by nature and always tinkering with something new. I love learning, testing ideas, and understanding how things work — whether it's a new technology, a project, or a random idea that popped into my head.\n\nIn my free time, I enjoy games, technology, coffee, and, of course, the company of Chico Wagner. 🐈",
         "skills_title": "Skills & Specialties",
+        "skills_subtitle": "Core technologies and workflows applied day-to-day",
         "skills_categories": {
             "ai": "Artificial Intelligence & Data",
-            "front": "Front-End",
+            "front": "Front-End & Interactive UI",
             "back": "Back-End & Infra",
             "soft": "Soft Skills & Methodologies",
             "languages": "Languages",
@@ -34,9 +62,11 @@
         }
     },
     "projects": {
-        "title": "Featured Projects",
-        "subtitle": "A curated selection of recent work and technical experiments",
+        "title": "Let's Have a Look at my",
+        "title_highlight": "Projects",
+        "subtitle": "A curated selection of recent work, fullstack architectures, and technical experiments",
         "view_project": "View Details",
+        "view_all": "View All",
         "back_to_portfolio": "Back to Portfolio",
         "live_demo": "Live Project Demo",
         "github_repo": "GitHub Repository",
@@ -80,22 +110,30 @@
         }
     },
     "contact": {
-        "title": "Contact",
-        "subtitle": "Let's work together? Send me a message or find me on social media",
+        "title": "Have An Awesome Project Idea?",
+        "title_highlight": "Let's Discuss!",
+        "subtitle": "Let's turn your vision into a fast, modern, and memorable web application. Drop me a line!",
         "label_name": "Name",
         "label_email": "Email",
         "label_message": "Message",
         "placeholder_name": "Your name...",
         "placeholder_email": "your@email.com",
-        "placeholder_message": "Your message here...",
+        "placeholder_message": "Tell me a bit about your idea or project...",
         "send_btn": "Send Message",
         "sending": "Sending...",
         "success": "Message sent successfully! Thank you.",
         "error": "An error occurred while sending. Please try again.",
         "direct_title": "Contact Information",
-        "direct_desc": "I am open to new job contracts, freelance opportunities, or creative development ideas."
+        "direct_desc": "I am open to new job contracts, freelance opportunities, or creative development ideas.",
+        "trust_rating": "5.0 / 5 Dedication & Quality",
+        "trust_clean": "Clean & Scalable Architecture",
+        "trust_comm": "Fast & Transparent Communication"
     },
     "footer": {
+        "brand_tagline": "Crafting complete web experiences from concept to production with obsessive attention to detail.",
+        "quick_links": "Navigation",
+        "connect": "Let's Connect",
+        "cta_hire": "Hire Me",
         "rights": "All rights reserved.",
         "back_to_top": "Back to top",
         "cookies_settings": "Cookie Settings",
@@ -104,5 +142,20 @@
         "cookies_accept": "Dismiss",
         "cookies_panel_desc": "Manage your privacy settings. This website only stores functional keys (Theme and Language) necessary for your browsing experience.",
         "cookies_save": "Save preferences"
+    },
+    "accessibility": {
+        "title": "Accessibility",
+        "btn_aria": "Open accessibility panel",
+        "font_size": "Text Size",
+        "font_normal": "Default",
+        "font_large": "Large (A+)",
+        "font_xlarge": "Extra (A++)",
+        "high_contrast": "High Contrast",
+        "grayscale": "Monochrome / Grayscale",
+        "highlight_links": "Highlight Links",
+        "line_spacing": "Line Spacing",
+        "reduce_motion": "Reduce Motion",
+        "reset": "Reset Defaults",
+        "close": "Close"
     }
 }

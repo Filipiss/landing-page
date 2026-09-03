@@ -4,9 +4,12 @@
   /* Slate 900 - Premium dark blue-gray */
   --bg-secondary: #1e293b;
   /* Slate 800 */
-  --bg-glass: rgba(30, 41, 59, 0.7);
+  --bg-card: #1e293b;
+  /* Slate 800 Card */
+  --bg-glass: rgba(30, 41, 59, 0.75);
   /* Translucent Slate */
   --border-glass: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.1);
 
   /* Fonts color: Gray (Cinza) */
   --text-primary: #f1f5f9;
@@ -22,6 +25,7 @@
   /* Blue-based Accent Colors */
   --accent-primary: #2563eb;
   /* 1. Azul um pouco mais forte (Vivid/Strong Blue) */
+  --accent-primary-hover: #1d4ed8;
   --accent-primary-rgb: 37, 99, 235;
 
   --accent-secondary: #0ea5e9;
@@ -32,10 +36,11 @@
   /* 3. Azul mais fraquinho (Light Powder Blue) */
   --accent-tertiary-rgb: 125, 211, 252;
 
-  --accent-glow: rgba(var(--accent-primary-rgb), 0.15);
+  --accent-glow: rgba(var(--accent-primary-rgb), 0.2);
+  --accent-subtle: rgba(var(--accent-primary-rgb), 0.12);
 
   /* Fonts */
-  --font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family: 'Plus Jakarta Sans', 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
 
   /* Shadows */
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -48,9 +53,10 @@
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
-  --border-radius-sm: 6px;
-  --border-radius-md: 12px;
-  --border-radius-lg: 20px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  --border-radius-xl: 32px;
   --border-radius-full: 9999px;
 }
 
@@ -59,12 +65,14 @@
   --bg-primary: #f8fafc;
   /* Slate 50 - Very light page background */
   --bg-secondary: #ffffff;
-  --bg-glass: rgba(255, 255, 255, 0.7);
+  --bg-card: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.85);
   --border-glass: rgba(15, 23, 42, 0.08);
+  --border-subtle: rgba(15, 23, 42, 0.08);
 
   /* Fonts color: Gray (Cinza) */
-  --text-primary: #334155;
-  /* Slate 700 - elegant dark gray */
+  --text-primary: #1e293b;
+  /* Slate 800 */
   --text-secondary: #64748b;
   /* Slate 500 - medium gray */
   --text-muted: #94a3b8;
@@ -76,6 +84,7 @@
   /* Blue-based Accent Colors */
   --accent-primary: #1d4ed8;
   /* 1. Azul um pouco mais forte (Stronger Royal Blue) */
+  --accent-primary-hover: #1e40af;
   --accent-primary-rgb: 29, 78, 216;
 
   --accent-secondary: #0284c7;
@@ -86,7 +95,8 @@
   /* 3. Azul mais fraquinho (Sky Blue) */
   --accent-tertiary-rgb: 56, 189, 248;
 
-  --accent-glow: rgba(var(--accent-primary-rgb), 0.08);
+  --accent-glow: rgba(var(--accent-primary-rgb), 0.12);
+  --accent-subtle: rgba(var(--accent-primary-rgb), 0.08);
 
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);

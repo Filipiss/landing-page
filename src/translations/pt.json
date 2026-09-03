@@ -1,32 +1,60 @@
 {
     "nav": {
         "about": "Sobre",
+        "skills": "Habilidades",
         "projects": "Projetos",
         "contact": "Contato",
+        "portfolio": "Portfólio",
         "language": "Idioma",
         "theme": "Alternar Tema"
     },
     "hero": {
+        "badge_hello": "Hello!",
+        "badge_status": "Disponível para Projetos",
         "greeting": "Olá, eu sou",
-        "role": "Desenvolvedor Fullstack & Entusiasta Tech",
+        "name": "Fillipe",
+        "role": "Desenvolvedor Fullstack",
         "tagline": "Criando aplicações web incríveis, performáticas e interativas com foco em experiências modernas e interfaces memoráveis.",
         "cta_projects": "Ver Portfólio",
-        "cta_contact": "Entrar em Contato"
+        "cta_contact": "Bora Conversar",
+        "stat_quote": "Transformando ideias complexas em arquiteturas limpas e interfaces fluidas de alto impacto.",
+        "stat_projects_count": "50+",
+        "stat_projects_label": "Projetos & Entregas",
+        "stat_exp_count": "5+ Anos",
+        "stat_exp_label": "Experiência Tech",
+        "stat_rating_score": "5.0",
+        "stat_rating_label": "Dedicação & Qualidade"
+    },
+    "marquee": {
+        "items": [
+            "FULLSTACK DEVELOPER",
+            "REACT 19",
+            "TYPESCRIPT",
+            "PYTHON / FLASK",
+            "POSTGRESQL",
+            "NODE.JS & APIS",
+            "UI/UX CRAFT",
+            "FRAMER MOTION",
+            "AI INTEGRATION & RAG",
+            "CLEAN CODE"
+        ]
     },
     "about": {
         "title": "Sobre Mim",
-        "subtitle": "Um resumo de quem sou, meu histórico e o que faço",
-        "bio_p1": "Sou desenvolvedor Fullstack apaixonado por resolver problemas complexos e criar interfaces fluidas. Busco sempre desenhar sistemas limpos, otimizados e esteticamente premium, unindo engenharia de software e design refinado.",
-        "bio_p2": "Fora do desenvolvimento, sou tutor do Chico Wagner (meu fiel companheiro canino) e adoro estudar novos avanços da Inteligência Artificial e computação gráfica.",
+        "subtitle": "Conheça quem sou, meus companheiros e meu foco",
+        "bio_p1": "Sou desenvolvedor Full Stack e gosto de transformar problemas e ideias em projetos que realmente façam sentido.",
+        "bio_p2": "Curto trabalhar tanto no código quanto na interface, sempre pensando nos detalhes que tornam uma aplicação mais bonita, fluida e agradável de usar.",
+        "bio_p3": "Fora da programação, gosto de explorar novas tecnologias, estudar IA e computação gráfica — geralmente na companhia do Chico Wagner. 🐈",
         "cv_download": "Baixar CV (PDF)",
         "chico_title": "Chico Wagner",
-        "chico_desc": "O CEO (Chief Executive Officer of Barking) e mascote oficial do portfólio. Garante que os prazos sejam cumpridos e que as pausas para cafuné aconteçam a cada 30 minutos.",
+        "chico_desc": "CEO (Chief Executive Officer of Meowing) e mascote oficial do portfólio. 🐈\n\nResponsável por supervisionar meu trabalho, interromper sessões de código nos momentos mais importantes e garantir que as pausas para carinho sejam cumpridas rigorosamente.\n\nAté agora, tem feito um excelente trabalho — principalmente em dormir enquanto eu trabalho.",
         "filip_title": "Fillipe (filipidios)",
-        "filip_desc": "Desenvolvedor, entusiasta de 3D, amante de café e o humano responsável por traduzir café e petiscos em linhas de código reativas.",
+        "filip_desc": "Curioso por natureza e sempre fuçando alguma coisa nova. Gosto de aprender, testar ideias e entender como as coisas funcionam — seja uma tecnologia nova, um projeto ou alguma ideia que apareceu do nada.\n\nNo tempo livre, gosto de jogos, tecnologia, café e, claro, da companhia do Chico Wagner. 🐈",
         "skills_title": "Habilidades & Especialidades",
+        "skills_subtitle": "Tecnologias e metodologias aplicadas no dia a dia",
         "skills_categories": {
             "ai": "Inteligência Artificial & Dados",
-            "front": "Front-End",
+            "front": "Front-End & UI Interativa",
             "back": "Back-End & Infra",
             "soft": "Soft Skills & Metodologias",
             "languages": "Idiomas",
@@ -34,9 +62,11 @@
         }
     },
     "projects": {
-        "title": "Projetos em Destaque",
-        "subtitle": "Uma seleção de trabalhos recentes e experimentos técnicos",
+        "title": "Dê uma olhada nos meus",
+        "title_highlight": "Projetos",
+        "subtitle": "Uma seleção de trabalhos recentes, arquiteturas completas e experimentos técnicos",
         "view_project": "Ver Projeto",
+        "view_all": "Ver Todos",
         "back_to_portfolio": "Voltar ao Portfólio",
         "live_demo": "Ver Projeto Ao Vivo",
         "github_repo": "Repositório GitHub",
@@ -80,22 +110,30 @@
         }
     },
     "contact": {
-        "title": "Contato",
-        "subtitle": "Bora bater um papo? Deixe sua mensagem ou me encontre nas redes",
+        "title": "Tem uma ideia incrível de projeto?",
+        "title_highlight": "Bora Conversar!",
+        "subtitle": "Vamos transformar sua ideia em um produto web moderno, veloz e elegante. Deixe sua mensagem!",
         "label_name": "Nome",
         "label_email": "E-mail",
         "label_message": "Mensagem",
         "placeholder_name": "Seu nome...",
         "placeholder_email": "seu@email.com",
-        "placeholder_message": "Sua mensagem aqui...",
+        "placeholder_message": "Conte um pouco sobre seu projeto ou ideia...",
         "send_btn": "Enviar Mensagem",
         "sending": "Enviando...",
         "success": "Mensagem enviada com sucesso! Obrigado pelo contato.",
         "error": "Ocorreu um erro ao enviar. Por favor, tente novamente.",
         "direct_title": "Informações de Contato",
-        "direct_desc": "Estou aberto a novas oportunidades de contratação, projetos freelancer ou ideias criativas de desenvolvimento."
+        "direct_desc": "Estou aberto a novas oportunidades de contratação, projetos freelance ou ideias criativas de desenvolvimento.",
+        "trust_rating": "5.0 / 5 Dedicação & Qualidade",
+        "trust_clean": "Arquitetura Limpa & Escalável",
+        "trust_comm": "Comunicação Ágil & Transparente"
     },
     "footer": {
+        "brand_tagline": "Criando soluções web completas do conceito à produção com atenção obsessiva aos detalhes.",
+        "quick_links": "Navegação",
+        "connect": "Vamos nos Conectar",
+        "cta_hire": "Falar Comigo",
         "rights": "Todos os direitos reservados.",
         "back_to_top": "Voltar ao topo",
         "cookies_settings": "Configurações de Cookies",
@@ -104,5 +142,20 @@
         "cookies_accept": "Entendido",
         "cookies_panel_desc": "Gerencie suas preferências de privacidade. Este site armazena somente chaves funcionais (Tema e Idioma) necessárias para sua experiência de navegação.",
         "cookies_save": "Salvar preferências"
+    },
+    "accessibility": {
+        "title": "Acessibilidade",
+        "btn_aria": "Abrir painel de acessibilidade",
+        "font_size": "Tamanho do Texto",
+        "font_normal": "Padrão",
+        "font_large": "Grande (A+)",
+        "font_xlarge": "Extra (A++)",
+        "high_contrast": "Alto Contraste",
+        "grayscale": "Modo Monocromático",
+        "highlight_links": "Destacar Links",
+        "line_spacing": "Espaçamento de Linha",
+        "reduce_motion": "Reduzir Animações",
+        "reset": "Restaurar Padrões",
+        "close": "Fechar"
     }
 }

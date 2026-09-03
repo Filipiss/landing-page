@@ -1,14 +1,23 @@
 import HeroSection from '../../organisms/HeroSection/HeroSection';
+import MarqueeRibbon from '../../molecules/MarqueeRibbon/MarqueeRibbon';
 import AboutSection from '../../organisms/AboutSection/AboutSection';
-import ProjectsSection from '../../organisms/ProjectsSection/ProjectsSection';
+import ScrollFadeSection from '../../atoms/ScrollFadeSection/ScrollFadeSection';
 import './HomePage.css';
 
 export default function HomePage() {
     return (
         <>
-            <HeroSection />
-            <AboutSection />
-            <ProjectsSection />
+            <ScrollFadeSection>
+                <HeroSection />
+            </ScrollFadeSection>
+
+            <ScrollFadeSection>
+                <MarqueeRibbon />
+            </ScrollFadeSection>
+
+            <ScrollFadeSection id="about-wrapper">
+                <AboutSection />
+            </ScrollFadeSection>
         </>
     );
 }

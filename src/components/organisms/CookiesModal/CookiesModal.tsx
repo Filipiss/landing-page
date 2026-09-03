@@ -52,7 +52,7 @@ export default function CookiesModal({ isOpen, onClose }: CookiesModalProps) {
                         className="cookies-banner"
                     >
                         <div className="cookies-banner-content">
-                            <ShieldCheck size={24} className="color-accent" style={{ flexShrink: 0 }} />
+                            <ShieldCheck size={24} className="color-accent cookies-banner-icon" />
                             <p className="cookies-banner-text">
                                 {t('footer.cookies_desc')}
                             </p>
@@ -88,7 +88,7 @@ export default function CookiesModal({ isOpen, onClose }: CookiesModalProps) {
                             className="modal"
                         >
                             <div className="modal-header">
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <div className="modal-header-title">
                                     <ShieldCheck size={22} className="color-accent" />
                                     <h3>{t('footer.cookies_title')}</h3>
                                 </div>
@@ -98,7 +98,7 @@ export default function CookiesModal({ isOpen, onClose }: CookiesModalProps) {
                             </div>
 
                             <div className="modal-body">
-                                <p style={{ marginBottom: '16px', fontSize: '14px', color: 'var(--text-secondary)' }}>
+                                <p className="modal-description">
                                     {t('footer.cookies_panel_desc')}
                                 </p>
 
@@ -156,7 +156,6 @@ export default function CookiesModal({ isOpen, onClose }: CookiesModalProps) {
                                     type="button"
                                     onClick={handleAcceptAll}
                                     className="btn btn-outline"
-                                    style={{ marginRight: '8px' }}
                                 >
                                     Aceitar Todos
                                 </button>

@@ -1,0 +1,5 @@
+.scroll-fade-section {
+    width: 100%;
+    position: relative;
+    will-change: opacity, transform;
+}

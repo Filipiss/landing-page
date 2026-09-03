@@ -1,0 +1,41 @@
+.marquee-ribbon-wrapper {
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--accent-primary);
+    color: #ffffff;
+    padding: 16px 0;
+    position: relative;
+    user-select: none;
+    box-shadow: 0 4px 20px rgba(var(--accent-primary-rgb), 0.35);
+    z-index: 10;
+}
+
+.marquee-ribbon-content {
+    display: flex;
+    white-space: nowrap;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+}
+
+.marquee-ribbon-wrapper:hover .marquee-ribbon-content {
+    animation-play-state: paused;
+}
+
+.marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 20px;
+}
+
+.marquee-star {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.marquee-text {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}

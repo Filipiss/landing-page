@@ -1,0 +1,23 @@
+.split-parent {
+  display: inline-block;
+  overflow: visible;
+  white-space: normal;
+  word-wrap: break-word;
+  will-change: transform, opacity;
+}
+
+.split-char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.split-word {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+
+.split-line {
+  display: block;
+  will-change: transform, opacity;
+}
