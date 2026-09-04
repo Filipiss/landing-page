@@ -1,0 +1,105 @@
+.studio-stack-section {
+    background-color: var(--bg-section-tech);
+    background-image: radial-gradient(rgba(59, 130, 246, 0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+    position: relative;
+}
+
+.studio-stack-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 800px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+    opacity: 0.6;
+}
+
+[data-theme="light"] .studio-stack-section {
+    background-image: radial-gradient(rgba(37, 99, 235, 0.08) 1px, transparent 1px);
+}
+
+.studio-stack-matrix {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 48px;
+}
+
+.studio-stack-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius-sm);
+    padding: 24px;
+    transition: all var(--transition-fast);
+}
+
+.studio-stack-col:hover {
+    border-color: var(--border-active);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px);
+}
+
+.stack-col-top {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.stack-col-index {
+    font-size: 0.75rem;
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+.stack-col-heading {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--text-primary);
+    text-transform: uppercase;
+}
+
+.stack-tech-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.stack-tech-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+}
+
+.stack-tech-row:hover {
+    color: var(--text-primary);
+}
+
+.stack-bullet {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.stack-item-name {
+    letter-spacing: 0.02em;
+}
+
+@media (max-width: 900px) {
+    .studio-stack-matrix {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+}

@@ -21,3 +21,19 @@
   display: block;
   will-change: transform, opacity;
 }
+
+.split-text--left {
+  text-align: left;
+}
+
+.split-text--center {
+  text-align: center;
+}
+
+.split-text--right {
+  text-align: right;
+}
+
+.split-text--justify {
+  text-align: justify;
+}

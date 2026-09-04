@@ -1,10 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
-import { Mail, Send, CheckCircle2, AlertCircle, ShieldCheck, Zap, MessageSquare, Sparkles } from 'lucide-react';
-import { motion } from 'framer-motion';
-import GithubIcon from '../../atoms/GithubIcon/GithubIcon';
-import LinkedinIcon from '../../atoms/LinkedinIcon/LinkedinIcon';
-import StarBorder from '../../atoms/StarBorder/StarBorder';
+import { ArrowUpRight, Check, AlertCircle, Copy } from 'lucide-react';
 import './ContactSection.css';
 
 export default function ContactSection() {
@@ -12,6 +8,7 @@ export default function ContactSection() {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState('');
+    const [copiedEmail, setCopiedEmail] = useState(false);
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -19,6 +16,13 @@ export default function ContactSection() {
         if (status !== 'idle' && status !== 'sending') {
             setStatus('idle');
         }
+    };
+
+    const handleCopyEmail = (e: React.MouseEvent) => {
+        e.preventDefault();
+        navigator.clipboard.writeText('filipi.soares.silva@gmail.com');
+        setCopiedEmail(true);
+        setTimeout(() => setCopiedEmail(false), 2000);
     };
 
     const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -32,7 +36,6 @@ export default function ContactSection() {
 
         const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
-        // Se uma chave real do Web3Forms estiver configurada no .env:
         if (accessKey && accessKey.trim() !== '') {
             try {
                 const response = await fetch('https://api.web3forms.com/submit', {
@@ -47,7 +50,7 @@ export default function ContactSection() {
                         email: formData.email,
                         message: formData.message,
                         subject: `Novo Contato do Portfólio de: ${formData.name}`,
-                        from_name: 'Portfólio de Fillipe'
+                        from_name: 'Studio Filipi Soares'
                     })
                 });
 
@@ -66,94 +69,106 @@ export default function ContactSection() {
                 setErrorMessage(t('contact.error'));
             }
         } else {
-            // Fallback elegante caso a chave ainda não tenha sido inserida no .env:
-            // Simula o envio com sucesso após 1s para demonstração
             setTimeout(() => {
                 setStatus('success');
                 setFormData({ name: '', email: '', message: '' });
-            }, 1000);
+            }, 750);
         }
     };
 
     return (
-        <section id="contact" className="section contact-section-editorial">
+        <section id="contact" className="section studio-contact-section">
             <div className="container">
-
-                {/* Section Header */}
-                <div className="text-center contact-header">
-                    <span className="pretitle">
-                        <Sparkles size={14} />
-                        Contato
-                    </span>
-                    <h2 className="section-title">
-                        {t('contact.title')}{' '}
-                        <span className="highlight">{t('contact.title_highlight')}</span>
-                    </h2>
-                    <p className="section-subtitle contact-subtitle">
-                        {t('contact.subtitle')}
-                    </p>
+                {/* 1. Kicker */}
+                <div className="section-kicker">
+                    <span className="section-kicker-num">05 //</span>
+                    <span>{t('contact.kicker').replace(/^[0-9]+\s*\/\/\s*/, '')}</span>
                 </div>
 
-                <div className="contact-editorial-grid">
+                <div className="studio-contact-layout">
+                    {/* Left: Direct Channels & Studio Pitch */}
+                    <div className="studio-contact-pitch-col">
+                        <h2 className="contact-monumental-headline font-display">
+                            {t('contact.title')}
+                        </h2>
+                        <p className="contact-manifesto-sub">
+                            {t('contact.subtitle')}
+                        </p>
 
-                    {/* Left Column: Direct Info & Trust Badges */}
-                    <div className="contact-editorial-info-wrapper">
-                        <StarBorder className="contact-star-border" innerClassName="contact-editorial-info" speed="6s">
-                            <div className="contact-card-header">
-                                <h3 className="contact-info-headline">{t('contact.direct_title')}</h3>
-                                <p className="contact-info-description">{t('contact.direct_desc')}</p>
+                        <div className="studio-channels-list">
+                            {/* Email row with Copy button */}
+                            <div className="studio-channel-row font-mono">
+                                <span className="channel-tag">{t('contact.email_label')} //</span>
+                                <a href="mailto:filipi.soares.silva@gmail.com" className="channel-value-link">
+                                    filipi.soares.silva@gmail.com
+                                </a>
+                                <button
+                                    type="button"
+                                    onClick={handleCopyEmail}
+                                    className="channel-copy-btn"
+                                    title="Copiar email"
+                                >
+                                    {copiedEmail ? (
+                                        <>
+                                            <Check size={12} className="copy-icon-success" />
+                                            <span>{t('contact.email_copied')}</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Copy size={12} />
+                                            <span>{t('contact.copy_email')}</span>
+                                        </>
+                                    )}
+                                </button>
                             </div>
 
-                            <div className="contact-channels-list">
-                                <a href="mailto:filipi.soares.silva@gmail.com" className="contact-channel-item">
-                                    <div className="contact-channel-icon"><Mail size={18} /></div>
-                                    <div className="contact-channel-texts">
-                                        <span className="contact-channel-label">E-mail Direto</span>
-                                        <span className="contact-channel-value">filipi.soares.silva@gmail.com</span>
-                                    </div>
-                                </a>
+                            {/* GitHub */}
+                            <a
+                                href="https://github.com/filipiss"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="studio-channel-row font-mono"
+                            >
+                                <span className="channel-tag">{t('contact.github_label')} //</span>
+                                <span className="channel-value-link">github.com/filipiss</span>
+                                <ArrowUpRight size={14} className="kinetic-arrow channel-arrow" />
+                            </a>
 
-                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="contact-channel-item">
-                                    <div className="contact-channel-icon"><LinkedinIcon size={18} /></div>
-                                    <div className="contact-channel-texts">
-                                        <span className="contact-channel-label">LinkedIn</span>
-                                        <span className="contact-channel-value">linkedin.com/in/filipidios</span>
-                                    </div>
-                                </a>
+                            {/* LinkedIn */}
+                            <a
+                                href="https://www.linkedin.com/in/filipiss/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="studio-channel-row font-mono"
+                            >
+                                <span className="channel-tag">{t('contact.linkedin_label')} //</span>
+                                <span className="channel-value-link">linkedin.com/in/filipiss</span>
+                                <ArrowUpRight size={14} className="kinetic-arrow channel-arrow" />
+                            </a>
 
-                                <a href="https://github.com/filipidios" target="_blank" rel="noopener noreferrer" className="contact-channel-item">
-                                    <div className="contact-channel-icon"><GithubIcon size={18} /></div>
-                                    <div className="contact-channel-texts">
-                                        <span className="contact-channel-label">GitHub</span>
-                                        <span className="contact-channel-value">github.com/filipidios</span>
-                                    </div>
-                                </a>
-                            </div>
-
-                            {/* Trust Highlights */}
-                            <div className="contact-trust-pills">
-                                <div className="trust-pill">
-                                    <ShieldCheck size={16} className="color-accent" />
-                                    <span>{t('contact.trust_rating')}</span>
-                                </div>
-                                <div className="trust-pill">
-                                    <Zap size={16} className="color-accent" />
-                                    <span>{t('contact.trust_clean')}</span>
-                                </div>
-                                <div className="trust-pill">
-                                    <MessageSquare size={16} className="color-accent" />
-                                    <span>{t('contact.trust_comm')}</span>
-                                </div>
-                            </div>
-                        </StarBorder>
+                            {/* CV Download */}
+                            <a
+                                href="/curriculo-filipi-soares.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                download="curriculo-filipi-soares.pdf"
+                                className="studio-channel-row font-mono"
+                            >
+                                <span className="channel-tag">{t('contact.cv_label')} //</span>
+                                <span className="channel-value-link">DOWNLOAD CURRÍCULO ↗</span>
+                                <ArrowUpRight size={14} className="kinetic-arrow channel-arrow" />
+                            </a>
+                        </div>
                     </div>
 
-                    {/* Right Column: Contact Form */}
-                    <div className="contact-editorial-form-wrapper">
-                        <StarBorder className="contact-star-border" innerClassName="contact-editorial-form-inner" speed="6s">
-                            <form onSubmit={handleFormSubmit} className="contact-editorial-form">
-                                <div className="contact-input-group">
-                                    <label htmlFor="form-name">{t('contact.label_name')}</label>
+                    {/* Right: Integrated Flat Transmission Form */}
+                    <div className="studio-contact-form-col">
+                        <div className="studio-form-card">
+                            <form onSubmit={handleFormSubmit} className="studio-transmission-form">
+                                <div className="form-input-group">
+                                    <label htmlFor="form-name" className="form-field-label font-mono">
+                                        {t('contact.label_name')}
+                                    </label>
                                     <input
                                         id="form-name"
                                         type="text"
@@ -162,11 +177,14 @@ export default function ContactSection() {
                                         onChange={handleInputChange}
                                         placeholder={t('contact.placeholder_name')}
                                         required
+                                        className="form-editorial-input"
                                     />
                                 </div>
 
-                                <div className="contact-input-group">
-                                    <label htmlFor="form-email">{t('contact.label_email')}</label>
+                                <div className="form-input-group">
+                                    <label htmlFor="form-email" className="form-field-label font-mono">
+                                        {t('contact.label_email')}
+                                    </label>
                                     <input
                                         id="form-email"
                                         type="email"
@@ -175,25 +193,29 @@ export default function ContactSection() {
                                         onChange={handleInputChange}
                                         placeholder={t('contact.placeholder_email')}
                                         required
+                                        className="form-editorial-input"
                                     />
                                 </div>
 
-                                <div className="contact-input-group">
-                                    <label htmlFor="form-message">{t('contact.label_message')}</label>
+                                <div className="form-input-group">
+                                    <label htmlFor="form-message" className="form-field-label font-mono">
+                                        {t('contact.label_message')}
+                                    </label>
                                     <textarea
                                         id="form-message"
                                         name="message"
-                                        rows={4}
+                                        rows={3}
                                         value={formData.message}
                                         onChange={handleInputChange}
                                         placeholder={t('contact.placeholder_message')}
                                         required
+                                        className="form-editorial-textarea"
                                     ></textarea>
                                 </div>
 
                                 <button
                                     type="submit"
-                                    className="btn btn-primary contact-submit-btn"
+                                    className="btn btn-primary form-submit-btn font-mono"
                                     disabled={status === 'sending'}
                                 >
                                     {status === 'sending' ? (
@@ -201,38 +223,28 @@ export default function ContactSection() {
                                     ) : (
                                         <>
                                             <span>{t('contact.send_btn')}</span>
-                                            <Send size={16} />
+                                            <ArrowUpRight size={14} className="kinetic-arrow" />
                                         </>
                                     )}
                                 </button>
 
                                 {status === 'success' && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 8 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        className="contact-alert-box contact-alert-success"
-                                    >
-                                        <CheckCircle2 size={18} />
+                                    <div className="form-feedback-strip feedback-success font-mono">
+                                        <Check size={14} />
                                         <span>{t('contact.success')}</span>
-                                    </motion.div>
+                                    </div>
                                 )}
 
                                 {status === 'error' && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 8 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        className="contact-alert-box contact-alert-error"
-                                    >
-                                        <AlertCircle size={18} />
+                                    <div className="form-feedback-strip feedback-error font-mono">
+                                        <AlertCircle size={14} />
                                         <span>{errorMessage || t('contact.error')}</span>
-                                    </motion.div>
+                                    </div>
                                 )}
                             </form>
-                        </StarBorder>
+                        </div>
                     </div>
-
                 </div>
-
             </div>
         </section>
     );

@@ -7,7 +7,7 @@ export type Language = 'pt' | 'en';
 interface LanguageContextProps {
     language: Language;
     setLanguage: (lang: Language) => void;
-    t: (path: string) => string;
+    t: (path: string, options?: any) => any;
 }
 
 const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
@@ -30,17 +30,17 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
         document.documentElement.lang = language === 'pt' ? 'pt-BR' : 'en';
     }, [language]);
 
-    const t = (path: string): string => {
+    const t = (path: string, _options?: any): any => {
         const keys = path.split('.');
-        let value = translations[language];
+        let value: any = translations[language];
         for (const key of keys) {
             if (value && value[key] !== undefined) {
                 value = value[key];
             } else {
-                return path; // Return the path if key not found
+                return path;
             }
         }
-        return typeof value === 'string' ? value : path;
+        return value !== undefined ? value : path;
     };
 
     return (

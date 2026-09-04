@@ -1,0 +1,131 @@
+.studio-experience-section {
+    background-color: var(--bg-primary);
+    position: relative;
+}
+
+.studio-experience-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 800px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-active), transparent);
+    opacity: 0.5;
+}
+
+.studio-experience-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.studio-experience-row {
+    display: grid;
+    grid-template-columns: 200px 1.25fr 1fr;
+    gap: 40px;
+    align-items: start;
+    padding: 36px 20px;
+    margin: 0 -20px;
+    border-bottom: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius-xs);
+    transition: all var(--transition-fast);
+}
+
+.studio-experience-row:hover {
+    background-color: var(--bg-surface);
+    border-color: var(--border-active);
+}
+
+/* Timeline Column */
+.exp-timeline-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.8125rem;
+    padding-top: 4px;
+}
+
+.exp-period-badge {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.exp-index-badge {
+    color: var(--accent-primary);
+    font-size: 0.75rem;
+}
+
+/* Narrative Column */
+.exp-narrative-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.exp-title-row {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.exp-company-heading {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.015em;
+}
+
+.exp-role-tag {
+    font-size: 0.75rem;
+    color: var(--accent-primary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.exp-narrative-text {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+/* Stack Column */
+.exp-stack-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background-color: var(--bg-surface-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius-xs);
+    padding: 16px;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+}
+
+.exp-stack-label {
+    color: var(--accent-primary);
+    font-weight: 600;
+    font-size: 0.6875rem;
+}
+
+.exp-stack-content {
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+@media (max-width: 960px) {
+    .studio-experience-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 32px 0;
+    }
+
+    .exp-timeline-col {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}

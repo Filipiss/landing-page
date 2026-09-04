@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import StarBorder from '../../atoms/StarBorder/StarBorder';
 import './ProjectCard.css';
 
 interface ProjectCardProps {
@@ -28,55 +27,44 @@ export default function ProjectCard({
     index
 }: ProjectCardProps) {
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 30 }}
+        <motion.article
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3, delay: index * 0.08 }}
             onClick={onClick}
-            className="project-card-wrapper"
+            className={`project-editorial-card project-card-${id}`}
         >
-            <StarBorder className="project-card-star-wrapper" innerClassName="project-card-editorial" speed="5s">
-                {/* Mockup / Visual Area */}
-                <div className={`project-card-visual project-card-visual-${id}`}>
-                <div className="project-card-visual-content">
-                    <div className="project-card-icon-wrapper">
+            <div className="project-card-header-bar font-mono">
+                <span className="project-category-tag">{category}</span>
+                <span className="project-num-tag">0{index + 1} //</span>
+            </div>
+
+            <div className="project-card-main-content">
+                <div className="project-card-title-row">
+                    <div className="project-card-icon-slot">
                         {icon}
                     </div>
-                </div>
-                <span className="project-card-category-pill">
-                    {category}
-                </span>
-
-                <button
-                    className="project-card-circle-arrow"
-                    aria-label={viewProjectText}
-                    type="button"
-                >
-                    <ArrowUpRight size={20} />
-                </button>
-            </div>
-
-            {/* Card Content */}
-            <div className="project-card-info">
-                {/* Tech Tags */}
-                <div className="project-card-pills-row">
-                    {tags.map((tag, idx) => (
-                        <span key={idx} className="project-tag-pill">
-                            {tag}
-                        </span>
-                    ))}
+                    <h3 className="project-card-title">{title}</h3>
                 </div>
 
-                <h3 className="project-card-headline">
-                    <span>{title}</span>
-                </h3>
+                <p className="project-card-description">{shortDesc}</p>
 
-                <p className="project-card-summary">
-                    {shortDesc}
-                </p>
+                <div className="project-card-footer font-mono">
+                    <div className="project-tags-list">
+                        {tags.map((tag, idx) => (
+                            <span key={idx} className="project-mono-tag">
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+
+                    <span className="project-action-link">
+                        <span>{viewProjectText}</span>
+                        <ArrowUpRight size={14} />
+                    </span>
+                </div>
             </div>
-            </StarBorder>
-        </motion.div>
+        </motion.article>
     );
 }

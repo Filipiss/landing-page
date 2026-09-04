@@ -8,7 +8,6 @@ import ContactSection from './components/organisms/ContactSection/ContactSection
 import Footer from './components/organisms/Footer/Footer';
 import CookiesModal from './components/organisms/CookiesModal/CookiesModal';
 import AccessibilityWidget from './components/organisms/AccessibilityWidget/AccessibilityWidget';
-import ScrollFadeSection from './components/atoms/ScrollFadeSection/ScrollFadeSection';
 
 function App() {
     const [currentProjectId, setCurrentProjectId] = useState<string | null>(() => {
@@ -130,10 +129,10 @@ function App() {
                     )}
                 </AnimatePresence>
 
-                {/* Global Sections representing Footer/Contact criteria */}
-                <ScrollFadeSection id="contact-wrapper">
+                {/* Global Contact Section */}
+                <div id="contact-wrapper">
                     <ContactSection />
-                </ScrollFadeSection>
+                </div>
             </main>
 
             {/* Global Footer anchor details */}

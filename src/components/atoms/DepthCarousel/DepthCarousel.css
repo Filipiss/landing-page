@@ -1,0 +1,177 @@
+.depth-carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: var(--dc-perspective, 1400px);
+  perspective-origin: 50% 50%;
+  touch-action: pan-y;
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+
+.depth-carousel:active {
+  cursor: grabbing;
+}
+
+.depth-carousel:focus-visible {
+  outline: 2px solid var(--accent-primary, #3B82F6);
+  outline-offset: 4px;
+  border-radius: var(--border-radius-xs, 6px);
+}
+
+.depth-carousel__stage {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.depth-carousel__card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--dc-card-width, 360px);
+  height: var(--dc-card-height, 225px);
+  border-radius: var(--dc-card-radius, 6px);
+  transform-origin: center center;
+  overflow: hidden;
+  background: var(--bg-surface, #111620);
+  border: 1px solid var(--border-subtle, #1E2633);
+  box-shadow:
+    0 30px 60px -15px rgba(0, 0, 0, 0.75),
+    0 10px 25px -10px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: border-color 0.25s ease;
+}
+
+.depth-carousel__card:hover {
+  border-color: var(--border-active, #3B82F6);
+}
+
+.depth-carousel__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  image-rendering: -webkit-optimize-contrast;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.depth-carousel__tint {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: var(--dc-tint, #000);
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.depth-carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3000;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-subtle, #1E2633);
+  border-radius: var(--border-radius-xs, 6px);
+  background: rgba(9, 12, 16, 0.85);
+  backdrop-filter: blur(10px);
+  color: var(--text-primary, #F8FAFC);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.depth-carousel__arrow:hover {
+  background: var(--bg-surface-elevated, #1A2230);
+  border-color: var(--accent-primary, #3B82F6);
+  color: var(--accent-primary, #3B82F6);
+}
+
+.depth-carousel__arrow:active {
+  transform: translateY(-50%) scale(0.92);
+}
+
+.depth-carousel__arrow--prev {
+  left: 12px;
+}
+
+.depth-carousel__arrow--next {
+  right: 12px;
+}
+
+.depth-carousel__dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3000;
+  display: flex;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: var(--border-radius-xs, 6px);
+  background: rgba(9, 12, 16, 0.85);
+  border: 1px solid var(--border-subtle, #1E2633);
+  backdrop-filter: blur(8px);
+}
+
+.depth-carousel__dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition:
+    width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.25s ease;
+}
+
+.depth-carousel__dot:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.depth-carousel__dot.is-active {
+  width: 24px;
+  background: var(--accent-primary, #3B82F6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .depth-carousel__card {
+    will-change: auto;
+  }
+  .depth-carousel__arrow,
+  .depth-carousel__dot {
+    transition: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .depth-carousel__arrow {
+    width: 36px;
+    height: 36px;
+  }
+  .depth-carousel__arrow--prev {
+    left: 6px;
+  }
+  .depth-carousel__arrow--next {
+    right: 6px;
+  }
+}

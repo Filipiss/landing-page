@@ -24,7 +24,8 @@
   bottom: -25px;
   right: -250%;
   border-radius: 50%;
-  animation: star-movement-bottom linear infinite alternate;
+  background: radial-gradient(circle, var(--star-color, var(--accent-primary, #2563eb)), transparent 20%);
+  animation: star-movement-bottom var(--star-speed, 6s) linear infinite alternate;
   z-index: 0;
   pointer-events: none;
 }
@@ -37,7 +38,8 @@
   top: -25px;
   left: -250%;
   border-radius: 50%;
-  animation: star-movement-top linear infinite alternate;
+  background: radial-gradient(circle, var(--star-color, var(--accent-primary, #2563eb)), transparent 20%);
+  animation: star-movement-top var(--star-speed, 6s) linear infinite alternate;
   z-index: 0;
   pointer-events: none;
 }

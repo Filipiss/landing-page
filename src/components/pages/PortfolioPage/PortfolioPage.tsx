@@ -1,6 +1,6 @@
 import { useState, ReactNode } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
-import { Clock, Star, Terminal, ArrowLeft } from 'lucide-react';
+import { Clock, Terminal, ArrowLeft } from 'lucide-react';
 import ProjectCard from '../../molecules/ProjectCard/ProjectCard';
 import './PortfolioPage.css';
 
@@ -8,30 +8,24 @@ interface ProjectsSectionList {
     id: string;
     tags: string[];
     icon: ReactNode;
-    categoryType: 'fullstack' | 'webgl' | 'ai';
+    categoryType: 'fullstack' | 'ai' | 'enterprise';
 }
 
 export default function PortfolioPage() {
     const { t } = useLanguage();
-    const [filter, setFilter] = useState<'all' | 'fullstack' | 'webgl' | 'ai'>('all');
+    const [filter, setFilter] = useState<'all' | 'fullstack' | 'ai'>('all');
 
     const projectsList: ProjectsSectionList[] = [
         {
             id: 'time-tracker',
-            tags: ['React', 'Flask', 'PostgreSQL', 'SQLAlchemy'],
-            icon: <Clock size={40} className="project-card-cover-icon" />,
+            tags: ['Python', 'Flask', 'PostgreSQL', 'React', 'TypeScript'],
+            icon: <Clock size={28} className="project-card-cover-icon" />,
             categoryType: 'fullstack'
         },
         {
-            id: 'space-portfolio',
-            tags: ['React', 'CSS3', 'Framer Motion'],
-            icon: <Star size={40} className="project-card-cover-icon" />,
-            categoryType: 'webgl'
-        },
-        {
             id: 'ai-assistant-integrator',
-            tags: ['Node.js', 'Express', 'LLM API', 'Streaming'],
-            icon: <Terminal size={40} className="project-card-cover-icon" />,
+            tags: ['Python', 'FastAPI', 'SSE Streaming', 'Gemini & OpenAI', 'React'],
+            icon: <Terminal size={28} className="project-card-cover-icon" />,
             categoryType: 'ai'
         }
     ];
@@ -48,17 +42,17 @@ export default function PortfolioPage() {
         <div className="portfolio-page">
             <div className="container">
                 <header className="portfolio-header">
-                    <a href="#/" className="portfolio-back-btn">
+                    <a href="#/" className="portfolio-back-btn font-mono">
                         <ArrowLeft size={16} />
                         Voltar para Home
                     </a>
-                    <h1 className="portfolio-title">Portfólio Completo</h1>
+                    <h1 className="portfolio-title font-display">Portfólio & Obras</h1>
                     <p className="portfolio-subtitle">
-                        Explore todos os meus projetos e experimentos de desenvolvimento detalhadamente.
+                        Sistemas reais construídos de ponta a ponta: APIs assíncronas em Python, plataformas corporativas e interfaces reativas.
                     </p>
 
                     {/* Category Filter Buttons */}
-                    <div className="portfolio-filters">
+                    <div className="portfolio-filters font-mono">
                         <button
                             className={`portfolio-filter-btn ${filter === 'all' ? 'active' : ''}`}
                             onClick={() => setFilter('all')}
@@ -69,19 +63,13 @@ export default function PortfolioPage() {
                             className={`portfolio-filter-btn ${filter === 'fullstack' ? 'active' : ''}`}
                             onClick={() => setFilter('fullstack')}
                         >
-                            Fullstack
-                        </button>
-                        <button
-                            className={`portfolio-filter-btn ${filter === 'webgl' ? 'active' : ''}`}
-                            onClick={() => setFilter('webgl')}
-                        >
-                            WebGL / Frontend
+                            Full Stack
                         </button>
                         <button
                             className={`portfolio-filter-btn ${filter === 'ai' ? 'active' : ''}`}
                             onClick={() => setFilter('ai')}
                         >
-                            AI / Automação
+                            IA & Streaming
                         </button>
                     </div>
                 </header>

@@ -1,105 +1,94 @@
+/* ==========================================================================
+   AGENCY-GRADE DESIGN SYSTEM & TOKENS (Awwwards / Studio Standard)
+   ========================================================================== */
+
 :root {
-  /* Colors - Dark Theme (Default) */
-  --bg-primary: #0f172a;
-  /* Slate 900 - Premium dark blue-gray */
-  --bg-secondary: #1e293b;
-  /* Slate 800 */
-  --bg-card: #1e293b;
-  /* Slate 800 Card */
-  --bg-glass: rgba(30, 41, 59, 0.75);
-  /* Translucent Slate */
-  --border-glass: rgba(255, 255, 255, 0.08);
-  --border-subtle: rgba(255, 255, 255, 0.1);
+    /* 1. Studio Dark Palette (Default Canvas) */
+    --bg-primary: #090C10;           /* Deep obsidian void */
+    --bg-section-alt: #0D121B;       /* Sculptural section canvas */
+    --bg-section-tech: #0F1420;      /* Distinct engineering matrix canvas */
+    --bg-surface: #111620;           /* Sculptural elevated card */
+    --bg-surface-elevated: #161D2A;  /* Hover / focal surface */
+    --bg-hover: #1A2230;             /* Interactive feedback */
 
-  /* Fonts color: Gray (Cinza) */
-  --text-primary: #f1f5f9;
-  /* Slate 100 - bright light gray */
-  --text-secondary: #94a3b8;
-  /* Slate 400 - medium gray */
-  --text-muted: #64748b;
-  /* Slate 500 - muted gray */
+    /* 2. Text System */
+    --text-primary: #F8FAFC;         /* Crisp near-white */
+    --text-secondary: #94A3B8;       /* Refined slate */
+    --text-muted: #64748B;           /* Quiet metadata */
 
-  --chrome-primary: #1e3a8a;
-  /* Deep blue chrome */
+    /* 3. Structural Dividers & Borders */
+    --border-subtle: #1E2633;        /* 1px editorial divider */
+    --border-section: #263345;       /* Distinct architectural section boundary */
+    --border-active: #334155;        /* Active border on hover */
+    --border-highlight: #3B82F6;     /* Accent edge */
 
-  /* Blue-based Accent Colors */
-  --accent-primary: #2563eb;
-  /* 1. Azul um pouco mais forte (Vivid/Strong Blue) */
-  --accent-primary-hover: #1d4ed8;
-  --accent-primary-rgb: 37, 99, 235;
+    /* 4. Strategic Accent - Electric Cobalt */
+    --accent-primary: #3B82F6;
+    --accent-primary-hover: #60A5FA;
+    --accent-subtle: rgba(59, 130, 246, 0.12);
+    --accent-glow: rgba(59, 130, 246, 0.22);
+    --accent-primary-rgb: 59, 130, 246;
 
-  --accent-secondary: #0ea5e9;
-  /* 2. Azul médio (Medium Sky Blue) */
-  --accent-secondary-rgb: 14, 165, 233;
+    /* 5. Typography Matrix */
+    --font-display: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
 
-  --accent-tertiary: #7dd3fc;
-  /* 3. Azul mais fraquinho (Light Powder Blue) */
-  --accent-tertiary-rgb: 125, 211, 252;
+    /* 6. Strict Agency Geometry (No bloated 24px/32px pills) */
+    --border-radius-none: 0px;
+    --border-radius-xs: 2px;
+    --border-radius-sm: 4px;
+    --border-radius-md: 6px;
+    --border-radius-lg: 8px;
+    --border-radius-full: 9999px; /* Reserved solely for status pills */
 
-  --accent-glow: rgba(var(--accent-primary-rgb), 0.2);
-  --accent-subtle: rgba(var(--accent-primary-rgb), 0.12);
+    /* 7. Precision Motion & Timings */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+    --transition-fast: 180ms var(--ease-out-expo);
+    --transition-normal: 320ms var(--ease-out-expo);
+    --transition-slow: 550ms var(--ease-out-expo);
 
-  /* Fonts */
-  --font-family: 'Plus Jakarta Sans', 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+    /* 8. Studio Grid & Spacing */
+    --container-max-width: 1320px;
+    --section-spacing-desktop: 140px;
+    --section-spacing-mobile: 84px;
 
-  /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.3);
-  --shadow-glow: 0 0 20px rgba(var(--accent-primary-rgb), 0.35);
-
-  /* Transitions */
-  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-
-  --border-radius-sm: 8px;
-  --border-radius-md: 16px;
-  --border-radius-lg: 24px;
-  --border-radius-xl: 32px;
-  --border-radius-full: 9999px;
+    /* 9. Shadows (Crisp & Restrained) */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+    --shadow-preview: 0 20px 50px rgba(0, 0, 0, 0.7);
 }
 
+/* ==========================================================================
+   LIGHT MODE: Studio Minimalist / High-Contrast Editorial
+   ========================================================================== */
 [data-theme="light"] {
-  /* Colors - Light Theme */
-  --bg-primary: #f8fafc;
-  /* Slate 50 - Very light page background */
-  --bg-secondary: #ffffff;
-  --bg-card: #ffffff;
-  --bg-glass: rgba(255, 255, 255, 0.85);
-  --border-glass: rgba(15, 23, 42, 0.08);
-  --border-subtle: rgba(15, 23, 42, 0.08);
+    --bg-primary: #F8F9FA;
+    --bg-section-alt: #F1F4F9;
+    --bg-section-tech: #EDF2F7;
+    --bg-surface: #FFFFFF;
+    --bg-surface-elevated: #F1F3F5;
+    --bg-hover: #E9ECEF;
 
-  /* Fonts color: Gray (Cinza) */
-  --text-primary: #1e293b;
-  /* Slate 800 */
-  --text-secondary: #64748b;
-  /* Slate 500 - medium gray */
-  --text-muted: #94a3b8;
-  /* Slate 400 - light gray */
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #94A3B8;
 
-  --chrome-primary: #dbeafe;
-  /* Cyan-blue tint wrapper */
+    --border-subtle: #E2E8F0;
+    --border-section: #CBD5E1;
+    --border-active: #CBD5E1;
+    --border-highlight: #2563EB;
 
-  /* Blue-based Accent Colors */
-  --accent-primary: #1d4ed8;
-  /* 1. Azul um pouco mais forte (Stronger Royal Blue) */
-  --accent-primary-hover: #1e40af;
-  --accent-primary-rgb: 29, 78, 216;
+    --accent-primary: #2563EB;
+    --accent-primary-hover: #1D4ED8;
+    --accent-subtle: rgba(37, 99, 235, 0.08);
+    --accent-glow: rgba(37, 99, 235, 0.15);
+    --accent-primary-rgb: 37, 99, 235;
 
-  --accent-secondary: #0284c7;
-  /* 2. Azul médio (Medium Blue) */
-  --accent-secondary-rgb: 2, 132, 199;
-
-  --accent-tertiary: #38bdf8;
-  /* 3. Azul mais fraquinho (Sky Blue) */
-  --accent-tertiary-rgb: 56, 189, 248;
-
-  --accent-glow: rgba(var(--accent-primary-rgb), 0.12);
-  --accent-subtle: rgba(var(--accent-primary-rgb), 0.08);
-
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.05);
-  --shadow-glow: 0 0 15px rgba(var(--accent-primary-rgb), 0.2);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.1);
+    --shadow-preview: 0 20px 45px rgba(0, 0, 0, 0.15);
 }

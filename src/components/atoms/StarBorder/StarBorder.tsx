@@ -26,12 +26,9 @@ export default function StarBorder({
 }: StarBorderProps) {
     const containerStyle = {
         padding: `${thickness}px`,
+        '--star-color': color,
+        '--star-speed': speed,
         ...style
-    } as React.CSSProperties;
-
-    const gradientStyle = {
-        background: `radial-gradient(circle, ${color}, transparent 20%)`,
-        animationDuration: speed
     } as React.CSSProperties;
 
     return (
@@ -40,8 +37,8 @@ export default function StarBorder({
             style={containerStyle}
             {...rest}
         >
-            <div className="border-gradient-bottom" style={gradientStyle}></div>
-            <div className="border-gradient-top" style={gradientStyle}></div>
+            <div className="border-gradient-bottom"></div>
+            <div className="border-gradient-top"></div>
             <div className={`star-border-inner ${innerClassName}`.trim()}>
                 {children}
             </div>

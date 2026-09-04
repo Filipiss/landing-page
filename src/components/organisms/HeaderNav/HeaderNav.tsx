@@ -1,63 +1,51 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import { useTheme } from '../../../context/ThemeContext';
-import { Menu, X, Sun, Moon, Globe } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import GithubIcon from '../../atoms/GithubIcon/GithubIcon';
-import LinkedinIcon from '../../atoms/LinkedinIcon/LinkedinIcon';
+import { Menu, X, Sun, Moon, ArrowUpRight } from 'lucide-react';
 import './HeaderNav.css';
 
 interface HeaderNavProps {
-    currentProjectId: string | null;
+    currentProjectId?: string | null;
 }
 
 export default function HeaderNav({ currentProjectId }: HeaderNavProps) {
     const { t, language, setLanguage } = useLanguage();
     const { theme, toggleTheme } = useTheme();
-    const [mobileOpen, setMobileOpen] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [liveTime, setLiveTime] = useState('');
 
-    // Detect scroll to collapse/dock nav to the top of viewport
+    // Update Live Clock (Brazil / Florianópolis time UTC-3)
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+        const updateClock = () => {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString(language === 'pt' ? 'pt-BR' : 'en-US', {
+                timeZone: 'America/Sao_Paulo',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            });
+            setLiveTime(timeStr);
         };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
+        updateClock();
+        const interval = setInterval(updateClock, 1000);
+        return () => clearInterval(interval);
+    }, [language]);
 
+    // Handle scroll border
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Automatically close mobile menu when viewport expands to desktop
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth > 820) {
-                setMobileOpen(false);
-            }
-        };
+    const scrollToSection = (sectionId: string) => {
+        setMobileMenuOpen(false);
 
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    const toggleLanguage = () => {
-        setLanguage(language === 'pt' ? 'en' : 'pt');
-    };
-
-    const handleAnchorLink = (sectionId: string) => {
-        setMobileOpen(false);
-
-        if (sectionId === 'portfolio') {
-            window.location.hash = '#/portfolio';
-            return;
-        }
-
-        const hash = window.location.hash;
-        const onHome = !currentProjectId && hash !== '#/portfolio';
-
-        if (!onHome) {
-            // Redirect back to home with anchor
+        if (currentProjectId || window.location.hash.startsWith('#/project/') || window.location.hash === '#/portfolio') {
             window.location.hash = `#/${sectionId}`;
             return;
         }
@@ -68,143 +56,130 @@ export default function HeaderNav({ currentProjectId }: HeaderNavProps) {
         }
     };
 
+    const goToPortfolio = () => {
+        setMobileMenuOpen(false);
+        window.location.hash = '#/portfolio';
+    };
+
+    const toggleLanguage = () => {
+        setLanguage(language === 'pt' ? 'en' : 'pt');
+    };
+
     return (
-        <header className={`nav-wrapper ${isScrolled ? 'scrolled' : ''}`}>
-            <nav className={`nav-capsule ${isScrolled ? 'scrolled' : ''}`}>
-                {/* Brand Logo Identity */}
-                <a href="#/" className="nav-brand" aria-label="Home">
-                    <span className="nav-brand-badge">F</span>
-                    <span className="nav-brand-text">Fillipe</span>
-                </a>
-
-                {/* 1. Navigation Links (Evenly distributed across the available capsule space) */}
-                <div className="nav-menu">
-                    <span onClick={() => handleAnchorLink('home')} className="nav-link">
-                        Home
-                    </span>
-                    <span onClick={() => handleAnchorLink('about')} className="nav-link">
-                        {t('nav.about')}
-                    </span>
-                    <span onClick={() => handleAnchorLink('skills')} className="nav-link">
-                        {t('nav.skills')}
-                    </span>
-                    <span onClick={() => handleAnchorLink('contact')} className="nav-link">
-                        {t('nav.contact')}
-                    </span>
-                    <span onClick={() => handleAnchorLink('portfolio')} className="nav-link nav-link-highlight">
-                        {t('nav.portfolio')}
-                    </span>
-                </div>
-
-                {/* 2. Top Toolbar Actions (Visible only on wide desktop > 1080px) */}
-                <div className="nav-actions">
-                    {/* Language Switch */}
-                    <button
-                        onClick={toggleLanguage}
-                        className="nav-action-btn"
-                        aria-label="Toggle language"
-                        title="Alternar Idioma"
-                    >
-                        <Globe size={14} />
-                        <span>{language.toUpperCase()}</span>
-                    </button>
-
-                    {/* Theme Switcher Toggle */}
-                    <button
-                        onClick={toggleTheme}
-                        className="nav-action-icon-btn"
-                        aria-label="Toggle theme"
-                        type="button"
-                        title="Alternar Tema"
-                    >
-                        {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
-                    </button>
-
-                    <div className="nav-action-separator"></div>
-
-                    {/* Social links */}
-                    <a href="https://github.com/filipidios" target="_blank" rel="noopener noreferrer" className="nav-action-icon-btn" aria-label="GitHub">
-                        <GithubIcon size={18} />
-                    </a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="nav-action-icon-btn" aria-label="LinkedIn">
-                        <LinkedinIcon size={18} />
-                    </a>
-                </div>
-
-                {/* 3. Mobile Hamburger Indicator Trigger (Visible only on mobile <= 768px) */}
-                <button
-                    onClick={() => setMobileOpen(!mobileOpen)}
-                    className="nav-mobile-toggle"
-                    aria-label="Toggle Navigation Menu"
-                    type="button"
+        <header className={`studio-header ${scrolled ? 'is-scrolled' : ''}`}>
+            <div className="container studio-header-container">
+                {/* Brand Identity */}
+                <div 
+                    className="studio-brand" 
+                    onClick={() => scrollToSection('home')}
+                    role="button"
+                    tabIndex={0}
                 >
-                    {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-            </nav>
+                    <div className="studio-brand-mark" aria-hidden="true">
+                        <img src="/favicon.svg" alt="FS Logo" className="studio-brand-logo-img" />
+                    </div>
+                    <span className="studio-brand-name font-display">{t('nav.brand_name')}</span>
+                    <span className="studio-brand-role font-mono">{t('nav.brand_role')}</span>
+                </div>
 
-            {/* 4. Mobile Drawer Overlay Navigation Panel (Below 768px) */}
-            <AnimatePresence>
-                {mobileOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.2 }}
-                        className="nav-mobile-drawer"
+                {/* Studio Live Location & Clock */}
+                <div className="studio-header-center font-mono">
+                    <span className="live-pulse-indicator"></span>
+                    <span className="live-clock-text">FLN, BR [{liveTime} BRT]</span>
+                </div>
+
+                {/* Desktop Navigation Links */}
+                <nav className="studio-nav font-mono">
+                    <button type="button" onClick={() => scrollToSection('experience')} className="studio-nav-link">
+                        {t('nav.experience')}
+                    </button>
+                    <button type="button" onClick={() => scrollToSection('stack')} className="studio-nav-link">
+                        {t('nav.stack')}
+                    </button>
+                    <button type="button" onClick={() => scrollToSection('about')} className="studio-nav-link">
+                        {t('nav.about')}
+                    </button>
+                    <button type="button" onClick={() => scrollToSection('contact')} className="studio-nav-link">
+                        {t('nav.contact')}
+                    </button>
+                    <button type="button" onClick={goToPortfolio} className="studio-nav-link">
+                        {t('nav.portfolio')}
+                    </button>
+                    <a
+                        href="/curriculo-filipi-soares.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        download="curriculo-filipi-soares.pdf"
+                        className="studio-nav-link studio-nav-cv"
                     >
-                        <div className="nav-mobile-links">
-                            <span onClick={() => handleAnchorLink('home')} className="nav-mobile-item">
-                                Home
-                            </span>
-                            <span onClick={() => handleAnchorLink('about')} className="nav-mobile-item">
-                                {t('nav.about')}
-                            </span>
-                            <span onClick={() => handleAnchorLink('skills')} className="nav-mobile-item">
-                                {t('nav.skills')}
-                            </span>
-                            <span onClick={() => handleAnchorLink('contact')} className="nav-mobile-item">
-                                {t('nav.contact')}
-                            </span>
-                            <span onClick={() => handleAnchorLink('portfolio')} className="nav-mobile-item nav-mobile-portfolio">
-                                {t('nav.portfolio')}
-                            </span>
+                        <span>{t('nav.cv')}</span>
+                        <ArrowUpRight size={13} className="kinetic-arrow" />
+                    </a>
+                </nav>
 
-                            <div className="nav-mobile-divider"></div>
+                {/* Utility Toggles */}
+                <div className="studio-header-actions font-mono">
+                    <button
+                        type="button"
+                        onClick={toggleLanguage}
+                        className="studio-util-btn"
+                        title="Switch Language"
+                    >
+                        {language.toUpperCase()}
+                    </button>
 
-                            {/* Mobile Toolbar Controls */}
-                            <div className="nav-mobile-controls">
-                                <div className="nav-mobile-prefs">
-                                    <button
-                                        onClick={toggleLanguage}
-                                        className="nav-action-btn"
-                                    >
-                                        <Globe size={14} />
-                                        <span>{language.toUpperCase()}</span>
-                                    </button>
+                    <button
+                        type="button"
+                        onClick={toggleTheme}
+                        className="studio-util-btn studio-theme-btn"
+                        title="Toggle Theme"
+                    >
+                        {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+                    </button>
 
-                                    <button
-                                        onClick={toggleTheme}
-                                        className="nav-action-icon-btn"
-                                        aria-label="Toggle theme"
-                                        type="button"
-                                    >
-                                        {theme === 'dark' ? <Sun size={19} /> : <Moon size={19} />}
-                                    </button>
-                                </div>
+                    <button
+                        type="button"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        className="studio-mobile-toggle"
+                        aria-label="Toggle menu"
+                    >
+                        {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                    </button>
+                </div>
+            </div>
 
-                                <div className="nav-mobile-socials">
-                                    <a href="https://github.com/filipidios" target="_blank" rel="noopener noreferrer" className="nav-action-icon-btn" aria-label="GitHub">
-                                        <GithubIcon size={19} />
-                                    </a>
-                                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="nav-action-icon-btn" aria-label="LinkedIn">
-                                        <LinkedinIcon size={19} />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            {/* Mobile Drawer Menu */}
+            {mobileMenuOpen && (
+                <div className="studio-mobile-drawer">
+                    <div className="container mobile-drawer-inner font-mono">
+                        <button type="button" onClick={() => scrollToSection('experience')} className="mobile-nav-link">
+                            // 01 · {t('nav.experience')}
+                        </button>
+                        <button type="button" onClick={() => scrollToSection('stack')} className="mobile-nav-link">
+                            // 02 · {t('nav.stack')}
+                        </button>
+                        <button type="button" onClick={() => scrollToSection('about')} className="mobile-nav-link">
+                            // 03 · {t('nav.about')}
+                        </button>
+                        <button type="button" onClick={() => scrollToSection('contact')} className="mobile-nav-link">
+                            // 04 · {t('nav.contact')}
+                        </button>
+                        <button type="button" onClick={goToPortfolio} className="mobile-nav-link">
+                            // 05 · {t('nav.portfolio')}
+                        </button>
+                        <a
+                            href="/curriculo-filipi-soares.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            download="curriculo-filipi-soares.pdf"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="mobile-nav-link mobile-nav-cv"
+                        >
+                            // 06 · {t('nav.cv')} ↗
+                        </a>
+                    </div>
+                </div>
+            )}
         </header>
     );
 }

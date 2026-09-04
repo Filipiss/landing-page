@@ -157,7 +157,7 @@ export default function CookiesModal({ isOpen, onClose }: CookiesModalProps) {
                                     onClick={handleAcceptAll}
                                     className="btn btn-outline"
                                 >
-                                    Aceitar Todos
+                                    {t('footer.cookies_accept_all')}
                                 </button>
                                 <button
                                     type="button"

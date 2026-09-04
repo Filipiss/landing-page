@@ -69,7 +69,7 @@ export default function Folder({
         });
     };
 
-    const handlePaperMouseLeave = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
+    const handlePaperMouseLeave = (index: number) => {
         setPaperOffsets(prev => {
             const newOffsets = [...prev];
             newOffsets[index] = { x: 0, y: 0 };
@@ -77,7 +77,8 @@ export default function Folder({
         });
     };
 
-    const folderStyle = {
+    const folderVars = {
+        '--folder-scale': size,
         '--folder-color': color,
         '--folder-back-color': folderBackColor,
         '--paper-1': paper1,
@@ -86,27 +87,11 @@ export default function Folder({
     } as React.CSSProperties;
 
     const folderClassName = `folder ${open ? 'open' : ''}`.trim();
-    const scaleStyle = {
-        width: `${100 * size}px`,
-        height: `${80 * size}px`,
-        position: 'relative',
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexShrink: 0
-    } as React.CSSProperties;
-
-    const innerScaleStyle = {
-        transform: `scale(${size})`,
-        transformOrigin: 'center center',
-        position: 'absolute'
-    } as React.CSSProperties;
 
     return (
-        <div style={scaleStyle} className={`folder-wrapper ${className}`.trim()}>
+        <div style={folderVars} className={`folder-wrapper ${className}`.trim()}>
             <div
                 className={folderClassName}
-                style={{ ...folderStyle, ...innerScaleStyle }}
                 onClick={handleClick}
                 onKeyDown={e => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -125,7 +110,7 @@ export default function Folder({
                             key={i}
                             className={`paper paper-${i + 1}`}
                             onMouseMove={e => handlePaperMouseMove(e, i)}
-                            onMouseLeave={e => handlePaperMouseLeave(e, i)}
+                            onMouseLeave={() => handlePaperMouseLeave(i)}
                             style={
                                 open
                                     ? ({

@@ -1,8 +1,6 @@
 import { MouseEvent } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
-import { ChevronUp, Shield } from 'lucide-react';
-import GithubIcon from '../../atoms/GithubIcon/GithubIcon';
-import LinkedinIcon from '../../atoms/LinkedinIcon/LinkedinIcon';
+import { ArrowUp } from 'lucide-react';
 import './Footer.css';
 
 interface FooterProps {
@@ -17,81 +15,50 @@ export default function Footer({ onOpenCookiesSettings }: FooterProps) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    const handleAnchorClick = (sectionId: string) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
     return (
-        <footer className="footer-editorial">
-            <div className="container footer-editorial-container">
-                
-                {/* Top Row: Brand & Quick Links */}
-                <div className="footer-top-row">
-                    <div className="footer-brand-column">
-                        <div className="footer-logo">
-                            <span className="footer-logo-badge">F</span>
-                            <span className="footer-logo-text">Fillipe</span>
-                        </div>
-                        <p className="footer-brand-text">
-                            {t('footer.brand_tagline')}
-                        </p>
+        <footer className="studio-colophon-footer">
+            <div className="container footer-colophon-container">
+                {/* 1. Upper Colophon Grid */}
+                <div className="footer-upper-grid">
+                    <div className="footer-identity-col">
+                        <span className="footer-brand-title font-display">FILIPI SOARES</span>
+                        <span className="footer-brand-sub font-mono">{t('footer.role')}</span>
                     </div>
 
-                    <div className="footer-links-column">
-                        <h4 className="footer-column-heading">{t('footer.quick_links')}</h4>
-                        <div className="footer-nav-list">
-                            <span onClick={() => handleAnchorClick('home')} className="footer-nav-link">Home</span>
-                            <span onClick={() => handleAnchorClick('about')} className="footer-nav-link">{t('nav.about')}</span>
-                            <span onClick={() => handleAnchorClick('skills')} className="footer-nav-link">{t('nav.skills')}</span>
-                            <span onClick={() => handleAnchorClick('projects')} className="footer-nav-link">{t('nav.projects')}</span>
-                            <span onClick={() => handleAnchorClick('contact')} className="footer-nav-link">{t('nav.contact')}</span>
-                        </div>
-                    </div>
-
-                    <div className="footer-social-column">
-                        <h4 className="footer-column-heading">{t('footer.connect')}</h4>
-                        <div className="footer-social-icons">
-                            <a href="https://github.com/filipidios" target="_blank" rel="noopener noreferrer" className="footer-social-btn" aria-label="GitHub">
-                                <GithubIcon size={20} />
+                    <div className="footer-links-col font-mono">
+                        <span className="links-col-header">// CANAIS & LINKS</span>
+                        <div className="footer-nav-stack">
+                            <a href="https://github.com/filipiss" target="_blank" rel="noopener noreferrer" className="colophon-link">
+                                GITHUB ↗
                             </a>
-                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-social-btn" aria-label="LinkedIn">
-                                <LinkedinIcon size={20} />
+                            <a href="https://www.linkedin.com/in/filipiss/" target="_blank" rel="noopener noreferrer" className="colophon-link">
+                                LINKEDIN ↗
                             </a>
+                            <a href="mailto:filipi.soares.silva@gmail.com" className="colophon-link">
+                                EMAIL ↗
+                            </a>
+                            <button type="button" onClick={onOpenCookiesSettings} className="colophon-link-btn">
+                                {t('footer.cookies_settings')}
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                {/* Bottom Row: Rights, Cookies & Back to Top */}
-                <div className="footer-bottom-row">
-                    <div className="footer-rights">
-                        <span>&copy; {new Date().getFullYear()} Fillipe (filipidios). {t('footer.rights')}</span>
+                {/* 2. Lower Colophon Strip */}
+                <div className="footer-lower-strip font-mono">
+                    <div className="footer-copy-text">
+                        &copy; {new Date().getFullYear()}
                     </div>
 
-                    <div className="footer-actions">
-                        <button
-                            type="button"
-                            onClick={onOpenCookiesSettings}
-                            className="footer-link-btn"
-                        >
-                            <Shield size={15} />
-                            <span>{t('footer.cookies_settings')}</span>
-                        </button>
-
-                        <a
-                            href="#top"
-                            onClick={handleBackToTop}
-                            className="footer-back-to-top"
-                            aria-label={t('footer.back_to_top')}
-                        >
-                            <span>{t('footer.back_to_top')}</span>
-                            <ChevronUp size={16} />
-                        </a>
+                    <div className="footer-chico-supervised">
+                        <span>{t('footer.supervised')}</span>
                     </div>
+
+                    <a href="#top" onClick={handleBackToTop} className="footer-top-anchor" aria-label="Voltar ao topo">
+                        <span>{t('footer.back_to_top')}</span>
+                        <ArrowUp size={12} />
+                    </a>
                 </div>
-
             </div>
         </footer>
     );

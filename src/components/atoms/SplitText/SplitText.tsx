@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -139,8 +139,7 @@ export default function SplitText({
     return (
         <Tag
             ref={ref}
-            className={`split-parent ${className}`.trim()}
-            style={{ textAlign }}
+            className={`split-parent split-text--${textAlign} ${className}`.trim()}
         >
             {renderContent()}
         </Tag>

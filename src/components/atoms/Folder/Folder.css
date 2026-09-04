@@ -7,22 +7,28 @@
 }
 
 .folder-wrapper {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  width: calc(100px * var(--folder-scale, 1));
+  height: calc(80px * var(--folder-scale, 1));
 }
 
 .folder {
+  position: absolute;
+  transform-origin: center center;
+  transform: scale(var(--folder-scale, 1));
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  position: relative;
   display: inline-block;
   user-select: none;
 }
 
 .folder:not(.folder--click):hover,
 :is(a, button, .btn, .project-detail-back-link):hover .folder:not(.folder--click) {
-  transform: translateY(-4px);
+  transform: scale(var(--folder-scale, 1)) translateY(-4px);
 }
 
 .folder:not(.folder--click):hover .paper,
@@ -41,7 +47,7 @@
 }
 
 .folder.open {
-  transform: translateY(-4px);
+  transform: scale(var(--folder-scale, 1)) translateY(-4px);
 }
 
 .folder.open .paper:nth-child(1) {
