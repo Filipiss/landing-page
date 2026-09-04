@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../../context/LanguageContext';
-import { FileText, Download, X, ArrowUpRight, Globe } from 'lucide-react';
+import { Download, X, ArrowUpRight, Globe } from 'lucide-react';
 import './CvDownloadModal.css';
 
 interface CvDownloadModalProps {
@@ -51,27 +51,21 @@ export default function CvDownloadModal({ isOpen, onClose }: CvDownloadModalProp
                         className="cv-modal-card"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        {/* Header Row */}
-                        <div className="cv-modal-header">
-                            <div className="cv-modal-kicker font-mono">
-                                <FileText size={14} className="color-accent" />
-                                <span>{t('cv_modal.kicker')}</span>
-                            </div>
-                            <button
-                                type="button"
-                                onClick={onClose}
-                                className="cv-modal-close-btn"
-                                aria-label={t('cv_modal.close_aria')}
-                            >
-                                <X size={18} />
-                            </button>
-                        </div>
-
-                        {/* Title & Subtitle */}
+                        {/* Title Row with Close Button */}
                         <div className="cv-modal-intro">
-                            <h3 id="cv-modal-title" className="cv-modal-title font-display">
-                                {t('cv_modal.title')}
-                            </h3>
+                            <div className="cv-modal-top-row">
+                                <h3 id="cv-modal-title" className="cv-modal-title font-display">
+                                    {t('cv_modal.title')}
+                                </h3>
+                                <button
+                                    type="button"
+                                    onClick={onClose}
+                                    className="cv-modal-close-btn"
+                                    aria-label={t('cv_modal.close_aria')}
+                                >
+                                    <X size={20} />
+                                </button>
+                            </div>
                             <p className="cv-modal-subtitle">
                                 {t('cv_modal.subtitle')}
                             </p>
@@ -90,19 +84,15 @@ export default function CvDownloadModal({ isOpen, onClose }: CvDownloadModalProp
                             >
                                 <div className="cv-option-top font-mono">
                                     <span className="cv-lang-badge">
-                                        <Globe size={11} />
+                                        <Globe size={13} />
                                         {t('cv_modal.pt_tag')}
                                     </span>
-                                    <span className="cv-format-tag">PDF · A4</span>
                                 </div>
 
                                 <div className="cv-option-body">
                                     <h4 className="cv-option-title font-display">
                                         {t('cv_modal.pt_title')}
                                     </h4>
-                                    <p className="cv-option-desc font-mono">
-                                        {t('cv_modal.pt_desc')}
-                                    </p>
                                 </div>
 
                                 <div className="cv-option-action font-mono">
@@ -125,19 +115,15 @@ export default function CvDownloadModal({ isOpen, onClose }: CvDownloadModalProp
                             >
                                 <div className="cv-option-top font-mono">
                                     <span className="cv-lang-badge cv-badge-highlight">
-                                        <Globe size={11} />
+                                        <Globe size={13} />
                                         {t('cv_modal.en_tag')}
                                     </span>
-                                    <span className="cv-format-tag">PDF · A4</span>
                                 </div>
 
                                 <div className="cv-option-body">
                                     <h4 className="cv-option-title font-display">
                                         {t('cv_modal.en_title')}
                                     </h4>
-                                    <p className="cv-option-desc font-mono">
-                                        {t('cv_modal.en_desc')}
-                                    </p>
                                 </div>
 
                                 <div className="cv-option-action font-mono">
