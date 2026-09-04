@@ -66,6 +66,16 @@
     transition: padding-left var(--transition-fast), color var(--transition-fast);
 }
 
+.studio-channel-btn {
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--border-subtle);
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+}
+
 .studio-channel-row:hover {
     padding-left: 8px;
     color: var(--accent-primary);

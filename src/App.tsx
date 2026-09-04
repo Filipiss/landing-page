@@ -7,6 +7,7 @@ import PortfolioPage from './components/pages/PortfolioPage/PortfolioPage';
 import ContactSection from './components/organisms/ContactSection/ContactSection';
 import Footer from './components/organisms/Footer/Footer';
 import CookiesModal from './components/organisms/CookiesModal/CookiesModal';
+import CvDownloadModal from './components/organisms/CvDownloadModal/CvDownloadModal';
 import AccessibilityWidget from './components/organisms/AccessibilityWidget/AccessibilityWidget';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
     });
 
     const [cookiesModalOpen, setCookiesModalOpen] = useState(false);
+    const [cvModalOpen, setCvModalOpen] = useState(false);
 
     // Monitor client-side hash swaps
     useEffect(() => {
@@ -68,10 +70,16 @@ function App() {
             }
         };
 
+        const handleOpenCvModal = () => setCvModalOpen(true);
+
         window.addEventListener('hashchange', handleHashChange);
+        window.addEventListener('open-cv-modal', handleOpenCvModal);
         handleHashChange();
 
-        return () => window.removeEventListener('hashchange', handleHashChange);
+        return () => {
+            window.removeEventListener('hashchange', handleHashChange);
+            window.removeEventListener('open-cv-modal', handleOpenCvModal);
+        };
     }, []);
 
     const activeRouteKey = currentProjectId 
@@ -85,6 +93,7 @@ function App() {
             {/* Navigation header toolbar */}
             <HeaderNav
                 currentProjectId={currentProjectId}
+                onOpenCvModal={() => setCvModalOpen(true)}
             />
 
             {/* Main viewport layouts with smooth page transition animations */}
@@ -131,7 +140,7 @@ function App() {
 
                 {/* Global Contact Section */}
                 <div id="contact-wrapper">
-                    <ContactSection />
+                    <ContactSection onOpenCvModal={() => setCvModalOpen(true)} />
                 </div>
             </main>
 
@@ -145,6 +154,12 @@ function App() {
             <CookiesModal
                 isOpen={cookiesModalOpen}
                 onClose={() => setCookiesModalOpen(false)}
+            />
+
+            {/* CV / Resume Language Selection Modal */}
+            <CvDownloadModal
+                isOpen={cvModalOpen}
+                onClose={() => setCvModalOpen(false)}
             />
         </>
     );

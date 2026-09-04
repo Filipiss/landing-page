@@ -3,7 +3,11 @@ import { useLanguage } from '../../../context/LanguageContext';
 import { ArrowUpRight, Check, AlertCircle, Copy } from 'lucide-react';
 import './ContactSection.css';
 
-export default function ContactSection() {
+interface ContactSectionProps {
+    onOpenCvModal?: () => void;
+}
+
+export default function ContactSection({ onOpenCvModal }: ContactSectionProps = {}) {
     const { t } = useLanguage();
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
@@ -147,17 +151,16 @@ export default function ContactSection() {
                             </a>
 
                             {/* CV Download */}
-                            <a
-                                href="/curriculo-filipi-soares.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                download="curriculo-filipi-soares.pdf"
-                                className="studio-channel-row font-mono"
+                            <button
+                                type="button"
+                                onClick={onOpenCvModal}
+                                className="studio-channel-row studio-channel-btn font-mono"
+                                title={t('cv_modal.title')}
                             >
                                 <span className="channel-tag">{t('contact.cv_label')} //</span>
                                 <span className="channel-value-link">DOWNLOAD CURRÍCULO ↗</span>
                                 <ArrowUpRight size={14} className="kinetic-arrow channel-arrow" />
-                            </a>
+                            </button>
                         </div>
                     </div>
 

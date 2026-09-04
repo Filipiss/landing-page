@@ -1,0 +1,235 @@
+/* Studio Noir CV Download Modal */
+
+.cv-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(9, 12, 16, 0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.cv-modal-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius-sm);
+    width: 100%;
+    max-width: 580px;
+    padding: 32px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+}
+
+/* Header */
+.cv-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 16px;
+}
+
+.cv-modal-kicker {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+}
+
+.cv-modal-close-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 6px;
+    border-radius: var(--border-radius-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.cv-modal-close-btn:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-surface-elevated);
+    border-color: var(--border-subtle);
+}
+
+/* Intro */
+.cv-modal-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cv-modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.cv-modal-subtitle {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Option Cards Grid */
+.cv-modal-options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.cv-option-card {
+    background-color: var(--bg-surface-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius-xs);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    text-decoration: none !important;
+    color: inherit;
+    cursor: pointer;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.cv-option-card:hover {
+    border-color: var(--color-accent);
+    background-color: var(--bg-surface-active);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.cv-option-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+}
+
+.cv-lang-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+}
+
+.cv-badge-highlight {
+    color: var(--color-accent);
+}
+
+.cv-format-tag {
+    color: var(--text-muted);
+    background-color: rgba(255, 255, 255, 0.04);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
+}
+
+.cv-option-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cv-option-title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.cv-option-desc {
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.cv-option-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+}
+
+.cv-option-card:hover .cv-option-action {
+    color: var(--color-accent);
+}
+
+.action-icon-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--border-radius-xs);
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.action-icon-circle .download-icon {
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.action-icon-circle .arrow-icon {
+    display: none;
+}
+
+.cv-option-card:hover .action-icon-circle {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #ffffff;
+}
+
+.cv-option-card:hover .action-icon-circle .download-icon {
+    transform: translateY(2px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .cv-modal-card {
+        padding: 24px 20px;
+    }
+
+    .cv-modal-options-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .cv-option-card {
+        padding: 16px;
+        gap: 16px;
+    }
+}

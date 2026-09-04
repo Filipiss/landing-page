@@ -162,5 +162,18 @@
     "highlight_links": "Highlight Links",
     "line_spacing": "Line Spacing",
     "reset": "Reset to Defaults"
+  },
+  "cv_modal": {
+    "kicker": "OFFICIAL DOCUMENT // LANGUAGE SELECTION",
+    "title": "Professional Resume",
+    "subtitle": "Select your preferred language to download the resume in PDF format:",
+    "pt_tag": "PORTUGUESE (BR)",
+    "pt_title": "Baixar CV em Português",
+    "pt_desc": "PDF · Official Portuguese Version · A4 Format",
+    "en_tag": "ENGLISH (INTL)",
+    "en_title": "Download Resume in English",
+    "en_desc": "PDF · International English Version · A4 Format",
+    "download_btn": "DOWNLOAD FILE",
+    "close_aria": "Close modal"
   }
 }

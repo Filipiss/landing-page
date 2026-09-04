@@ -6,9 +6,10 @@ import './HeaderNav.css';
 
 interface HeaderNavProps {
     currentProjectId?: string | null;
+    onOpenCvModal?: () => void;
 }
 
-export default function HeaderNav({ currentProjectId }: HeaderNavProps) {
+export default function HeaderNav({ currentProjectId, onOpenCvModal }: HeaderNavProps) {
     const { t, language, setLanguage } = useLanguage();
     const { theme, toggleTheme } = useTheme();
     const [scrolled, setScrolled] = useState(false);
@@ -105,16 +106,15 @@ export default function HeaderNav({ currentProjectId }: HeaderNavProps) {
                     <button type="button" onClick={goToPortfolio} className="studio-nav-link">
                         {t('nav.portfolio')}
                     </button>
-                    <a
-                        href="/curriculo-filipi-soares.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        download="curriculo-filipi-soares.pdf"
-                        className="studio-nav-link studio-nav-cv"
+                    <button
+                        type="button"
+                        onClick={onOpenCvModal}
+                        className="studio-nav-link studio-nav-cv font-mono"
+                        title={t('cv_modal.title')}
                     >
                         <span>{t('nav.cv')}</span>
                         <ArrowUpRight size={13} className="kinetic-arrow" />
-                    </a>
+                    </button>
                 </nav>
 
                 {/* Utility Toggles */}
@@ -167,16 +167,16 @@ export default function HeaderNav({ currentProjectId }: HeaderNavProps) {
                         <button type="button" onClick={goToPortfolio} className="mobile-nav-link">
                             // 05 · {t('nav.portfolio')}
                         </button>
-                        <a
-                            href="/curriculo-filipi-soares.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            download="curriculo-filipi-soares.pdf"
-                            onClick={() => setMobileMenuOpen(false)}
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setMobileMenuOpen(false);
+                                if (onOpenCvModal) onOpenCvModal();
+                            }}
                             className="mobile-nav-link mobile-nav-cv"
                         >
                             // 06 · {t('nav.cv')} ↗
-                        </a>
+                        </button>
                     </div>
                 </div>
             )}
