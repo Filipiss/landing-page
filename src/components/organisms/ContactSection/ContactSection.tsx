@@ -34,7 +34,7 @@ export default function ContactSection() {
         setStatus('sending');
         setErrorMessage('');
 
-        const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+        const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || 'af11a3ee-1da5-4932-8919-ac91af68bd33';
 
         if (accessKey && accessKey.trim() !== '') {
             try {
