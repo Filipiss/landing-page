@@ -5,10 +5,8 @@ import {
     Search, 
     X, 
     BookOpen, 
-    Award, 
     Clock, 
     CheckCircle2, 
-    Compass, 
     ArrowUpRight,
     Sparkles
 } from 'lucide-react';
@@ -32,17 +30,10 @@ export default function BlogPage() {
     const stats = useMemo(() => {
         const completed = BLOG_POSTS.filter(p => p.status === 'completed').length;
         const inProgress = BLOG_POSTS.filter(p => p.status === 'in_progress').length;
-        const totalHours = BLOG_POSTS.reduce((acc, p) => {
-            const match = p.workload.match(/(\d+)/);
-            return acc + (match ? parseInt(match[1], 10) : 0);
-        }, 0);
-        const uniqueTags = new Set(BLOG_POSTS.flatMap(p => p.tags));
 
         return {
             completed,
-            inProgress,
-            totalHours: `${totalHours}h+`,
-            topicsCount: uniqueTags.size
+            inProgress
         };
     }, []);
 
@@ -120,22 +111,6 @@ export default function BlogPage() {
                                 {t('blog.kpi_in_progress')}
                             </span>
                             <span className="blog-stat-value font-display">{stats.inProgress}</span>
-                        </div>
-
-                        <div className="blog-stat-card">
-                            <span className="blog-stat-label font-mono">
-                                <Award size={13} className="blog-stat-icon" />
-                                {t('blog.kpi_workload')}
-                            </span>
-                            <span className="blog-stat-value font-display">{stats.totalHours}</span>
-                        </div>
-
-                        <div className="blog-stat-card">
-                            <span className="blog-stat-label font-mono">
-                                <Compass size={13} className="blog-stat-icon" />
-                                {t('blog.kpi_topics')}
-                            </span>
-                            <span className="blog-stat-value font-display">{stats.topicsCount}+</span>
                         </div>
                     </div>
 
