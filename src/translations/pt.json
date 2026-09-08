@@ -7,6 +7,7 @@
     "about": "SOBRE",
     "contact": "CONTATO",
     "portfolio": "PORTFÓLIO",
+    "blog": "BLOG",
     "cv": "CV",
     "location_time": "FLN, BR"
   },
@@ -175,5 +176,34 @@
     "en_desc": "PDF · International English Version · A4 Format",
     "download_btn": "BAIXAR ARQUIVO",
     "close_aria": "Fechar modal"
+  },
+  "blog": {
+    "kicker": "06 // LOG DE APRENDIZADO & ESPECIALIZAÇÕES",
+    "title": "Especializações & Caderno de Estudos",
+    "subtitle": "Documentação contínua de cursos, certificações e aprofundamentos técnicos em engenharia full stack, inteligência artificial e arquitetura de software.",
+    "back_to_home": "Voltar para Home",
+    "back_to_blog": "Voltar para o Blog",
+    "search_placeholder": "Filtrar por tecnologia, tópico ou conceito...",
+    "kpi_completed": "Cursos Concluídos",
+    "kpi_in_progress": "Em Andamento",
+    "kpi_workload": "Carga Acumulada",
+    "kpi_topics": "Tópicos de Foco",
+    "read_post": "EXPLORAR ESTUDO",
+    "workload_label": "Carga Horária",
+    "period_label": "Período",
+    "institution_label": "Instituição",
+    "status_label": "Status",
+    "status_completed": "Concluído",
+    "status_in_progress": "Em Andamento",
+    "status_planned": "Planejado",
+    "progress_label": "Progresso",
+    "syllabus_title": "Ementa & Conteúdo Programático",
+    "key_learnings_title": "Competências & Habilidades Dominadas",
+    "practical_projects_title": "Implementações Práticas & Repositórios",
+    "verdict_title": "Veredito & Conclusões Técnicas",
+    "credential_btn": "VERIFICAR CREDENCIAL / CÓDIGO",
+    "no_results": "Nenhum curso ou especialização encontrado para a busca selecionada.",
+    "all_filter": "Todos",
+    "featured_badge": "DESTAQUE"
   }
 }

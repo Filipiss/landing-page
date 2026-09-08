@@ -46,7 +46,7 @@ export default function HeaderNav({ currentProjectId, onOpenCvModal }: HeaderNav
     const scrollToSection = (sectionId: string) => {
         setMobileMenuOpen(false);
 
-        if (currentProjectId || window.location.hash.startsWith('#/project/') || window.location.hash === '#/portfolio') {
+        if (currentProjectId || window.location.hash.startsWith('#/project/') || window.location.hash === '#/portfolio' || window.location.hash.startsWith('#/blog')) {
             window.location.hash = `#/${sectionId}`;
             return;
         }
@@ -60,6 +60,11 @@ export default function HeaderNav({ currentProjectId, onOpenCvModal }: HeaderNav
     const goToPortfolio = () => {
         setMobileMenuOpen(false);
         window.location.hash = '#/portfolio';
+    };
+
+    const goToBlog = () => {
+        setMobileMenuOpen(false);
+        window.location.hash = '#/blog';
     };
 
     const toggleLanguage = () => {
@@ -105,6 +110,9 @@ export default function HeaderNav({ currentProjectId, onOpenCvModal }: HeaderNav
                     </button>
                     <button type="button" onClick={goToPortfolio} className="studio-nav-link">
                         {t('nav.portfolio')}
+                    </button>
+                    <button type="button" onClick={goToBlog} className="studio-nav-link">
+                        {t('nav.blog')}
                     </button>
                     <button
                         type="button"
@@ -167,6 +175,9 @@ export default function HeaderNav({ currentProjectId, onOpenCvModal }: HeaderNav
                         <button type="button" onClick={goToPortfolio} className="mobile-nav-link">
                             // 05 · {t('nav.portfolio')}
                         </button>
+                        <button type="button" onClick={goToBlog} className="mobile-nav-link">
+                            // 06 · {t('nav.blog')}
+                        </button>
                         <button
                             type="button"
                             onClick={() => {
@@ -175,7 +186,7 @@ export default function HeaderNav({ currentProjectId, onOpenCvModal }: HeaderNav
                             }}
                             className="mobile-nav-link mobile-nav-cv"
                         >
-                            // 06 · {t('nav.cv')} ↗
+                            // 07 · {t('nav.cv')} ↗
                         </button>
                     </div>
                 </div>

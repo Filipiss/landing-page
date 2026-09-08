@@ -4,6 +4,8 @@ import HeaderNav from './components/organisms/HeaderNav/HeaderNav';
 import HomePage from './components/pages/HomePage/HomePage';
 import ProjectDetailPage from './components/pages/ProjectDetailPage/ProjectDetailPage';
 import PortfolioPage from './components/pages/PortfolioPage/PortfolioPage';
+import BlogPage from './components/pages/BlogPage/BlogPage';
+import BlogPostPage from './components/pages/BlogPostPage/BlogPostPage';
 import ContactSection from './components/organisms/ContactSection/ContactSection';
 import Footer from './components/organisms/Footer/Footer';
 import CookiesModal from './components/organisms/CookiesModal/CookiesModal';
@@ -24,6 +26,19 @@ function App() {
         return window.location.hash === '#/portfolio';
     });
 
+    const [isBlog, setIsBlog] = useState<boolean>(() => {
+        return window.location.hash === '#/blog';
+    });
+
+    const [currentBlogSlug, setCurrentBlogSlug] = useState<string | null>(() => {
+        const hash = window.location.hash;
+        if (hash.startsWith('#/blog/')) {
+            const match = hash.match(/^#\/blog\/([^#?]+)/);
+            return match ? match[1] : null;
+        }
+        return null;
+    });
+
     const [cookiesModalOpen, setCookiesModalOpen] = useState(false);
     const [cvModalOpen, setCvModalOpen] = useState(false);
 
@@ -32,7 +47,7 @@ function App() {
         const handleHashChange = () => {
             const hash = window.location.hash;
 
-            // Parse main route
+            // 1. Parse Project Detail Route
             if (hash.startsWith('#/project/')) {
                 const match = hash.match(/^#\/project\/([^#?]+)/);
                 if (match) {
@@ -44,17 +59,47 @@ function App() {
                         return nextProjectId;
                     });
                     setIsPortfolio(false);
+                    setIsBlog(false);
+                    setCurrentBlogSlug(null);
                     return;
                 }
             } else if (hash === '#/portfolio') {
                 setCurrentProjectId(null);
                 setIsPortfolio(true);
+                setIsBlog(false);
+                setCurrentBlogSlug(null);
+                window.scrollTo({ top: 0, behavior: 'instant' });
+                return;
+            } else if (hash.startsWith('#/blog/')) {
+                // 2. Parse Blog Post Detail Route
+                const match = hash.match(/^#\/blog\/([^#?]+)/);
+                if (match) {
+                    const nextBlogSlug = match[1];
+                    setCurrentBlogSlug((prev) => {
+                        if (prev !== nextBlogSlug) {
+                            window.scrollTo({ top: 0, behavior: 'instant' });
+                        }
+                        return nextBlogSlug;
+                    });
+                    setCurrentProjectId(null);
+                    setIsPortfolio(false);
+                    setIsBlog(false);
+                    return;
+                }
+            } else if (hash === '#/blog') {
+                // 3. Parse Blog List Route
+                setCurrentProjectId(null);
+                setIsPortfolio(false);
+                setIsBlog(true);
+                setCurrentBlogSlug(null);
                 window.scrollTo({ top: 0, behavior: 'instant' });
                 return;
             }
 
             setCurrentProjectId(null);
             setIsPortfolio(false);
+            setIsBlog(false);
+            setCurrentBlogSlug(null);
 
             // Handle simple scroll to home anchor if hash on home page (e.g. #/about, #/contact, #/projects)
             if (hash.startsWith('#/')) {
@@ -86,6 +131,10 @@ function App() {
         ? `project-${currentProjectId}` 
         : isPortfolio 
         ? 'portfolio' 
+        : currentBlogSlug
+        ? `blog-${currentBlogSlug}`
+        : isBlog
+        ? 'blog'
         : 'home';
 
     return (
@@ -123,8 +172,32 @@ function App() {
                         >
                             <PortfolioPage />
                         </motion.div>
+                    ) : currentBlogSlug ? (
+                        // 3. Single Blog Post Detail Page View
+                        <motion.div
+                            key={activeRouteKey}
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -15 }}
+                            transition={{ duration: 0.35, ease: 'easeInOut' }}
+                            className="page-transition-container"
+                        >
+                            <BlogPostPage slug={currentBlogSlug} />
+                        </motion.div>
+                    ) : isBlog ? (
+                        // 4. Dedicated Blog / Specializations Page View
+                        <motion.div
+                            key={activeRouteKey}
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -15 }}
+                            transition={{ duration: 0.35, ease: 'easeInOut' }}
+                            className="page-transition-container"
+                        >
+                            <BlogPage />
+                        </motion.div>
                     ) : (
-                        // 3. Home Landing Sections
+                        // 5. Home Landing Sections
                         <motion.div
                             key={activeRouteKey}
                             initial={{ opacity: 0, y: 15 }}
