@@ -13,7 +13,7 @@ export interface BlogPost {
     slug: string;
     title: { pt: string; en: string };
     kicker: { pt: string; en: string };
-    institution: string;
+    institution?: string;
     category: BlogCategory;
     status: BlogStatus;
     progress: number; // 0 to 100
@@ -43,7 +43,6 @@ export const BLOG_POSTS: BlogPost[] = [
             pt: 'CURSO EM ANDAMENTO // DEVOPS & INFRAESTRUTURA',
             en: 'IN-PROGRESS COURSE // DEVOPS & INFRASTRUCTURE'
         },
-        institution: 'DevOps & Cloud Engineering Academy',
         category: 'course',
         status: 'in_progress',
         progress: 25,

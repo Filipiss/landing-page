@@ -67,10 +67,6 @@ export default function BlogPostPage({ slug }: BlogPostPageProps) {
                         <ArrowLeft size={15} />
                         {t('blog.back_to_blog')}
                     </a>
-
-                    <div className="blog-post-institution-pill font-mono">
-                        <span>{post.institution}</span>
-                    </div>
                 </div>
 
                 {/* 2. Article Header */}

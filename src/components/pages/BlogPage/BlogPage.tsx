@@ -55,10 +55,9 @@ export default function BlogPage() {
                 const query = searchQuery.toLowerCase();
                 const title = (post.title[language] || post.title.pt).toLowerCase();
                 const excerpt = (post.excerpt[language] || post.excerpt.pt).toLowerCase();
-                const institution = post.institution.toLowerCase();
                 const tagsMatch = post.tags.some(tag => tag.toLowerCase().includes(query));
 
-                return title.includes(query) || excerpt.includes(query) || institution.includes(query) || tagsMatch;
+                return title.includes(query) || excerpt.includes(query) || tagsMatch;
             }
 
             return true;
@@ -197,8 +196,6 @@ export default function BlogPage() {
                                     {/* Card Header Strip */}
                                     <div className="blog-card-header">
                                         <div className="blog-card-meta font-mono">
-                                            <span className="blog-card-institution">{post.institution}</span>
-                                            <span className="blog-card-dot">&bull;</span>
                                             <span className="blog-card-workload">{post.workload}</span>
                                         </div>
 
