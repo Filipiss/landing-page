@@ -15,11 +15,11 @@ export default function ExperienceSection() {
     const itemsRaw = t('experience.items');
     const items: ExperienceItemData[] = Array.isArray(itemsRaw) ? itemsRaw : [
         {
-            company: 'Loco',
+            company: 'Projetos Freelance',
             role: 'Frontend / Creative Developer',
-            period: 'Digital Agency Dublin',
+            period: 'Irlanda (Remoto)',
             stack: 'React · TypeScript · UI/UX Design · Performance · Web & App Solutions',
-            desc: 'Agência digital criativa em Dublin focada em entregar soluções web, aplicativos e produtos digitais que impulsionam o crescimento de negócios. Atuação no desenvolvimento de interfaces interativas de alto impacto visual, design de produto e experiências digitais modernas.'
+            desc: 'Projetos internacionais focados em entregar soluções web, aplicativos e produtos digitais que impulsionam o crescimento de negócios. Atuação no desenvolvimento de interfaces interativas de alto impacto visual, design de produto e experiências digitais modernas.'
         },
         {
             company: 'Eitree',

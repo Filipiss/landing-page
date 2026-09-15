@@ -89,9 +89,9 @@
     "title": "Career & Experience",
     "items": [
       {
-        "company": "Loco",
+        "company": "Freelance Projects",
         "role": "Frontend Developer (WordPress)",
-        "location": "Dublin, Ireland (Remote)",
+        "location": "Ireland (Remote)",
         "period": "2026",
         "stack": "WordPress (Elementor) · HTML5 · CSS3 · JavaScript · Responsiveness",
         "desc": "Developing and maintaining frontend user interfaces using WordPress and Elementor, customizing templates, creating structured pages to project specifications, managing plugins, and fine-tuning cross-browser responsiveness."

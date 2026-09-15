@@ -150,7 +150,7 @@ def build_pdf():
 
     # Job 2
     t2 = Table(
-        [[Paragraph("<b>Front-End Developer</b> • Loco (Dublin, Ireland | Remote)", role_style),
+        [[Paragraph("<b>Front-End Developer</b> • Freelance Projects (Ireland | Remote)", role_style),
           Paragraph("Feb 2026 — Aug 2026", date_style)]],
         colWidths=[380, 148]
     )
