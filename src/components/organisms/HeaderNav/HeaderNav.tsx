@@ -14,25 +14,6 @@ export default function HeaderNav({ currentProjectId, onOpenCvModal }: HeaderNav
     const { theme, toggleTheme } = useTheme();
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [liveTime, setLiveTime] = useState('');
-
-    // Update Live Clock (Brazil / Florianópolis time UTC-3)
-    useEffect(() => {
-        const updateClock = () => {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString(language === 'pt' ? 'pt-BR' : 'en-US', {
-                timeZone: 'America/Sao_Paulo',
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: false
-            });
-            setLiveTime(timeStr);
-        };
-
-        updateClock();
-        const interval = setInterval(updateClock, 1000);
-        return () => clearInterval(interval);
-    }, [language]);
 
     // Handle scroll border
     useEffect(() => {
@@ -46,7 +27,7 @@ export default function HeaderNav({ currentProjectId, onOpenCvModal }: HeaderNav
     const scrollToSection = (sectionId: string) => {
         setMobileMenuOpen(false);
 
-        if (currentProjectId || window.location.hash.startsWith('#/project/') || window.location.hash === '#/portfolio' || window.location.hash.startsWith('#/blog')) {
+        if (currentProjectId || window.location.hash.startsWith('#/project/') || window.location.hash === '#/portfolio') {
             window.location.hash = `#/${sectionId}`;
             return;
         }
@@ -60,15 +41,6 @@ export default function HeaderNav({ currentProjectId, onOpenCvModal }: HeaderNav
     const goToPortfolio = () => {
         setMobileMenuOpen(false);
         window.location.hash = '#/portfolio';
-    };
-
-    const goToBlog = () => {
-        setMobileMenuOpen(false);
-        window.location.hash = '#/blog';
-    };
-
-    const toggleLanguage = () => {
-        setLanguage(language === 'pt' ? 'en' : 'pt');
     };
 
     return (
@@ -85,13 +57,6 @@ export default function HeaderNav({ currentProjectId, onOpenCvModal }: HeaderNav
                         <img src="/favicon.svg" alt="FS Logo" className="studio-brand-logo-img" />
                     </div>
                     <span className="studio-brand-name font-display">{t('nav.brand_name')}</span>
-                    <span className="studio-brand-role font-mono">{t('nav.brand_role')}</span>
-                </div>
-
-                {/* Studio Live Location & Clock */}
-                <div className="studio-header-center font-mono">
-                    <span className="live-pulse-indicator"></span>
-                    <span className="live-clock-text">FLN, BR [{liveTime} BRT]</span>
                 </div>
 
                 {/* Desktop Navigation Links */}
@@ -111,9 +76,6 @@ export default function HeaderNav({ currentProjectId, onOpenCvModal }: HeaderNav
                     <button type="button" onClick={goToPortfolio} className="studio-nav-link">
                         {t('nav.portfolio')}
                     </button>
-                    <button type="button" onClick={goToBlog} className="studio-nav-link">
-                        {t('nav.blog')}
-                    </button>
                     <button
                         type="button"
                         onClick={onOpenCvModal}
@@ -127,14 +89,25 @@ export default function HeaderNav({ currentProjectId, onOpenCvModal }: HeaderNav
 
                 {/* Utility Toggles */}
                 <div className="studio-header-actions font-mono">
-                    <button
-                        type="button"
-                        onClick={toggleLanguage}
-                        className="studio-util-btn"
-                        title="Switch Language"
-                    >
-                        {language.toUpperCase()}
-                    </button>
+                    {/* Visible Language Segmented Toggle */}
+                    <div className="studio-lang-segmented" role="group" aria-label="Idioma">
+                        <button
+                            type="button"
+                            onClick={() => setLanguage('pt')}
+                            className={`lang-segment-btn ${language === 'pt' ? 'is-active' : ''}`}
+                            aria-pressed={language === 'pt'}
+                        >
+                            PT-BR
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => setLanguage('en')}
+                            className={`lang-segment-btn ${language === 'en' ? 'is-active' : ''}`}
+                            aria-pressed={language === 'en'}
+                        >
+                            EN
+                        </button>
+                    </div>
 
                     <button
                         type="button"
@@ -160,34 +133,60 @@ export default function HeaderNav({ currentProjectId, onOpenCvModal }: HeaderNav
             {mobileMenuOpen && (
                 <div className="studio-mobile-drawer">
                     <div className="container mobile-drawer-inner font-mono">
-                        <button type="button" onClick={() => scrollToSection('experience')} className="mobile-nav-link">
-                            // 01 · {t('nav.experience')}
-                        </button>
-                        <button type="button" onClick={() => scrollToSection('stack')} className="mobile-nav-link">
-                            // 02 · {t('nav.stack')}
-                        </button>
-                        <button type="button" onClick={() => scrollToSection('about')} className="mobile-nav-link">
-                            // 03 · {t('nav.about')}
-                        </button>
-                        <button type="button" onClick={() => scrollToSection('contact')} className="mobile-nav-link">
-                            // 04 · {t('nav.contact')}
-                        </button>
-                        <button type="button" onClick={goToPortfolio} className="mobile-nav-link">
-                            // 05 · {t('nav.portfolio')}
-                        </button>
-                        <button type="button" onClick={goToBlog} className="mobile-nav-link">
-                            // 06 · {t('nav.blog')}
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => {
-                                setMobileMenuOpen(false);
-                                if (onOpenCvModal) onOpenCvModal();
-                            }}
-                            className="mobile-nav-link mobile-nav-cv"
-                        >
-                            // 07 · {t('nav.cv')} ↗
-                        </button>
+                        <div className="mobile-drawer-top-row">
+                            <span className="mobile-drawer-tag">// NAVEGAÇÃO</span>
+                            <div className="studio-lang-segmented mobile-drawer-lang" role="group" aria-label="Idioma">
+                                <button
+                                    type="button"
+                                    onClick={() => setLanguage('pt')}
+                                    className={`lang-segment-btn ${language === 'pt' ? 'is-active' : ''}`}
+                                >
+                                    PT-BR
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setLanguage('en')}
+                                    className={`lang-segment-btn ${language === 'en' ? 'is-active' : ''}`}
+                                >
+                                    EN
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="mobile-nav-links-list">
+                            <button type="button" onClick={() => scrollToSection('experience')} className="mobile-nav-link">
+                                <span className="mobile-nav-num">01 //</span>
+                                <span className="mobile-nav-label">{t('nav.experience')}</span>
+                            </button>
+                            <button type="button" onClick={() => scrollToSection('stack')} className="mobile-nav-link">
+                                <span className="mobile-nav-num">02 //</span>
+                                <span className="mobile-nav-label">{t('nav.stack')}</span>
+                            </button>
+                            <button type="button" onClick={() => scrollToSection('about')} className="mobile-nav-link">
+                                <span className="mobile-nav-num">03 //</span>
+                                <span className="mobile-nav-label">{t('nav.about')}</span>
+                            </button>
+                            <button type="button" onClick={() => scrollToSection('contact')} className="mobile-nav-link">
+                                <span className="mobile-nav-num">04 //</span>
+                                <span className="mobile-nav-label">{t('nav.contact')}</span>
+                            </button>
+                            <button type="button" onClick={goToPortfolio} className="mobile-nav-link">
+                                <span className="mobile-nav-num">05 //</span>
+                                <span className="mobile-nav-label">{t('nav.portfolio')}</span>
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setMobileMenuOpen(false);
+                                    if (onOpenCvModal) onOpenCvModal();
+                                }}
+                                className="mobile-nav-link mobile-nav-cv"
+                            >
+                                <span className="mobile-nav-num">06 //</span>
+                                <span className="mobile-nav-label">{t('nav.cv')}</span>
+                                <ArrowUpRight size={14} className="kinetic-arrow" />
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}

@@ -67,7 +67,7 @@ export default function ExperienceSection() {
                             </div>
 
                             <div className="exp-stack-col font-mono">
-                                <span className="exp-stack-label">STACK & PRÁTICAS //</span>
+                                <span className="exp-stack-label">{t('experience.stack_label') || 'STACK & PRÁTICAS //'}</span>
                                 <span className="exp-stack-content">{exp.stack}</span>
                             </div>
                         </motion.article>

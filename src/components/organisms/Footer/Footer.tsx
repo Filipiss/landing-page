@@ -26,7 +26,7 @@ export default function Footer({ onOpenCookiesSettings }: FooterProps) {
                     </div>
 
                     <div className="footer-links-col font-mono">
-                        <span className="links-col-header">// CANAIS & LINKS</span>
+                        <span className="links-col-header">// {t('footer.channels_header')}</span>
                         <div className="footer-nav-stack">
                             <a href="https://github.com/filipiss" target="_blank" rel="noopener noreferrer" className="colophon-link">
                                 GITHUB ↗

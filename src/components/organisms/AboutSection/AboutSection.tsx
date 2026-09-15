@@ -1,5 +1,6 @@
 import { useLanguage } from '../../../context/LanguageContext';
 import { motion } from 'framer-motion';
+import { MessageCircle, Mail, ArrowUpRight } from 'lucide-react';
 import filipiImg from '../../../assets/filipi.jpg';
 import chicoImg from '../../../assets/CHICO WAGNER.png';
 import './AboutSection.css';
@@ -67,6 +68,33 @@ export default function AboutSection() {
                             </div>
 
                             <p className="portrait-short-bio">{t('about.filipi_desc')}</p>
+
+                            {/* Direct Contact Shortcuts */}
+                            <div className="portrait-direct-contacts font-mono">
+                                <span className="direct-contacts-label">{t('about.direct_contacts_label')}</span>
+                                <div className="direct-contacts-list">
+                                    <a
+                                        href="https://wa.me/5548999330050"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="portrait-contact-chip contact-chip-whatsapp"
+                                        title="Abrir WhatsApp (+55 48 99933-0050)"
+                                    >
+                                        <MessageCircle size={13} className="contact-chip-icon" />
+                                        <span className="contact-chip-text">{t('about.whatsapp_label')}</span>
+                                        <ArrowUpRight size={12} className="kinetic-arrow" />
+                                    </a>
+                                    <a
+                                        href="mailto:filipi.soares.silva@gmail.com"
+                                        className="portrait-contact-chip"
+                                        title="Enviar E-mail"
+                                    >
+                                        <Mail size={13} className="contact-chip-icon" />
+                                        <span className="contact-chip-text">filipi.soares.silva@gmail.com</span>
+                                        <ArrowUpRight size={12} className="kinetic-arrow" />
+                                    </a>
+                                </div>
+                            </div>
 
                             <div className="portrait-meta-bottom font-mono">
                                 <span className="meta-tag">{t('about.status_location')}</span>

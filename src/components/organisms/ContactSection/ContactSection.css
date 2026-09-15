@@ -32,12 +32,15 @@
 }
 
 .contact-monumental-headline {
-    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-size: clamp(1.75rem, 6.5vw, 3.75rem);
     font-weight: 800;
     letter-spacing: -0.03em;
-    line-height: 1.05;
+    line-height: 1.1;
     color: var(--text-primary);
     margin-bottom: 20px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .contact-manifesto-sub {
@@ -217,5 +220,37 @@
     .studio-contact-layout {
         grid-template-columns: 1fr;
         gap: 48px;
+    }
+}
+
+@media (max-width: 640px) {
+    .contact-monumental-headline {
+        font-size: clamp(1.625rem, 7.5vw, 2.25rem);
+        line-height: 1.15;
+    }
+
+    .studio-channel-row {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 14px 0;
+    }
+
+    .channel-tag {
+        min-width: auto;
+        width: 100%;
+        margin-bottom: -2px;
+    }
+
+    .channel-value-link {
+        font-size: 0.8125rem;
+        word-break: break-all;
+    }
+
+    .channel-copy-btn {
+        margin-left: 0;
+    }
+
+    .studio-form-card {
+        padding: 24px 18px;
     }
 }

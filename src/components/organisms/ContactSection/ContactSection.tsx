@@ -126,6 +126,18 @@ export default function ContactSection({ onOpenCvModal }: ContactSectionProps = 
                                 </button>
                             </div>
 
+                            {/* WhatsApp row */}
+                            <a
+                                href="https://wa.me/5548999330050"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="studio-channel-row font-mono"
+                            >
+                                <span className="channel-tag">{t('contact.whatsapp_label')} //</span>
+                                <span className="channel-value-link">+55 48 99933-0050</span>
+                                <ArrowUpRight size={14} className="kinetic-arrow channel-arrow" />
+                            </a>
+
                             {/* GitHub */}
                             <a
                                 href="https://github.com/filipiss"
@@ -158,7 +170,7 @@ export default function ContactSection({ onOpenCvModal }: ContactSectionProps = 
                                 title={t('cv_modal.title')}
                             >
                                 <span className="channel-tag">{t('contact.cv_label')} //</span>
-                                <span className="channel-value-link">DOWNLOAD CURRÍCULO ↗</span>
+                                <span className="channel-value-link">{t('contact.cv_download_btn')}</span>
                                 <ArrowUpRight size={14} className="kinetic-arrow channel-arrow" />
                             </button>
                         </div>

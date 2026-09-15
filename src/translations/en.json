@@ -1,18 +1,15 @@
 {
   "nav": {
     "brand_name": "FILIPI SOARES",
-    "brand_role": "FULL STACK DEV",
-    "portfolio": "PORTFOLIO",
-    "blog": "BLOG",
-    "about": "ABOUT",
     "experience": "EXPERIENCE",
     "stack": "STACK",
+    "about": "ABOUT",
     "contact": "CONTACT",
-    "cv": "CV",
-    "location_time": "FLN, BR"
+    "portfolio": "PORTFOLIO",
+    "cv": "CV"
   },
   "hero": {
-    "kicker": "00 // HELLO WORLD · FLORIANÓPOLIS, BRAZIL",
+    "kicker": "00 // FLORIANÓPOLIS, SC · BRAZIL",
     "status": "AVAILABLE FOR NEW PROJECTS",
     "title_line1": "FULL STACK",
     "title_line2": "DEVELOPER",
@@ -36,6 +33,8 @@
     "status_location": "BRAZIL",
     "status_availability": "AVAILABLE",
     "meta_camera": "PROFILE // DEVELOPER",
+    "direct_contacts_label": "DIRECT CHANNELS //",
+    "whatsapp_label": "WhatsApp (+55 48 99933-0050)",
     "chico_kicker": "EXECUTIVE QUALITY BOARD // STUDIO",
     "chico_name": "CHICO WAGNER",
     "chico_role": "CEO — CHIEF EXECUTIVE OFFICER OF MEOWING",
@@ -87,6 +86,7 @@
   "experience": {
     "kicker": "02 // PROFESSIONAL TRAJECTORY",
     "title": "Career & Experience",
+    "stack_label": "STACK & PRACTICES //",
     "items": [
       {
         "company": "Freelance Projects",
@@ -108,22 +108,33 @@
   },
   "stack": {
     "kicker": "03 // TECHNICAL ARCHITECTURE",
-    "title": "Curated Stack Matrix",
-    "subtitle": "A disciplined repertoire of technologies leveraged to conceive and deploy digital products end to end.",
+    "title": "Curated Stack & Competency Matrix",
+    "subtitle": "A disciplined repertoire of technologies, software architecture, and human competencies leveraged to conceive and deploy digital products end to end.",
     "groups": {
-      "systems": "SYSTEMS & BACKEND ARCHITECTURE",
+      "systems": "SYSTEMS & BACKEND",
       "interfaces": "INTERFACE & FRONT-END",
-      "tooling": "DEVOPS, TOOLING & WORKFLOW"
-    }
+      "tooling": "DEVOPS, TOOLING & WORKFLOW",
+      "soft_skills": "SOFT SKILLS & PRODUCT MINDSET"
+    },
+    "learning_kicker": "CONTINUOUS LEARNING // SPECIALIZATION",
+    "learning_title": "Active Deep Dive & Training",
+    "learning_badge": "IN PROGRESS · 25%",
+    "learning_course": "Docker & Containerized Environments: From Zero to Advanced",
+    "learning_desc": "Hands-on study of OS-level virtualization, multi-stage optimized Dockerfiles, persistent storage volumes, and multi-service orchestration with Docker Compose for identical dev and production topologies.",
+    "learning_topics_label": "CORE FOCUS //",
+    "learning_goal_label": "PRACTICAL GOAL //",
+    "learning_goal": "Fully containerize the Time Trackerígena stack (Flask + PostgreSQL + React) with live hot-reload."
   },
   "contact": {
     "kicker": "05 // COLLABORATION",
     "title": "LET'S BUILD SOMETHING EXCEPTIONAL.",
     "subtitle": "Have a bold idea, a digital product to bring to life, or an engineering role seeking interface craft? Reach out directly or send a message.",
     "email_label": "DIRECT EMAIL",
-    "github_label": "CODE // GITHUB",
-    "linkedin_label": "NETWORK // LINKEDIN",
-    "cv_label": "RESUME // CV",
+    "github_label": "GITHUB",
+    "linkedin_label": "LINKEDIN",
+    "cv_label": "RESUME",
+    "whatsapp_label": "WHATSAPP",
+    "cv_download_btn": "DOWNLOAD RESUME ↗",
     "copy_email": "COPY EMAIL",
     "email_copied": "COPIED!",
     "label_name": "YOUR NAME",
@@ -140,6 +151,7 @@
   "footer": {
     "role": "FULL STACK DEVELOPER",
     "rights": "ALL RIGHTS RESERVED",
+    "channels_header": "CHANNELS & CONNECT",
     "supervised": "Supervised with authority by Chico Wagner 🐈",
     "colophon_title": "PROJECT COLOPHON",
     "colophon_body": "Designed & coded by Filipi Soares. Set in Syne, Inter, and IBM Plex Mono. Built on React, TypeScript, Vite, and FastAPI/Flask.",
@@ -177,33 +189,31 @@
     "download_btn": "DOWNLOAD FILE",
     "close_aria": "Close modal"
   },
-  "blog": {
-    "kicker": "06 // LEARNING LOG & SPECIALIZATIONS",
-    "title": "Specializations & Study Journal",
-    "subtitle": "Continuous documentation of courses, certifications, and technical deep-dives across full stack engineering, artificial intelligence, and software architecture.",
+  "portfolio": {
     "back_to_home": "Back to Home",
-    "back_to_blog": "Back to Blog",
-    "search_placeholder": "Filter by technology, topic, or concept...",
-    "kpi_completed": "Completed Courses",
-    "kpi_in_progress": "In Progress",
-    "kpi_workload": "Total Workload",
-    "kpi_topics": "Focus Areas",
-    "read_post": "EXPLORE STUDY",
-    "workload_label": "Workload",
-    "period_label": "Timeline",
-    "institution_label": "Institution",
-    "status_label": "Status",
-    "status_completed": "Completed",
-    "status_in_progress": "In Progress",
-    "status_planned": "Planned",
-    "progress_label": "Progress",
-    "syllabus_title": "Syllabus & Core Program",
-    "key_learnings_title": "Competencies & Mastered Skills",
-    "practical_projects_title": "Practical Implementations & Repositories",
-    "verdict_title": "Technical Verdict & Conclusions",
-    "credential_btn": "VERIFY CREDENTIAL / REPO",
-    "no_results": "No courses or specializations found for the selected query.",
-    "all_filter": "All",
-    "featured_badge": "FEATURED"
+    "title": "Portfolio & Selected Works",
+    "subtitle": "Real-world systems built end-to-end: asynchronous Python APIs, enterprise platforms, and reactive interfaces.",
+    "filter_all": "All",
+    "filter_fullstack": "Full Stack",
+    "filter_ai": "AI & Streaming"
+  },
+  "project_detail": {
+    "back_to_portfolio": "Back to Portfolio",
+    "not_found": "Project not found",
+    "metric_label": "ENGINEERING & IMPACT // PRODUCTION METRIC",
+    "live_app_btn": "LIVE APP ↗",
+    "expand_btn": "EXPAND",
+    "subnav_overview": "Overview",
+    "subnav_stack": "Technologies",
+    "subnav_architecture": "Architecture",
+    "subnav_challenges": "Challenges & Solutions",
+    "subnav_visual": "Visual / UI",
+    "overview_title": "Project Overview",
+    "stack_title": "Technologies & Execution",
+    "architecture_title": "Architectural Decisions",
+    "challenges_title": "Overcome Challenges",
+    "visual_title": "Visual Architecture",
+    "prev_project": "PREVIOUS PROJECT",
+    "next_project": "NEXT PROJECT"
   }
 }

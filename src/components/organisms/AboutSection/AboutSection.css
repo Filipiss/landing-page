@@ -161,6 +161,71 @@
     color: var(--text-secondary);
 }
 
+/* Direct Contact Shortcuts */
+.portrait-direct-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.direct-contacts-label {
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+}
+
+.direct-contacts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.portrait-contact-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius-xs);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.portrait-contact-chip:hover {
+    color: var(--text-primary);
+    border-color: var(--border-active);
+    background-color: var(--bg-hover);
+}
+
+.contact-chip-whatsapp {
+    color: #10B981;
+    border-color: rgba(16, 185, 129, 0.25);
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+.contact-chip-whatsapp:hover {
+    color: #10B981;
+    border-color: #10B981;
+    background-color: rgba(16, 185, 129, 0.12);
+}
+
+.contact-chip-icon {
+    flex-shrink: 0;
+}
+
+.contact-chip-text {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .portrait-meta-bottom {
     display: flex;
     flex-wrap: wrap;

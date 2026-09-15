@@ -139,20 +139,20 @@ export default function ProjectDetailPage({ projectId }: ProjectDetailPageProps)
                                     target="_blank" 
                                     rel="noopener noreferrer" 
                                     className="mockup-action-btn font-mono"
-                                    title="Abrir Aplicação ao Vivo"
+                                    title="Live Application"
                                 >
                                     <ExternalLink size={12} />
-                                    <span className="mockup-action-text">APP AO VIVO ↗</span>
+                                    <span className="mockup-action-text">{t('project_detail.live_app_btn') || 'APP AO VIVO ↗'}</span>
                                 </a>
                             )}
                             <button 
                                 type="button" 
                                 className="mockup-action-btn font-mono"
                                 onClick={() => setLightboxOpen(true)}
-                                title="Expandir em Tela Cheia"
+                                title="Expand"
                             >
                                 <Maximize2 size={13} />
-                                <span className="mockup-action-text">EXPANDIR</span>
+                                <span className="mockup-action-text">{t('project_detail.expand_btn') || 'EXPANDIR'}</span>
                             </button>
                         </div>
                     </div>
@@ -318,7 +318,9 @@ export default function ProjectDetailPage({ projectId }: ProjectDetailPageProps)
                     {t(`projects.items.${projectId}.metric_highlight`) && (
                         <div className="project-detail-metric-bar">
                             <div>
-                                <span className="project-detail-metric-tag font-mono">ENGENHARIA & IMPACTO // MÉTRICA DE PRODUÇÃO</span>
+                                <span className="project-detail-metric-tag font-mono">
+                                    {t('project_detail.metric_label') || 'ENGENHARIA & IMPACTO // MÉTRICA DE PRODUÇÃO'}
+                                </span>
                                 <p className="project-detail-metric-text font-mono">
                                     {t(`projects.items.${projectId}.metric_highlight`)}
                                 </p>
@@ -360,19 +362,19 @@ export default function ProjectDetailPage({ projectId }: ProjectDetailPageProps)
             >
                 <div className="container project-detail-subnav-container">
                     <a href={`#/project/${projectId}#intro`} onClick={(e) => handleSubLinkClick(e, 'intro')} className="project-detail-subnav-link">
-                        Visão Geral
+                        {t('project_detail.subnav_overview') || 'Visão Geral'}
                     </a>
                     <a href={`#/project/${projectId}#stack`} onClick={(e) => handleSubLinkClick(e, 'stack')} className="project-detail-subnav-link">
-                        Tecnologias
+                        {t('project_detail.subnav_stack') || 'Tecnologias'}
                     </a>
                     <a href={`#/project/${projectId}#architecture`} onClick={(e) => handleSubLinkClick(e, 'architecture')} className="project-detail-subnav-link">
-                        Arquitetura
+                        {t('project_detail.subnav_architecture') || 'Arquitetura'}
                     </a>
                     <a href={`#/project/${projectId}#challenges`} onClick={(e) => handleSubLinkClick(e, 'challenges')} className="project-detail-subnav-link">
-                        Desafios & Soluções
+                        {t('project_detail.subnav_challenges') || 'Desafios & Soluções'}
                     </a>
                     <a href={`#/project/${projectId}#screenshots`} onClick={(e) => handleSubLinkClick(e, 'screenshots')} className="project-detail-subnav-link">
-                        Interface / Telas
+                        {t('project_detail.subnav_visual') || 'Interface / Telas'}
                     </a>
                 </div>
             </motion.nav>
@@ -388,7 +390,7 @@ export default function ProjectDetailPage({ projectId }: ProjectDetailPageProps)
                 <section id="detail-intro" className="project-detail-section">
                     <div className="project-detail-section-header">
                         <BookOpen size={22} className="color-accent" />
-                        <h2>Visão Geral do Projeto</h2>
+                        <h2>{t('project_detail.overview_title') || 'Visão Geral do Projeto'}</h2>
                     </div>
                     <p>{t(`projects.items.${projectId}.overview`) || t(`projects.items.${projectId}.short_desc`)}</p>
                 </section>
@@ -397,7 +399,7 @@ export default function ProjectDetailPage({ projectId }: ProjectDetailPageProps)
                 <section id="detail-stack" className="project-detail-section">
                     <div className="project-detail-section-header">
                         <Settings size={22} className="color-accent" />
-                        <h2>Tecnologias & Execução</h2>
+                        <h2>{t('project_detail.stack_title') || 'Tecnologias & Execução'}</h2>
                     </div>
                     <p>
                         {t(`projects.items.${projectId}.stack_text`) || 'Construído com foco em código limpo, tipagem estrita com TypeScript, arquitetura desacoplada e alta velocidade de resposta tanto no servidor quanto na interface.'}
@@ -408,7 +410,7 @@ export default function ProjectDetailPage({ projectId }: ProjectDetailPageProps)
                 <section id="detail-architecture" className="project-detail-section">
                     <div className="project-detail-section-header">
                         <Award size={22} className="color-accent" />
-                        <h2>Decisões Arquiteturais</h2>
+                        <h2>{t('project_detail.architecture_title') || 'Decisões Arquiteturais'}</h2>
                     </div>
                     <p>
                         {t(`projects.items.${projectId}.architecture_text`) || 'Adoção de padrões modulares com separação clara entre camada de apresentação, cliente HTTP e lógica de negócios.'}
@@ -419,7 +421,7 @@ export default function ProjectDetailPage({ projectId }: ProjectDetailPageProps)
                 <section id="detail-challenges" className="project-detail-section">
                     <div className="project-detail-section-header">
                         <ShieldAlert size={22} className="color-accent" />
-                        <h2>Desafios Superados</h2>
+                        <h2>{t('project_detail.challenges_title') || 'Desafios Superados'}</h2>
                     </div>
                     <p>
                         {t(`projects.items.${projectId}.challenges_text`) || 'Garantia de consistência no estado reativo, persistência relacional sem gargalos e interface acessível com performance sólida em todas as resoluções.'}
@@ -430,7 +432,7 @@ export default function ProjectDetailPage({ projectId }: ProjectDetailPageProps)
                 <section id="detail-screenshots" className="project-detail-section">
                     <div className="project-detail-section-header">
                         <ExternalLink size={22} className="color-accent" />
-                        <h2>Arquitetura Visual</h2>
+                        <h2>{t('project_detail.visual_title') || 'Arquitetura Visual'}</h2>
                     </div>
                     <div className="project-detail-gallery">
                         {renderScreenshotsSection()}
@@ -444,14 +446,14 @@ export default function ProjectDetailPage({ projectId }: ProjectDetailPageProps)
                     <a href={`#/project/${prevId}`} className="project-detail-nav-btn">
                         <ArrowLeft size={18} />
                         <span>
-                            <small>PROJETO ANTERIOR</small>
+                            <small>{t('project_detail.prev_project') || 'PROJETO ANTERIOR'}</small>
                             <strong>{t(`projects.items.${prevId}.title`)}</strong>
                         </span>
                     </a>
 
                     <a href={`#/project/${nextId}`} className="project-detail-nav-btn project-detail-nav-btn-next">
                         <span>
-                            <small>PRÓXIMO PROJETO</small>
+                            <small>{t('project_detail.next_project') || 'PRÓXIMO PROJETO'}</small>
                             <strong>{t(`projects.items.${nextId}.title`)}</strong>
                         </span>
                         <ArrowRight size={18} />

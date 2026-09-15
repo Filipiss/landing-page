@@ -1,18 +1,15 @@
 {
   "nav": {
     "brand_name": "FILIPI SOARES",
-    "brand_role": "FULL STACK DEV",
     "experience": "EXPERIÊNCIA",
     "stack": "STACK",
     "about": "SOBRE",
     "contact": "CONTATO",
     "portfolio": "PORTFÓLIO",
-    "blog": "BLOG",
-    "cv": "CV",
-    "location_time": "FLN, BR"
+    "cv": "CV"
   },
   "hero": {
-    "kicker": "00 // HELLO WORLD · FLORIANÓPOLIS, BRASIL",
+    "kicker": "00 // FLORIANÓPOLIS, SC · BRASIL",
     "status": "DISPONÍVEL PARA NOVOS PROJETOS",
     "title_line1": "DESENVOLVEDOR",
     "title_line2": "FULL STACK",
@@ -20,7 +17,7 @@
     "meta_label": "ESPECIALIDADE //",
     "meta_stack": "REACT · TYPESCRIPT · PYTHON · FASTAPI · FLASK · TAILWIND · DOCKER",
     "cta_work": "VER PROJETOS SELECIONADOS",
-    "scroll_down": "SCROLL"
+    "scroll_down": "ROLAR"
   },
   "about": {
     "kicker": "04 // IDENTIDADE & PERFIL",
@@ -31,11 +28,13 @@
     "cv_download": "OBTER CURRÍCULO (PDF)",
     "filipi_name": "Filipi Soares",
     "filipi_handle": "@filipiss",
-    "filipi_role": "Full Stack Developer",
+    "filipi_role": "Desenvolvedor Full Stack",
     "filipi_desc": "Curioso por natureza e focado em construir softwares eficientes, interfaces elegantes e arquiteturas limpas.",
     "status_location": "BRASIL",
     "status_availability": "DISPONÍVEL",
     "meta_camera": "PERFIL // DESENVOLVEDOR",
+    "direct_contacts_label": "CONTATO DIRETO //",
+    "whatsapp_label": "WhatsApp (+55 48 99933-0050)",
     "chico_kicker": "DIRETORIA DE QUALIDADE // ESTÚDIO",
     "chico_name": "CHICO WAGNER",
     "chico_role": "CEO — CHIEF EXECUTIVE OFFICER OF MEOWING",
@@ -87,6 +86,7 @@
   "experience": {
     "kicker": "02 // TRAJETÓRIA PROFISSIONAL",
     "title": "Experiência & Atuação",
+    "stack_label": "STACK & PRÁTICAS //",
     "items": [
       {
         "company": "Projetos Freelance",
@@ -98,7 +98,7 @@
       },
       {
         "company": "Eitree",
-        "role": "Full Stack Developer",
+        "role": "Desenvolvedor Full Stack",
         "location": "EUA (Remoto)",
         "period": "2025 — Presente",
         "stack": "Python · Flask · SQLAlchemy · React · TypeScript · Tailwind CSS · Docker",
@@ -108,22 +108,33 @@
   },
   "stack": {
     "kicker": "03 // ARQUITETURA TÉCNICA",
-    "title": "Matriz de Tecnologias",
-    "subtitle": "Seleção criteriosa de ferramentas utilizadas para conceber e executar software de ponta a ponta.",
+    "title": "Matriz de Tecnologias & Competências",
+    "subtitle": "Seleção criteriosa de ferramentas, engenharia de software e competências humanas utilizadas para conceber e executar soluções de ponta a ponta.",
     "groups": {
       "systems": "SISTEMAS & BACKEND",
       "interfaces": "INTERFACE & FRONT-END",
-      "tooling": "DEVOPS, TOOLING & WORKFLOW"
-    }
+      "tooling": "DEVOPS, TOOLING & WORKFLOW",
+      "soft_skills": "SOFT SKILLS & PRODUTO"
+    },
+    "learning_kicker": "APROFUNDAMENTO CONTÍNUO // ESPECIALIZAÇÃO",
+    "learning_title": "Formação & Aperfeiçoamento em Andamento",
+    "learning_badge": "EM ANDAMENTO · 25%",
+    "learning_course": "Formação Docker & Ambientes de Containers: Do Zero ao Avançado",
+    "learning_desc": "Estudo prático de virtualização em nível de SO, Dockerfile multi-stage otimizado, gerenciamento de volumes persistentes e orquestração de múltiplos serviços com Docker Compose para ambientes de produção e desenvolvimento idênticos.",
+    "learning_topics_label": "TÓPICOS PRINCIPAIS //",
+    "learning_goal_label": "OBJETIVO PRÁTICO //",
+    "learning_goal": "Conteinerizar por completo a arquitetura do Time Trackerígena (Flask + PostgreSQL + React) com hot-reload ativo."
   },
   "contact": {
     "kicker": "05 // COLABORAÇÃO",
     "title": "VAMOS CRIAR ALGO EXCEPCIONAL.",
     "subtitle": "Tem uma ideia, produto em mente ou oportunidade para elevar sua equipe? Entre em contato direto ou envie uma mensagem.",
-    "email_label": "EMAIL DIRETO",
-    "github_label": "CÓDIGO // GITHUB",
-    "linkedin_label": "REDE // LINKEDIN",
-    "cv_label": "CURRÍCULO // RESUME",
+    "email_label": "E-MAIL DIRETO",
+    "github_label": "GITHUB",
+    "linkedin_label": "LINKEDIN",
+    "cv_label": "CURRÍCULO",
+    "whatsapp_label": "WHATSAPP",
+    "cv_download_btn": "DOWNLOAD CURRÍCULO ↗",
     "copy_email": "COPIAR E-MAIL",
     "email_copied": "COPIADO!",
     "label_name": "SEU NOME",
@@ -140,7 +151,8 @@
   "footer": {
     "role": "DESENVOLVEDOR FULL STACK",
     "rights": "TODOS OS DIREITOS RESERVADOS",
-    "supervised": "Supervised with authority by Chico Wagner 🐈",
+    "channels_header": "CANAIS & CONEXÕES",
+    "supervised": "Supervisionado com autoridade por Chico Wagner 🐈",
     "colophon_title": "COLOFÃO DO PROJETO",
     "colophon_body": "Desenhado e programado por Filipi Soares. Tipografia em Syne, Inter e IBM Plex Mono. Construído com React, TypeScript, Vite e FastAPI/Flask.",
     "cookies_settings": "CONFIGURAÇÕES DE PRIVACIDADE",
@@ -177,33 +189,31 @@
     "download_btn": "BAIXAR ARQUIVO",
     "close_aria": "Fechar modal"
   },
-  "blog": {
-    "kicker": "06 // LOG DE APRENDIZADO & ESPECIALIZAÇÕES",
-    "title": "Especializações & Caderno de Estudos",
-    "subtitle": "Documentação contínua de cursos, certificações e aprofundamentos técnicos em engenharia full stack, inteligência artificial e arquitetura de software.",
+  "portfolio": {
     "back_to_home": "Voltar para Home",
-    "back_to_blog": "Voltar para o Blog",
-    "search_placeholder": "Filtrar por tecnologia, tópico ou conceito...",
-    "kpi_completed": "Cursos Concluídos",
-    "kpi_in_progress": "Em Andamento",
-    "kpi_workload": "Carga Acumulada",
-    "kpi_topics": "Tópicos de Foco",
-    "read_post": "EXPLORAR ESTUDO",
-    "workload_label": "Carga Horária",
-    "period_label": "Período",
-    "institution_label": "Instituição",
-    "status_label": "Status",
-    "status_completed": "Concluído",
-    "status_in_progress": "Em Andamento",
-    "status_planned": "Planejado",
-    "progress_label": "Progresso",
-    "syllabus_title": "Ementa & Conteúdo Programático",
-    "key_learnings_title": "Competências & Habilidades Dominadas",
-    "practical_projects_title": "Implementações Práticas & Repositórios",
-    "verdict_title": "Veredito & Conclusões Técnicas",
-    "credential_btn": "VERIFICAR CREDENCIAL / CÓDIGO",
-    "no_results": "Nenhum curso ou especialização encontrado para a busca selecionada.",
-    "all_filter": "Todos",
-    "featured_badge": "DESTAQUE"
+    "title": "Portfólio & Obras Selecionadas",
+    "subtitle": "Sistemas reais construídos de ponta a ponta: APIs assíncronas em Python, plataformas corporativas e interfaces reativas.",
+    "filter_all": "Todos",
+    "filter_fullstack": "Full Stack",
+    "filter_ai": "IA & Streaming"
+  },
+  "project_detail": {
+    "back_to_portfolio": "Voltar para Portfólio",
+    "not_found": "Projeto não encontrado",
+    "metric_label": "ENGENHARIA & IMPACTO // MÉTRICA DE PRODUÇÃO",
+    "live_app_btn": "APP AO VIVO ↗",
+    "expand_btn": "EXPANDIR",
+    "subnav_overview": "Visão Geral",
+    "subnav_stack": "Tecnologias",
+    "subnav_architecture": "Arquitetura",
+    "subnav_challenges": "Desafios & Soluções",
+    "subnav_visual": "Interface / Telas",
+    "overview_title": "Visão Geral do Projeto",
+    "stack_title": "Tecnologias & Execução",
+    "architecture_title": "Decisões Arquiteturais",
+    "challenges_title": "Desafios Superados",
+    "visual_title": "Arquitetura Visual",
+    "prev_project": "PROJETO ANTERIOR",
+    "next_project": "PRÓXIMO PROJETO"
   }
 }

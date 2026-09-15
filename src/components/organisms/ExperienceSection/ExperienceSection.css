@@ -121,11 +121,19 @@
     .studio-experience-row {
         grid-template-columns: 1fr;
         gap: 20px;
-        padding: 32px 0;
+        padding: 28px 16px;
+        margin: 0;
     }
 
     .exp-timeline-col {
         flex-direction: row;
         justify-content: space-between;
+    }
+}
+
+@media (max-width: 480px) {
+    .studio-experience-row {
+        padding: 24px 8px;
+        margin: 0;
     }
 }

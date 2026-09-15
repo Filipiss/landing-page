@@ -44,11 +44,11 @@ export default function PortfolioPage() {
                 <header className="portfolio-header">
                     <a href="#/" className="portfolio-back-btn font-mono">
                         <ArrowLeft size={16} />
-                        Voltar para Home
+                        {t('portfolio.back_to_home') || 'Voltar para Home'}
                     </a>
-                    <h1 className="portfolio-title font-display">Portfólio & Obras</h1>
+                    <h1 className="portfolio-title font-display">{t('portfolio.title') || 'Portfólio & Obras'}</h1>
                     <p className="portfolio-subtitle">
-                        Sistemas reais construídos de ponta a ponta: APIs assíncronas em Python, plataformas corporativas e interfaces reativas.
+                        {t('portfolio.subtitle') || 'Sistemas reais construídos de ponta a ponta: APIs assíncronas em Python, plataformas corporativas e interfaces reativas.'}
                     </p>
 
                     {/* Category Filter Buttons */}
@@ -57,19 +57,19 @@ export default function PortfolioPage() {
                             className={`portfolio-filter-btn ${filter === 'all' ? 'active' : ''}`}
                             onClick={() => setFilter('all')}
                         >
-                            Todos
+                            {t('portfolio.filter_all') || 'Todos'}
                         </button>
                         <button
                             className={`portfolio-filter-btn ${filter === 'fullstack' ? 'active' : ''}`}
                             onClick={() => setFilter('fullstack')}
                         >
-                            Full Stack
+                            {t('portfolio.filter_fullstack') || 'Full Stack'}
                         </button>
                         <button
                             className={`portfolio-filter-btn ${filter === 'ai' ? 'active' : ''}`}
                             onClick={() => setFilter('ai')}
                         >
-                            IA & Streaming
+                            {t('portfolio.filter_ai') || 'IA & Streaming'}
                         </button>
                     </div>
                 </header>
