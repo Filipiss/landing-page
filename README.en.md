@@ -191,9 +191,3 @@ src/
 - **WhatsApp:** [+55 (48) 99933-0050](https://wa.me/5548999330050)
 - **LinkedIn:** [linkedin.com/in/filipiss](https://www.linkedin.com/in/filipiss/)
 - **GitHub:** [github.com/filipiss](https://github.com/filipiss)
-
----
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for further details.
