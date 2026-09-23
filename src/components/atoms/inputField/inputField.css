@@ -1,0 +1,70 @@
+.c-inputField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  font-family: var(--font-family);
+}
+
+.c-inputField__label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.c-inputField__required {
+  color: #ef4444;
+}
+
+.c-inputField__control {
+  width: 100%;
+  padding: 10px 14px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: 0.875rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+.c-inputField__control::placeholder {
+  color: var(--text-muted);
+}
+
+.c-inputField__control:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.16);
+  background-color: var(--bg-surface-hover);
+}
+
+.c-inputField__control:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+  background-color: var(--bg-surface);
+}
+
+.c-inputField__control:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.c-inputField__control--textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.5;
+}
+
+.c-inputField.hasError .c-inputField__control {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15);
+}
+
+.c-inputField__error {
+  font-size: 0.75rem;
+  color: #f87171;
+  font-weight: 500;
+}

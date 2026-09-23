@@ -1,1 +1,4 @@
-/* GithubIcon atom styles */
+.c-githubIcon {
+  display: inline-block;
+  vertical-align: middle;
+}

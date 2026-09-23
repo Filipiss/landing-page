@@ -1,0 +1,100 @@
+import { useState, ReactNode, FC } from 'react';
+import { useLanguage } from '../../../context/LanguageContext';
+import { Clock, Terminal, ArrowLeft } from 'lucide-react';
+import ProjectCard from '../../molecules/projectCard/projectCard';
+import './portfolioTemplate.css';
+
+interface ProjectsSectionList {
+  id: string;
+  tags: string[];
+  icon: ReactNode;
+  categoryType: 'fullstack' | 'ai' | 'enterprise';
+}
+
+export const PortfolioTemplate: FC = () => {
+  const { t } = useLanguage();
+  const [filter, setFilter] = useState<'all' | 'fullstack' | 'ai'>('all');
+
+  const projectsList: ProjectsSectionList[] = [
+    {
+      id: 'time-tracker',
+      tags: ['Python', 'Flask', 'PostgreSQL', 'React', 'TypeScript'],
+      icon: <Clock size={28} />,
+      categoryType: 'fullstack'
+    },
+    {
+      id: 'ai-assistant-integrator',
+      tags: ['Python', 'FastAPI', 'SSE Streaming', 'Gemini & OpenAI', 'React'],
+      icon: <Terminal size={28} />,
+      categoryType: 'ai'
+    }
+  ];
+
+  const filteredProjects = filter === 'all'
+    ? projectsList
+    : projectsList.filter(p => p.categoryType === filter);
+
+  const handleCardClick = (id: string) => {
+    window.location.hash = `#/project/${id}`;
+  };
+
+  return (
+    <div className="l-portfolioTemplate">
+      <div className="l-container">
+        <header className="l-portfolioTemplate__header">
+          <a href="#/" className="l-portfolioTemplate__backBtn u-fontMono">
+            <ArrowLeft size={16} />
+            {t('portfolio.back_to_home') || 'Voltar para Home'}
+          </a>
+          <h1 className="l-portfolioTemplate__title u-fontDisplay">{t('portfolio.title') || 'Portfólio & Obras'}</h1>
+          <p className="l-portfolioTemplate__subtitle">
+            {t('portfolio.subtitle') || 'Sistemas reais construídos de ponta a ponta: APIs assíncronas em Python, plataformas corporativas e interfaces reativas.'}
+          </p>
+
+          <div className="l-portfolioTemplate__filters u-fontMono">
+            <button
+              type="button"
+              className={`l-portfolioTemplate__filterBtn ${filter === 'all' ? 'isActive' : ''}`}
+              onClick={() => setFilter('all')}
+            >
+              {t('portfolio.filter_all') || 'Todos'}
+            </button>
+            <button
+              type="button"
+              className={`l-portfolioTemplate__filterBtn ${filter === 'fullstack' ? 'isActive' : ''}`}
+              onClick={() => setFilter('fullstack')}
+            >
+              {t('portfolio.filter_fullstack') || 'Full Stack'}
+            </button>
+            <button
+              type="button"
+              className={`l-portfolioTemplate__filterBtn ${filter === 'ai' ? 'isActive' : ''}`}
+              onClick={() => setFilter('ai')}
+            >
+              {t('portfolio.filter_ai') || 'IA & Streaming'}
+            </button>
+          </div>
+        </header>
+
+        <div className="l-portfolioTemplate__grid">
+          {filteredProjects.map((proj, index) => (
+            <ProjectCard
+              key={proj.id}
+              id={proj.id}
+              tags={proj.tags}
+              icon={proj.icon}
+              category={t(`projects.items.${proj.id}.category`)}
+              title={t(`projects.items.${proj.id}.title`)}
+              shortDesc={t(`projects.items.${proj.id}.short_desc`)}
+              viewProjectText={t('projects.view_project')}
+              onClick={() => handleCardClick(proj.id)}
+              index={index}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PortfolioTemplate;

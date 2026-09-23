@@ -1,11 +1,4 @@
-/* ==========================================================================
-   ACCESSIBILITY WIDGET & GLOBAL ACCESSIBILITY STYLES (Studio Noir Standard)
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   1. Root Floating Widget Positioning
-   -------------------------------------------------------------------------- */
-.accessibility-widget-root {
+.c-accessibilityWidget {
     position: fixed;
     bottom: 24px;
     right: 24px;
@@ -14,8 +7,7 @@
     align-items: center;
 }
 
-/* Floating Trigger Button */
-.accessibility-trigger-btn {
+.c-accessibilityWidget__trigger {
     width: 44px;
     height: 44px;
     border-radius: var(--border-radius-sm);
@@ -31,28 +23,25 @@
     box-shadow: var(--shadow-md);
 }
 
-.accessibility-trigger-btn:hover {
+.c-accessibilityWidget__trigger:hover {
     border-color: var(--accent-primary);
     color: var(--accent-primary);
     background-color: var(--bg-hover);
     transform: translateY(-2px);
 }
 
-.accessibility-trigger-btn.active {
+.c-accessibilityWidget__trigger.isActive {
     background-color: var(--accent-primary);
     color: #ffffff;
     border-color: var(--accent-primary);
     box-shadow: 0 0 16px rgba(59, 130, 246, 0.4);
 }
 
-.accessibility-icon {
+.c-accessibilityWidget__icon {
     stroke-width: 2px;
 }
 
-/* --------------------------------------------------------------------------
-   2. Popover Panel Container
-   -------------------------------------------------------------------------- */
-.accessibility-panel {
+.c-accessibilityWidget__panel {
     position: absolute;
     bottom: 56px;
     right: 0;
@@ -68,20 +57,19 @@
     -webkit-backdrop-filter: blur(16px);
 }
 
-[data-theme="light"] .accessibility-panel {
+[data-theme="light"] .c-accessibilityWidget__panel {
     background-color: #FFFFFF;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
 @media (max-width: 480px) {
-    .accessibility-panel {
+    .c-accessibilityWidget__panel {
         width: calc(100vw - 32px);
         right: -8px;
     }
 }
 
-/* Studio Header */
-.accessibility-panel-header {
+.c-accessibilityWidget__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -90,17 +78,17 @@
     background: #111620;
 }
 
-[data-theme="light"] .accessibility-panel-header {
+[data-theme="light"] .c-accessibilityWidget__header {
     background: #F1F3F5;
 }
 
-.accessibility-panel-title {
+.c-accessibilityWidget__titleGroup {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.accessibility-panel-title h3 {
+.c-accessibilityWidget__title {
     font-size: 0.875rem;
     font-weight: 700;
     font-family: var(--font-display);
@@ -108,7 +96,7 @@
     letter-spacing: -0.01em;
 }
 
-.accessibility-panel-badge {
+.c-accessibilityWidget__badge {
     font-size: 0.625rem;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -119,8 +107,7 @@
     border-radius: var(--border-radius-xs);
 }
 
-/* Studio Close Button */
-.accessibility-close-btn {
+.c-accessibilityWidget__closeBtn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -134,19 +121,18 @@
     transition: all var(--transition-fast);
 }
 
-.accessibility-close-btn:hover {
+.c-accessibilityWidget__closeBtn:hover {
     color: #ffffff;
     border-color: var(--accent-primary);
     background: #1A2230;
 }
 
-[data-theme="light"] .accessibility-close-btn:hover {
+[data-theme="light"] .c-accessibilityWidget__closeBtn:hover {
     color: #000000;
     background: #E2E8F0;
 }
 
-/* Panel Body */
-.accessibility-panel-body {
+.c-accessibilityWidget__body {
     padding: 16px 18px;
     display: flex;
     flex-direction: column;
@@ -155,10 +141,7 @@
     overflow-y: auto;
 }
 
-/* --------------------------------------------------------------------------
-   3. Font Resizing Stepper
-   -------------------------------------------------------------------------- */
-.accessibility-option-group {
+.c-accessibilityWidget__group {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -168,17 +151,17 @@
     border: 1px solid var(--border-subtle);
 }
 
-[data-theme="light"] .accessibility-option-group {
+[data-theme="light"] .c-accessibilityWidget__group {
     background: #F8F9FA;
 }
 
-.accessibility-option-header {
+.c-accessibilityWidget__groupHeader {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.accessibility-option-label {
+.c-accessibilityWidget__groupLabel {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -187,7 +170,7 @@
     color: var(--text-primary);
 }
 
-.accessibility-font-indicator {
+.c-accessibilityWidget__fontIndicator {
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.06em;
@@ -198,13 +181,13 @@
     border-radius: var(--border-radius-xs);
 }
 
-.accessibility-font-stepper {
+.c-accessibilityWidget__fontStepper {
     display: grid;
     grid-template-columns: 1fr 1.2fr 1fr;
     gap: 6px;
 }
 
-.font-stepper-btn {
+.c-accessibilityWidget__stepperBtn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -221,31 +204,28 @@
     transition: all var(--transition-fast);
 }
 
-.font-stepper-btn:hover:not(:disabled) {
+.c-accessibilityWidget__stepperBtn:hover:not(:disabled) {
     border-color: var(--accent-primary);
     color: var(--accent-primary);
     background: #1A2230;
 }
 
-[data-theme="light"] .font-stepper-btn:hover:not(:disabled) {
+[data-theme="light"] .c-accessibilityWidget__stepperBtn:hover:not(:disabled) {
     background: #E2E8F0;
 }
 
-.font-stepper-btn:disabled {
+.c-accessibilityWidget__stepperBtn:disabled {
     opacity: 0.35;
     cursor: not-allowed;
 }
 
-.font-stepper-reset.active {
+.c-accessibilityWidget__stepperBtn.isActive {
     border-color: var(--accent-primary);
     color: var(--accent-primary);
     background: var(--accent-subtle);
 }
 
-/* --------------------------------------------------------------------------
-   4. Toggle Switches (Studio Noir Rectangular Minimalist)
-   -------------------------------------------------------------------------- */
-.accessibility-toggle-item {
+.c-accessibilityWidget__toggleItem {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -253,7 +233,7 @@
     padding: 6px 0;
 }
 
-.accessibility-item-info {
+.c-accessibilityWidget__itemInfo {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -261,11 +241,11 @@
     color: var(--text-secondary);
 }
 
-.accessibility-item-info span {
+.c-accessibilityWidget__itemInfo span {
     font-weight: 500;
 }
 
-.accessibility-switch {
+.c-accessibilityWidget__switch {
     position: relative;
     display: inline-block;
     width: 38px;
@@ -273,13 +253,13 @@
     flex-shrink: 0;
 }
 
-.accessibility-switch input {
+.c-accessibilityWidget__switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-.accessibility-slider {
+.c-accessibilityWidget__slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -292,11 +272,11 @@
     transition: all var(--transition-fast);
 }
 
-[data-theme="light"] .accessibility-slider {
+[data-theme="light"] .c-accessibilityWidget__slider {
     background-color: #E2E8F0;
 }
 
-.accessibility-slider:before {
+.c-accessibilityWidget__slider:before {
     position: absolute;
     content: "";
     height: 12px;
@@ -308,20 +288,17 @@
     transition: all var(--transition-fast);
 }
 
-.accessibility-switch input:checked + .accessibility-slider {
+.c-accessibilityWidget__switch input:checked + .c-accessibilityWidget__slider {
     background-color: var(--accent-primary);
     border-color: var(--accent-primary);
 }
 
-.accessibility-switch input:checked + .accessibility-slider:before {
+.c-accessibilityWidget__switch input:checked + .c-accessibilityWidget__slider:before {
     background-color: #FFFFFF;
     transform: translateX(16px);
 }
 
-/* --------------------------------------------------------------------------
-   5. Studio Footer & Reset Action
-   -------------------------------------------------------------------------- */
-.accessibility-panel-footer {
+.c-accessibilityWidget__footer {
     padding: 12px 18px;
     background: #111620;
     border-top: 1px solid var(--border-subtle);
@@ -330,18 +307,18 @@
     justify-content: space-between;
 }
 
-[data-theme="light"] .accessibility-panel-footer {
+[data-theme="light"] .c-accessibilityWidget__footer {
     background: #F1F3F5;
 }
 
-.accessibility-footer-meta {
+.c-accessibilityWidget__footerMeta {
     font-size: 0.625rem;
     letter-spacing: 0.08em;
     color: var(--text-muted);
     text-transform: uppercase;
 }
 
-.accessibility-reset-btn {
+.c-accessibilityWidget__resetBtn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -358,25 +335,18 @@
     transition: all var(--transition-fast);
 }
 
-.accessibility-reset-btn:hover {
+.c-accessibilityWidget__resetBtn:hover {
     color: #ffffff;
     border-color: var(--accent-primary);
     background: #1A2230;
 }
 
-[data-theme="light"] .accessibility-reset-btn:hover {
+[data-theme="light"] .c-accessibilityWidget__resetBtn:hover {
     color: #000000;
     background: #E2E8F0;
     border-color: var(--accent-primary);
 }
 
-/* ==========================================================================
-   GLOBAL ACCESSIBILITY ACTIVATION MODES
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   A. High Contrast Mode (data-high-contrast="true")
-   -------------------------------------------------------------------------- */
 html[data-high-contrast="true"] {
     --bg-primary: #000000 !important;
     --bg-surface: #080C14 !important;
@@ -418,50 +388,38 @@ html[data-high-contrast="true"] body {
     color: var(--text-primary) !important;
 }
 
-html[data-high-contrast="true"] .studio-project-row,
-html[data-high-contrast="true"] .project-editorial-card,
-html[data-high-contrast="true"] .experience-card,
-html[data-high-contrast="true"] .mockup-screen,
-html[data-high-contrast="true"] .skill-pill,
-html[data-high-contrast="true"] .contact-channel-card,
-html[data-high-contrast="true"] .accessibility-panel {
+html[data-high-contrast="true"] .c-projectCard,
+html[data-high-contrast="true"] .c-experienceSection__card,
+html[data-high-contrast="true"] .c-stackSection__pill,
+html[data-high-contrast="true"] .c-contactSection__card,
+html[data-high-contrast="true"] .c-accessibilityWidget__panel {
     border: 2px solid var(--border-subtle) !important;
 }
 
-html[data-high-contrast="true"] .btn {
+html[data-high-contrast="true"] .c-buttonCta {
     border: 2px solid var(--border-subtle) !important;
     font-weight: 700 !important;
 }
 
-html[data-high-contrast="true"] .btn-primary {
+html[data-high-contrast="true"] .c-buttonCta--primary {
     background-color: var(--text-primary) !important;
     color: var(--bg-primary) !important;
 }
 
-html[data-high-contrast="true"] .btn-outline {
+html[data-high-contrast="true"] .c-buttonCta--outline {
     background-color: var(--bg-surface) !important;
     color: var(--text-primary) !important;
 }
 
-/* --------------------------------------------------------------------------
-   B. Grayscale / Monochrome Mode (data-grayscale="true")
-   -------------------------------------------------------------------------- */
 html[data-grayscale="true"] {
     filter: grayscale(100%) contrast(105%) !important;
     -webkit-filter: grayscale(100%) contrast(105%) !important;
 }
 
-/* --------------------------------------------------------------------------
-   C. Highlight Links Mode (data-highlight-links="true")
-   -------------------------------------------------------------------------- */
 html[data-highlight-links="true"] a,
-html[data-highlight-links="true"] button:not(.accessibility-trigger-btn):not(.accessibility-close-btn):not(.font-stepper-btn):not(.accessibility-reset-btn):not(.lightbox-nav-btn):not(.lightbox-close-btn),
-html[data-highlight-links="true"] [role="button"]:not(.accessibility-switch),
-html[data-highlight-links="true"] .nav-link,
-html[data-highlight-links="true"] .project-detail-subnav-link,
-html[data-highlight-links="true"] .project-detail-back-link,
-html[data-highlight-links="true"] .studio-project-row,
-html[data-highlight-links="true"] .project-editorial-card {
+html[data-highlight-links="true"] button:not(.c-accessibilityWidget__trigger):not(.c-accessibilityWidget__closeBtn):not(.c-accessibilityWidget__stepperBtn):not(.c-accessibilityWidget__resetBtn),
+html[data-highlight-links="true"] [role="button"]:not(.c-accessibilityWidget__switch),
+html[data-highlight-links="true"] .c-headerNav__link {
     outline: 2px dashed var(--accent-primary) !important;
     outline-offset: 3px !important;
     text-decoration: underline !important;
@@ -469,7 +427,7 @@ html[data-highlight-links="true"] .project-editorial-card {
     text-underline-offset: 4px !important;
 }
 
-html[data-highlight-links="true"] a:not(.btn):not(.mockup-action-btn):not(.nav-link):not(.project-detail-back-link):not(.portfolio-back-btn):not(.accessibility-trigger-btn) {
+html[data-highlight-links="true"] a:not(.c-buttonCta):not(.c-headerNav__link):not(.c-accessibilityWidget__trigger) {
     background-color: rgba(59, 130, 246, 0.22) !important;
     color: #60A5FA !important;
     font-weight: 600 !important;
@@ -477,14 +435,11 @@ html[data-highlight-links="true"] a:not(.btn):not(.mockup-action-btn):not(.nav-l
     border-radius: 2px !important;
 }
 
-[data-theme="light"] html[data-highlight-links="true"] a:not(.btn):not(.mockup-action-btn):not(.nav-link):not(.project-detail-back-link):not(.portfolio-back-btn):not(.accessibility-trigger-btn) {
+[data-theme="light"] html[data-highlight-links="true"] a:not(.c-buttonCta):not(.c-headerNav__link):not(.c-accessibilityWidget__trigger) {
     background-color: rgba(37, 99, 235, 0.18) !important;
     color: #1D4ED8 !important;
 }
 
-/* --------------------------------------------------------------------------
-   D. Line Spacing Mode (data-line-spacing="large")
-   -------------------------------------------------------------------------- */
 html[data-line-spacing="large"] body {
     line-height: 2 !important;
     letter-spacing: 0.035em !important;
@@ -493,13 +448,8 @@ html[data-line-spacing="large"] body {
 
 html[data-line-spacing="large"] p,
 html[data-line-spacing="large"] li,
-html[data-line-spacing="large"] .project-detail-section p,
-html[data-line-spacing="large"] .hero-desc,
-html[data-line-spacing="large"] .section-subheading,
-html[data-line-spacing="large"] .project-desc-line,
-html[data-line-spacing="large"] .project-card-description,
-html[data-line-spacing="large"] .bio-body p,
-html[data-line-spacing="large"] .mockup-caption-text {
+html[data-line-spacing="large"] .c-heroSection__desc,
+html[data-line-spacing="large"] .c-projectCard__description {
     line-height: 2.2 !important;
     letter-spacing: 0.04em !important;
     margin-bottom: 1.4em !important;
@@ -513,9 +463,6 @@ html[data-line-spacing="large"] h4 {
     margin-bottom: 0.75em !important;
 }
 
-/* --------------------------------------------------------------------------
-   E. Reduce Motion Mode (data-reduce-motion="true")
-   -------------------------------------------------------------------------- */
 html[data-reduce-motion="true"] *,
 html[data-reduce-motion="true"] *::before,
 html[data-reduce-motion="true"] *::after {

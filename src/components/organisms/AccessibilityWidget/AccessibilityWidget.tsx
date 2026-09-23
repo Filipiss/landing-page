@@ -13,10 +13,10 @@ import {
     Sparkles
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import './AccessibilityWidget.css';
+import './accessibilityWidget.css';
 
 interface AccessibilitySettings {
-    zoomStep: number; // -2 to +4 (-2 = 80%, 0 = 100%, +4 = 140%)
+    zoomStep: number;
     highContrast: boolean;
     grayscale: boolean;
     highlightLinks: boolean;
@@ -46,12 +46,10 @@ export default function AccessibilityWidget() {
                 return JSON.parse(saved);
             }
         } catch {
-            // fallback
         }
         return DEFAULT_SETTINGS;
     });
 
-    // Close on Escape or click outside
     useEffect(() => {
         if (!isOpen) return;
 
@@ -82,45 +80,38 @@ export default function AccessibilityWidget() {
         };
     }, [isOpen]);
 
-    // Apply settings directly to HTML document
     useEffect(() => {
         const root = document.documentElement;
 
-        // Font scaling from 80% to 140%
         const scalePercentage = 100 + (settings.zoomStep * 10);
         const scaleFactor = scalePercentage / 100;
         root.style.setProperty('--font-scale', `${scaleFactor}`);
         root.style.fontSize = `${scalePercentage}%`;
 
-        // High Contrast
         if (settings.highContrast) {
             root.setAttribute('data-high-contrast', 'true');
         } else {
             root.removeAttribute('data-high-contrast');
         }
 
-        // Grayscale
         if (settings.grayscale) {
             root.setAttribute('data-grayscale', 'true');
         } else {
             root.removeAttribute('data-grayscale');
         }
 
-        // Highlight Links
         if (settings.highlightLinks) {
             root.setAttribute('data-highlight-links', 'true');
         } else {
             root.removeAttribute('data-highlight-links');
         }
 
-        // Line Spacing
         if (settings.lineSpacing) {
             root.setAttribute('data-line-spacing', 'large');
         } else {
             root.removeAttribute('data-line-spacing');
         }
 
-        // Reduce Motion
         if (settings.reduceMotion) {
             root.setAttribute('data-reduce-motion', 'true');
         } else {
@@ -130,7 +121,6 @@ export default function AccessibilityWidget() {
         try {
             localStorage.setItem('accessibility_settings', JSON.stringify(settings));
         } catch {
-            // ignore
         }
     }, [settings]);
 
@@ -159,22 +149,19 @@ export default function AccessibilityWidget() {
         settings.zoomStep !== 0;
 
     return (
-        <aside className="accessibility-widget-root" aria-label="Painel de Acessibilidade">
-
-            {/* Universal Accessibility Button */}
+        <aside className="c-accessibilityWidget" aria-label="Painel de Acessibilidade">
             <button
                 ref={triggerRef}
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className={`accessibility-trigger-btn ${isOpen ? 'active' : ''}`}
+                className={`c-accessibilityWidget__trigger ${isOpen ? 'isActive' : ''}`}
                 aria-label={t('accessibility.btn_aria')}
                 title={t('accessibility.title')}
                 aria-expanded={isOpen}
             >
-                <Accessibility size={22} className="accessibility-icon" />
+                <Accessibility size={22} className="c-accessibilityWidget__icon" />
             </button>
 
-            {/* Accessibility Popover Panel */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -183,22 +170,21 @@ export default function AccessibilityWidget() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 12, scale: 0.96 }}
                         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="accessibility-panel"
+                        className="c-accessibilityWidget__panel"
                         role="dialog"
                         aria-modal="true"
                         aria-label={t('accessibility.title')}
                     >
-                        {/* Studio Header */}
-                        <div className="accessibility-panel-header">
-                            <div className="accessibility-panel-title">
-                                <Accessibility size={16} className="color-accent" />
-                                <h3>{t('accessibility.title')}</h3>
-                                <span className="accessibility-panel-badge font-mono">WCAG AA</span>
+                        <div className="c-accessibilityWidget__header">
+                            <div className="c-accessibilityWidget__titleGroup">
+                                <Accessibility size={16} className="u-colorAccent" />
+                                <h3 className="c-accessibilityWidget__title">{t('accessibility.title')}</h3>
+                                <span className="c-accessibilityWidget__badge u-fontMono">WCAG AA</span>
                             </div>
                             <button
                                 type="button"
                                 onClick={() => setIsOpen(false)}
-                                className="accessibility-close-btn"
+                                className="c-accessibilityWidget__closeBtn"
                                 aria-label={t('accessibility.close')}
                                 title={t('accessibility.close')}
                             >
@@ -206,27 +192,24 @@ export default function AccessibilityWidget() {
                             </button>
                         </div>
 
-                        {/* Options List */}
-                        <div className="accessibility-panel-body">
-                            
-                            {/* 1. Font Resizing Controls (A-, Padrão, A+) */}
-                            <div className="accessibility-option-group">
-                                <div className="accessibility-option-header">
-                                    <div className="accessibility-option-label">
-                                        <Sparkles size={15} className="color-accent" />
+                        <div className="c-accessibilityWidget__body">
+                            <div className="c-accessibilityWidget__group">
+                                <div className="c-accessibilityWidget__groupHeader">
+                                    <div className="c-accessibilityWidget__groupLabel">
+                                        <Sparkles size={15} className="u-colorAccent" />
                                         <span>{t('accessibility.font_size')}</span>
                                     </div>
-                                    <span className="accessibility-font-indicator font-mono">
+                                    <span className="c-accessibilityWidget__fontIndicator u-fontMono">
                                         {currentPercentage}%
                                     </span>
                                 </div>
 
-                                <div className="accessibility-font-stepper font-mono">
+                                <div className="c-accessibilityWidget__fontStepper u-fontMono">
                                     <button
                                         type="button"
                                         onClick={handleZoomOut}
                                         disabled={settings.zoomStep <= -2}
-                                        className="font-stepper-btn"
+                                        className="c-accessibilityWidget__stepperBtn"
                                         title="Diminuir tamanho da fonte (A-)"
                                     >
                                         <Minus size={13} />
@@ -236,7 +219,7 @@ export default function AccessibilityWidget() {
                                     <button
                                         type="button"
                                         onClick={handleZoomReset}
-                                        className={`font-stepper-btn font-stepper-reset ${settings.zoomStep === 0 ? 'active' : ''}`}
+                                        className={`c-accessibilityWidget__stepperBtn ${settings.zoomStep === 0 ? 'isActive' : ''}`}
                                         title="Restaurar tamanho padrão (100%)"
                                     >
                                         <span>{t('accessibility.font_normal')}</span>
@@ -246,7 +229,7 @@ export default function AccessibilityWidget() {
                                         type="button"
                                         onClick={handleZoomIn}
                                         disabled={settings.zoomStep >= 4}
-                                        className="font-stepper-btn"
+                                        className="c-accessibilityWidget__stepperBtn"
                                         title="Aumentar tamanho da fonte (A+)"
                                     >
                                         <Plus size={13} />
@@ -255,85 +238,79 @@ export default function AccessibilityWidget() {
                                 </div>
                             </div>
 
-                            {/* 2. High Contrast */}
-                            <div className="accessibility-toggle-item">
-                                <div className="accessibility-item-info">
+                            <div className="c-accessibilityWidget__toggleItem">
+                                <div className="c-accessibilityWidget__itemInfo">
                                     <Contrast size={16} />
                                     <span>{t('accessibility.high_contrast')}</span>
                                 </div>
-                                <label className="accessibility-switch">
+                                <label className="c-accessibilityWidget__switch">
                                     <input
                                         type="checkbox"
                                         checked={settings.highContrast}
                                         onChange={(e) => setSettings(s => ({ ...s, highContrast: e.target.checked }))}
                                         aria-label={t('accessibility.high_contrast')}
                                     />
-                                    <span className="accessibility-slider"></span>
+                                    <span className="c-accessibilityWidget__slider"></span>
                                 </label>
                             </div>
 
-                            {/* 3. Grayscale Mode */}
-                            <div className="accessibility-toggle-item">
-                                <div className="accessibility-item-info">
+                            <div className="c-accessibilityWidget__toggleItem">
+                                <div className="c-accessibilityWidget__itemInfo">
                                     <SunMedium size={16} />
                                     <span>{t('accessibility.grayscale')}</span>
                                 </div>
-                                <label className="accessibility-switch">
+                                <label className="c-accessibilityWidget__switch">
                                     <input
                                         type="checkbox"
                                         checked={settings.grayscale}
                                         onChange={(e) => setSettings(s => ({ ...s, grayscale: e.target.checked }))}
                                         aria-label={t('accessibility.grayscale')}
                                     />
-                                    <span className="accessibility-slider"></span>
+                                    <span className="c-accessibilityWidget__slider"></span>
                                 </label>
                             </div>
 
-                            {/* 4. Highlight Links */}
-                            <div className="accessibility-toggle-item">
-                                <div className="accessibility-item-info">
+                            <div className="c-accessibilityWidget__toggleItem">
+                                <div className="c-accessibilityWidget__itemInfo">
                                     <Link2 size={16} />
                                     <span>{t('accessibility.highlight_links')}</span>
                                 </div>
-                                <label className="accessibility-switch">
+                                <label className="c-accessibilityWidget__switch">
                                     <input
                                         type="checkbox"
                                         checked={settings.highlightLinks}
                                         onChange={(e) => setSettings(s => ({ ...s, highlightLinks: e.target.checked }))}
                                         aria-label={t('accessibility.highlight_links')}
                                     />
-                                    <span className="accessibility-slider"></span>
+                                    <span className="c-accessibilityWidget__slider"></span>
                                 </label>
                             </div>
 
-                            {/* 5. Line Spacing */}
-                            <div className="accessibility-toggle-item">
-                                <div className="accessibility-item-info">
+                            <div className="c-accessibilityWidget__toggleItem">
+                                <div className="c-accessibilityWidget__itemInfo">
                                     <AlignJustify size={16} />
                                     <span>{t('accessibility.line_spacing')}</span>
                                 </div>
-                                <label className="accessibility-switch">
+                                <label className="c-accessibilityWidget__switch">
                                     <input
                                         type="checkbox"
                                         checked={settings.lineSpacing}
                                         onChange={(e) => setSettings(s => ({ ...s, lineSpacing: e.target.checked }))}
                                         aria-label={t('accessibility.line_spacing')}
                                     />
-                                    <span className="accessibility-slider"></span>
+                                    <span className="c-accessibilityWidget__slider"></span>
                                 </label>
                             </div>
-
                         </div>
 
-                        {/* Studio Footer Reset */}
-                        <div className="accessibility-panel-footer">
-                            <span className="accessibility-footer-meta font-mono">
+                        <div className="c-accessibilityWidget__footer">
+                            <span className="c-accessibilityWidget__footerMeta u-fontMono">
                                 {hasModifications ? 'MODOS ATIVOS' : 'PADRÃO'}
                             </span>
                             <button
                                 type="button"
                                 onClick={handleResetAll}
-                                className="accessibility-reset-btn font-mono"
+                                className="c-accessibilityWidget__resetBtn u-fontMono"
                                 title="Restaurar todas as opções padrão de acessibilidade"
                             >
                                 <RotateCcw size={13} />

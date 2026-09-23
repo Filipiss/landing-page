@@ -1,18 +1,21 @@
+import { FC } from 'react';
 import HeroSection from '../../organisms/HeroSection/HeroSection';
 import AboutSection from '../../organisms/AboutSection/AboutSection';
 import ProjectsSection from '../../organisms/ProjectsSection/ProjectsSection';
 import ExperienceSection from '../../organisms/ExperienceSection/ExperienceSection';
 import StackSection from '../../organisms/StackSection/StackSection';
-import './HomePage.css';
+import './homeTemplate.css';
 
-export default function HomePage() {
-    return (
-        <div className="homepage-editorial-flow">
-            <HeroSection />
-            <ProjectsSection />
-            <ExperienceSection />
-            <StackSection />
-            <AboutSection />
-        </div>
-    );
-}
+export const HomeTemplate: FC = () => {
+  return (
+    <div className="l-homeTemplate">
+      <HeroSection />
+      <ProjectsSection />
+      <ExperienceSection />
+      <StackSection />
+      <AboutSection />
+    </div>
+  );
+};
+
+export default HomeTemplate;

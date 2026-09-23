@@ -1,4 +1,4 @@
-.depth-carousel {
+.c-depthCarousel {
   position: relative;
   width: 100%;
   height: 100%;
@@ -15,23 +15,23 @@
   cursor: grab;
 }
 
-.depth-carousel:active {
+.c-depthCarousel:active {
   cursor: grabbing;
 }
 
-.depth-carousel:focus-visible {
+.c-depthCarousel:focus-visible {
   outline: 2px solid var(--accent-primary, #3B82F6);
   outline-offset: 4px;
-  border-radius: var(--border-radius-xs, 6px);
+  border-radius: var(--radius-sm, 6px);
 }
 
-.depth-carousel__stage {
+.c-depthCarousel__stage {
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
 }
 
-.depth-carousel__card {
+.c-depthCarousel__card {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -51,11 +51,11 @@
   transition: border-color 0.25s ease;
 }
 
-.depth-carousel__card:hover {
-  border-color: var(--border-active, #3B82F6);
+.c-depthCarousel__card:hover {
+  border-color: var(--accent-primary, #3B82F6);
 }
 
-.depth-carousel__img {
+.c-depthCarousel__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -67,7 +67,7 @@
   -webkit-backface-visibility: hidden;
 }
 
-.depth-carousel__tint {
+.c-depthCarousel__tint {
   position: absolute;
   inset: 0;
   opacity: 0;
@@ -76,7 +76,7 @@
   mix-blend-mode: multiply;
 }
 
-.depth-carousel__arrow {
+.c-depthCarousel__arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -86,7 +86,7 @@
   display: grid;
   place-items: center;
   border: 1px solid var(--border-subtle, #1E2633);
-  border-radius: var(--border-radius-xs, 6px);
+  border-radius: var(--radius-sm, 6px);
   background: rgba(9, 12, 16, 0.85);
   backdrop-filter: blur(10px);
   color: var(--text-primary, #F8FAFC);
@@ -98,25 +98,25 @@
     color 0.2s ease;
 }
 
-.depth-carousel__arrow:hover {
-  background: var(--bg-surface-elevated, #1A2230);
+.c-depthCarousel__arrow:hover {
+  background: var(--bg-surface-hover, #1A2230);
   border-color: var(--accent-primary, #3B82F6);
   color: var(--accent-primary, #3B82F6);
 }
 
-.depth-carousel__arrow:active {
+.c-depthCarousel__arrow:active {
   transform: translateY(-50%) scale(0.92);
 }
 
-.depth-carousel__arrow--prev {
+.c-depthCarousel__arrow--prev {
   left: 12px;
 }
 
-.depth-carousel__arrow--next {
+.c-depthCarousel__arrow--next {
   right: 12px;
 }
 
-.depth-carousel__dots {
+.c-depthCarousel__dots {
   position: absolute;
   bottom: 12px;
   left: 50%;
@@ -125,13 +125,13 @@
   display: flex;
   gap: 8px;
   padding: 6px 12px;
-  border-radius: var(--border-radius-xs, 6px);
+  border-radius: var(--radius-sm, 6px);
   background: rgba(9, 12, 16, 0.85);
   border: 1px solid var(--border-subtle, #1E2633);
   backdrop-filter: blur(8px);
 }
 
-.depth-carousel__dot {
+.c-depthCarousel__dot {
   width: 8px;
   height: 8px;
   padding: 0;
@@ -144,34 +144,34 @@
     background 0.25s ease;
 }
 
-.depth-carousel__dot:hover {
+.c-depthCarousel__dot:hover {
   background: rgba(255, 255, 255, 0.6);
 }
 
-.depth-carousel__dot.is-active {
+.c-depthCarousel__dot.isActive {
   width: 24px;
   background: var(--accent-primary, #3B82F6);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .depth-carousel__card {
+  .c-depthCarousel__card {
     will-change: auto;
   }
-  .depth-carousel__arrow,
-  .depth-carousel__dot {
+  .c-depthCarousel__arrow,
+  .c-depthCarousel__dot {
     transition: none;
   }
 }
 
 @media (max-width: 640px) {
-  .depth-carousel__arrow {
+  .c-depthCarousel__arrow {
     width: 36px;
     height: 36px;
   }
-  .depth-carousel__arrow--prev {
+  .c-depthCarousel__arrow--prev {
     left: 6px;
   }
-  .depth-carousel__arrow--next {
+  .c-depthCarousel__arrow--next {
     right: 6px;
   }
 }

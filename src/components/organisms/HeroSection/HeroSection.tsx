@@ -1,94 +1,94 @@
+import { FC } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
-import './HeroSection.css';
+import './heroSection.css';
 
-export default function HeroSection() {
-    const { t } = useLanguage();
+export const HeroSection: FC = () => {
+  const { t } = useLanguage();
 
-    const handleScrollToWork = () => {
-        const element = document.getElementById('work');
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
+  const handleScrollToWork = () => {
+    const element = document.getElementById('work');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
-    return (
-        <section id="home" className="hero-monumental-section">
-            <div className="container hero-monumental-container">
-                {/* 1. Meta Top Kicker Line */}
-                <div className="hero-top-meta-row font-mono">
-                    <span className="hero-kicker-text">
-                        {t('hero.kicker')}
-                    </span>
-                    <div className="hero-status-pill">
-                        <span className="status-live-dot"></span>
-                        <span className="status-live-label">{t('hero.status')}</span>
-                    </div>
-                </div>
+  return (
+    <section id="home" className="c-heroSection">
+      <div className="l-container c-heroSection__container">
+        <div className="c-heroSection__metaRow u-fontMono">
+          <span className="c-heroSection__kicker">
+            {t('hero.kicker')}
+          </span>
+          <div className="c-heroSection__statusPill">
+            <span className="c-heroSection__statusDot" />
+            <span>{t('hero.status')}</span>
+          </div>
+        </div>
 
-                {/* 2. Monumental Typographic Headings (Masked Kinetic Reveal) */}
-                <div className="hero-display-group">
-                    <div className="hero-display-line-wrapper">
-                        <motion.h1
-                            initial={{ y: '105%' }}
-                            animate={{ y: '0%' }}
-                            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                            className="hero-display-title font-display"
-                        >
-                            {t('hero.title_line1')}
-                        </motion.h1>
-                    </div>
+        <div className="c-heroSection__displayGroup">
+          <div className="c-heroSection__lineWrapper">
+            <motion.h1
+              initial={{ y: '105%' }}
+              animate={{ y: '0%' }}
+              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+              className="c-heroSection__title u-fontDisplay"
+            >
+              {t('hero.title_line1')}
+            </motion.h1>
+          </div>
 
-                    <div className="hero-display-line-wrapper">
-                        <motion.h2
-                            initial={{ y: '105%' }}
-                            animate={{ y: '0%' }}
-                            transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                            className="hero-display-subtitle font-display"
-                        >
-                            {t('hero.title_line2')}
-                        </motion.h2>
-                    </div>
-                </div>
+          <div className="c-heroSection__lineWrapper">
+            <motion.h2
+              initial={{ y: '105%' }}
+              animate={{ y: '0%' }}
+              transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="c-heroSection__subtitle u-fontDisplay"
+            >
+              {t('hero.title_line2')}
+            </motion.h2>
+          </div>
+        </div>
 
-                {/* 3. Asymmetrical Manifesto & Navigation Strip */}
-                <div className="hero-lower-grid">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.25 }}
-                        className="hero-manifesto-col"
-                    >
-                        <p className="hero-manifesto-statement">
-                            "{t('hero.statement')}"
-                        </p>
-                    </motion.div>
+        <div className="c-heroSection__lowerGrid">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="c-heroSection__manifestoCol"
+          >
+            <p className="c-heroSection__statement">
+              "{t('hero.statement')}"
+            </p>
+          </motion.div>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.35 }}
-                        className="hero-action-col"
-                    >
-                        <div className="hero-specialty-strip font-mono">
-                            <span className="specialty-label">{t('hero.meta_label')}</span>
-                            <span className="specialty-techs">{t('hero.meta_stack')}</span>
-                        </div>
-
-                        <button
-                            type="button"
-                            onClick={handleScrollToWork}
-                            className="hero-kinetic-cta font-mono"
-                        >
-                            <span>{t('hero.cta_work')}</span>
-                            <span className="cta-arrow-slot">
-                                <ArrowDown size={14} className="cta-down-arrow" />
-                            </span>
-                        </button>
-                    </motion.div>
-                </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="c-heroSection__actionCol"
+          >
+            <div className="c-heroSection__specialtyStrip u-fontMono">
+              <span className="c-heroSection__specialtyLabel">{t('hero.meta_label')}</span>
+              <span className="c-heroSection__specialtyTechs">{t('hero.meta_stack')}</span>
             </div>
-        </section>
-    );
-}
+
+            <button
+              type="button"
+              onClick={handleScrollToWork}
+              className="c-heroSection__cta u-fontMono"
+            >
+              <span>{t('hero.cta_work')}</span>
+              <span className="c-heroSection__ctaArrowSlot">
+                <ArrowDown size={14} />
+              </span>
+            </button>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HeroSection;

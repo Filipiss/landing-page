@@ -1,232 +1,196 @@
-.hero-monumental-section {
-    padding-top: 150px;
-    padding-bottom: 110px;
-    border-bottom: 1px solid var(--border-section);
-    position: relative;
-    overflow: hidden;
-    background: radial-gradient(circle at 50% 12%, rgba(59, 130, 246, 0.07) 0%, transparent 60%), var(--bg-primary);
+.c-heroSection {
+  padding-top: 150px;
+  padding-bottom: 110px;
+  border-bottom: 1px solid var(--border-section);
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 12%, rgba(59, 130, 246, 0.07) 0%, transparent 60%), var(--bg-primary);
 }
 
-[data-theme="light"] .hero-monumental-section {
-    background: radial-gradient(circle at 50% 12%, rgba(37, 99, 235, 0.05) 0%, transparent 60%), var(--bg-primary);
+[data-theme='light'] .c-heroSection {
+  background: radial-gradient(circle at 50% 12%, rgba(37, 99, 235, 0.05) 0%, transparent 60%), var(--bg-primary);
 }
 
-.hero-monumental-container {
-    display: flex;
-    flex-direction: column;
+.c-heroSection__container {
+  display: flex;
+  flex-direction: column;
 }
 
-/* 1. Meta Top Kicker */
-.hero-top-meta-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-bottom: 36px;
+.c-heroSection__metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 36px;
 }
 
-.hero-kicker-text {
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    color: var(--text-secondary);
+.c-heroSection__kicker {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
 }
 
-.hero-status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.6875rem;
-    letter-spacing: 0.06em;
-    padding: 4px 10px;
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--border-radius-xs);
-    color: var(--text-primary);
+.c-heroSection__statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs, 4px);
+  color: var(--text-primary);
 }
 
-.status-live-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: #10B981;
-    box-shadow: 0 0 6px rgba(16, 185, 129, 0.7);
+.c-heroSection__statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.7);
 }
 
-/* 2. Monumental Typographic Display (Masked) */
-.hero-display-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 56px;
-    gap: 4px;
+.c-heroSection__displayGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 56px;
+  gap: 4px;
 }
 
-.hero-display-line-wrapper {
-    overflow: hidden;
-    line-height: 1.05;
-    padding-bottom: 0.1em;
-    padding-right: 0.1em;
+.c-heroSection__lineWrapper {
+  overflow: hidden;
+  line-height: 1.05;
+  padding-bottom: 0.1em;
+  padding-right: 0.1em;
 }
 
-.hero-display-title {
-    font-size: clamp(2rem, 5.2vw, 4.75rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    margin: 0;
+.c-heroSection__title {
+  font-size: clamp(2rem, 5.2vw, 4.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  margin: 0;
 }
 
-.hero-display-subtitle {
-    font-size: clamp(2rem, 5.2vw, 4.75rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    margin: 0;
+.c-heroSection__subtitle {
+  font-size: clamp(2rem, 5.2vw, 4.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin: 0;
 }
 
-/* 3. Lower Asymmetrical Layout */
-.hero-lower-grid {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 48px;
-    align-items: end;
-    padding-top: 36px;
-    border-top: 1px solid var(--border-subtle);
+.c-heroSection__lowerGrid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: end;
+  padding-top: 36px;
+  border-top: 1px solid var(--border-subtle);
 }
 
-.hero-manifesto-statement {
-    font-size: clamp(1.125rem, 2vw, 1.4rem);
-    line-height: 1.6;
-    color: var(--text-primary);
-    font-weight: 400;
-    max-width: 640px;
+.c-heroSection__manifestoCol {
+  display: flex;
+  flex-direction: column;
 }
 
-.hero-action-col {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
+.c-heroSection__statement {
+  font-size: clamp(1.125rem, 2vw, 1.4rem);
+  line-height: 1.6;
+  color: var(--text-primary);
+  font-weight: 400;
+  max-width: 640px;
 }
 
-.hero-specialty-strip {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
+.c-heroSection__actionCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
 }
 
-.specialty-label {
-    color: var(--accent-primary);
-    font-weight: 600;
+.c-heroSection__specialtyStrip {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
 }
 
-.specialty-techs {
-    color: var(--text-secondary);
-    line-height: 1.4;
+.c-heroSection__specialtyLabel {
+  color: var(--accent-primary);
+  font-weight: 600;
 }
 
-.hero-actions-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
+.c-heroSection__specialtyTechs {
+  color: var(--text-secondary);
+  line-height: 1.4;
 }
 
-.hero-kinetic-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-primary);
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--border-radius-xs);
-    padding: 10px 16px;
-    cursor: pointer;
-    transition: all var(--transition-fast);
+.c-heroSection__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs, 4px);
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
 }
 
-.hero-kinetic-cta:hover {
-    color: var(--accent-primary);
-    border-color: var(--border-active);
-    background-color: var(--bg-hover);
+.c-heroSection__cta:hover {
+  color: var(--accent-primary);
+  border-color: var(--border-active);
+  background-color: var(--bg-surface-hover);
 }
 
-.hero-cv-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    background-color: transparent;
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--border-radius-xs);
-    padding: 10px 16px;
-    text-decoration: none;
-    transition: all var(--transition-fast);
+.c-heroSection__ctaArrowSlot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast);
 }
 
-.hero-cv-cta:hover {
-    color: var(--accent-primary);
-    border-color: var(--accent-primary);
-    background-color: var(--bg-surface);
-}
-
-.hero-cta-arrow {
-    transition: transform var(--transition-fast);
-}
-
-.hero-cv-cta:hover .hero-cta-arrow {
-    transform: translate(2px, -2px);
-}
-
-.cta-arrow-slot {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform var(--transition-fast);
-}
-
-.hero-kinetic-cta:hover .cta-arrow-slot {
-    transform: translateY(3px);
+.c-heroSection__cta:hover .c-heroSection__ctaArrowSlot {
+  transform: translateY(3px);
 }
 
 @media (max-width: 860px) {
-    .hero-monumental-section {
-        padding-top: 100px;
-        padding-bottom: 64px;
-    }
+  .c-heroSection {
+    padding-top: 100px;
+    padding-bottom: 64px;
+  }
 
-    .hero-lower-grid {
-        grid-template-columns: 1fr;
-        gap: 28px;
-    }
+  .c-heroSection__lowerGrid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
 
-    .hero-display-group {
-        margin-bottom: 36px;
-    }
+  .c-heroSection__displayGroup {
+    margin-bottom: 36px;
+  }
 
-    .hero-display-title,
-    .hero-display-subtitle {
-        font-size: clamp(1.6rem, 6.2vw, 3.4rem);
-    }
+  .c-heroSection__title,
+  .c-heroSection__subtitle {
+    font-size: clamp(1.6rem, 6.2vw, 3.4rem);
+  }
 }
 
 @media (max-width: 540px) {
-    .hero-display-title,
-    .hero-display-subtitle {
-        font-size: clamp(1.1rem, 5.8vw, 1.7rem);
-        letter-spacing: -0.025em;
-    }
+  .c-heroSection__title,
+  .c-heroSection__subtitle {
+    font-size: clamp(1.1rem, 5.8vw, 1.7rem);
+    letter-spacing: -0.025em;
+  }
 }

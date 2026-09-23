@@ -1,176 +1,173 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FC } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import { ShieldCheck, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import './CookiesModal.css';
+import { ButtonCta } from '../../atoms/buttonCta/buttonCta';
+import './cookiesModal.css';
 
-interface CookiesModalProps {
-    isOpen: boolean;
-    onClose: () => void;
+export interface CookiesModalProps {
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-export default function CookiesModal({ isOpen, onClose }: CookiesModalProps) {
-    const { t } = useLanguage();
-    const [showBanner, setShowBanner] = useState(false);
+export const CookiesModal: FC<CookiesModalProps> = ({ isOpen, onClose }) => {
+  const { t } = useLanguage();
+  const [showBanner, setShowBanner] = useState(false);
 
-    // Mock options state for settings
-    const [preferences, setPreferences] = useState({
-        functional: true,
-        performance: false,
-        analytics: true
-    });
+  const [preferences, setPreferences] = useState({
+    functional: true,
+    performance: false,
+    analytics: true
+  });
 
-    useEffect(() => {
-        const isConsentGiven = localStorage.getItem('cookie_consent');
-        if (!isConsentGiven) {
-            setShowBanner(true);
-        }
-    }, []);
+  useEffect(() => {
+    const isConsentGiven = localStorage.getItem('cookie_consent');
+    if (!isConsentGiven) {
+      setShowBanner(true);
+    }
+  }, []);
 
-    const handleAcceptAll = () => {
-        localStorage.setItem('cookie_consent', 'accepted');
-        setShowBanner(false);
-        if (isOpen) onClose();
-    };
+  const handleAcceptAll = () => {
+    localStorage.setItem('cookie_consent', 'accepted');
+    setShowBanner(false);
+    if (isOpen) onClose();
+  };
 
-    const handleSavePreferences = () => {
-        localStorage.setItem('cookie_consent', 'custom');
-        localStorage.setItem('cookie_preferences', JSON.stringify(preferences));
-        setShowBanner(false);
-        onClose();
-    };
+  const handleSavePreferences = () => {
+    localStorage.setItem('cookie_consent', 'custom');
+    localStorage.setItem('cookie_preferences', JSON.stringify(preferences));
+    setShowBanner(false);
+    onClose();
+  };
 
-    return (
-        <>
-            {/* 1. Bottom Consent Banner */}
-            <AnimatePresence>
-                {showBanner && !isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 50, scale: 0.95 }}
-                        className="cookies-banner"
-                    >
-                        <div className="cookies-banner-content">
-                            <ShieldCheck size={24} className="color-accent cookies-banner-icon" />
-                            <p className="cookies-banner-text">
-                                {t('footer.cookies_desc')}
-                            </p>
-                        </div>
-                        <div className="cookies-banner-actions">
-                            <button
-                                type="button"
-                                onClick={onClose}
-                                className="btn btn-outline btn-sm"
-                            >
-                                {t('footer.cookies_settings')}
-                            </button>
-                            <button
-                                type="button"
-                                onClick={handleAcceptAll}
-                                className="btn btn-primary btn-sm"
-                            >
-                                {t('footer.cookies_accept')}
-                            </button>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+  return (
+    <>
+      <AnimatePresence>
+        {showBanner && !isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 50, scale: 0.95 }}
+            className="c-cookiesBanner"
+          >
+            <div className="c-cookiesBanner__content">
+              <ShieldCheck size={24} className="c-cookiesBanner__icon" />
+              <p className="c-cookiesBanner__text">
+                {t('footer.cookies_desc')}
+              </p>
+            </div>
+            <div className="c-cookiesBanner__actions">
+              <ButtonCta
+                variant="secondary"
+                size="sm"
+                onClick={onClose}
+              >
+                {t('footer.cookies_settings')}
+              </ButtonCta>
+              <ButtonCta
+                variant="primary"
+                size="sm"
+                onClick={handleAcceptAll}
+              >
+                {t('footer.cookies_accept')}
+              </ButtonCta>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-            {/* 2. Detailed Settings Preference Modal Dialog */}
-            <AnimatePresence>
-                {isOpen && (
-                    <div className="modal-overlay">
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
-                            className="modal"
-                        >
-                            <div className="modal-header">
-                                <div className="modal-header-title">
-                                    <ShieldCheck size={22} className="color-accent" />
-                                    <h3>{t('footer.cookies_title')}</h3>
-                                </div>
-                                <button onClick={onClose} className="modal-close-btn" aria-label="Close">
-                                    <X size={20} />
-                                </button>
-                            </div>
+      <AnimatePresence>
+        {isOpen && (
+          <div className="c-cookiesModal__overlay">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="c-cookiesModal__dialog"
+            >
+              <div className="c-cookiesModal__header">
+                <div className="c-cookiesModal__title">
+                  <ShieldCheck size={22} />
+                  <h3>{t('footer.cookies_title')}</h3>
+                </div>
+                <button onClick={onClose} className="c-cookiesModal__closeBtn" aria-label="Close">
+                  <X size={20} />
+                </button>
+              </div>
 
-                            <div className="modal-body">
-                                <p className="modal-description">
-                                    {t('footer.cookies_panel_desc')}
-                                </p>
+              <div className="c-cookiesModal__body">
+                <p className="c-cookiesModal__description">
+                  {t('footer.cookies_panel_desc')}
+                </p>
 
-                                {/* Cookie Option 1: Functional */}
-                                <div className="cookie-option">
-                                    <div className="cookie-option-info">
-                                        <strong>Necessários & Funcionais</strong>
-                                        <p>Armazena seu tema visual (Dark/Light) e a preferência de tradução de linguagem (PT/EN).</p>
-                                    </div>
-                                    <div className="cookie-option-control">
-                                        <input type="checkbox" checked={preferences.functional} disabled readOnly />
-                                        <span className="cookie-option-status-badge">Ativo</span>
-                                    </div>
-                                </div>
+                <div className="c-cookiesModal__option">
+                  <div className="c-cookiesModal__optionInfo">
+                    <strong>Necessários & Funcionais</strong>
+                    <p>Armazena seu tema visual (Dark/Light) e a preferência de tradução de linguagem (PT/EN).</p>
+                  </div>
+                  <div className="c-cookiesModal__optionControl">
+                    <input type="checkbox" checked={preferences.functional} disabled readOnly />
+                    <span className="c-cookiesModal__badge">Ativo</span>
+                  </div>
+                </div>
 
-                                {/* Cookie Option 2: Performance */}
-                                <div className="cookie-option">
-                                    <div className="cookie-option-info">
-                                        <strong>Performance da Engine</strong>
-                                        <p>Habilita caches de renderização e controle de taxa de quadro adaptativos.</p>
-                                    </div>
-                                    <div className="cookie-option-control">
-                                        <label className="switch">
-                                            <input
-                                                type="checkbox"
-                                                checked={preferences.performance}
-                                                onChange={(e) => setPreferences({ ...preferences, performance: e.target.checked })}
-                                            />
-                                            <span className="slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
+                <div className="c-cookiesModal__option">
+                  <div className="c-cookiesModal__optionInfo">
+                    <strong>Performance da Engine</strong>
+                    <p>Habilita caches de renderização e controle de taxa de quadro adaptativos.</p>
+                  </div>
+                  <div className="c-cookiesModal__optionControl">
+                    <label className="c-cookiesModal__switch">
+                      <input
+                        type="checkbox"
+                        checked={preferences.performance}
+                        onChange={(e) => setPreferences({ ...preferences, performance: e.target.checked })}
+                      />
+                      <span className="c-cookiesModal__slider" />
+                    </label>
+                  </div>
+                </div>
 
-                                {/* Cookie Option 3: Analytics */}
-                                <div className="cookie-option">
-                                    <div className="cookie-option-info">
-                                        <strong>Estatísticas Anônimas</strong>
-                                        <p>Ajuda-nos a entender o tráfego do portfólio de forma totalmente agregada e anônima.</p>
-                                    </div>
-                                    <div className="cookie-option-control">
-                                        <label className="switch">
-                                            <input
-                                                type="checkbox"
-                                                checked={preferences.analytics}
-                                                onChange={(e) => setPreferences({ ...preferences, analytics: e.target.checked })}
-                                            />
-                                            <span className="slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
+                <div className="c-cookiesModal__option">
+                  <div className="c-cookiesModal__optionInfo">
+                    <strong>Estatísticas Anônimas</strong>
+                    <p>Ajuda-nos a entender o tráfego do portfólio de forma totalmente agregada e anônima.</p>
+                  </div>
+                  <div className="c-cookiesModal__optionControl">
+                    <label className="c-cookiesModal__switch">
+                      <input
+                        type="checkbox"
+                        checked={preferences.analytics}
+                        onChange={(e) => setPreferences({ ...preferences, analytics: e.target.checked })}
+                      />
+                      <span className="c-cookiesModal__slider" />
+                    </label>
+                  </div>
+                </div>
+              </div>
 
-                            <div className="modal-footer">
-                                <button
-                                    type="button"
-                                    onClick={handleAcceptAll}
-                                    className="btn btn-outline"
-                                >
-                                    {t('footer.cookies_accept_all')}
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={handleSavePreferences}
-                                    className="btn btn-primary"
-                                >
-                                    {t('footer.cookies_save')}
-                                </button>
-                            </div>
-                        </motion.div>
-                    </div>
-                )}
-            </AnimatePresence>
-        </>
-    );
-}
+              <div className="c-cookiesModal__footer">
+                <ButtonCta
+                  variant="secondary"
+                  size="md"
+                  onClick={handleAcceptAll}
+                >
+                  {t('footer.cookies_accept_all')}
+                </ButtonCta>
+                <ButtonCta
+                  variant="primary"
+                  size="md"
+                  onClick={handleSavePreferences}
+                >
+                  {t('footer.cookies_save')}
+                </ButtonCta>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+
+export default CookiesModal;

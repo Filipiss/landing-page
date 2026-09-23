@@ -1,209 +1,200 @@
-/* Studio Noir CV Download Modal */
-
-.cv-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(9, 12, 16, 0.78);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+.c-cvModal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(9, 10, 15, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-.cv-modal-card {
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--border-radius-sm);
-    width: 100%;
-    max-width: 580px;
-    padding: 32px;
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    position: relative;
+.c-cvModal__card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm, 6px);
+  width: 100%;
+  max-width: 580px;
+  padding: 32px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
 }
 
-/* Top Row (Title + Close Button) */
-.cv-modal-intro {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.c-cvModal__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.cv-modal-top-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+.c-cvModal__topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-.cv-modal-close-btn {
-    background: none;
-    border: 1px solid transparent;
-    color: var(--text-muted);
-    cursor: pointer;
-    padding: 6px;
-    border-radius: var(--border-radius-xs);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    margin-right: -6px;
+.c-cvModal__closeBtn {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius-xs, 4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  margin-right: -6px;
 }
 
-.cv-modal-close-btn:hover {
-    color: var(--text-primary);
-    background-color: var(--bg-surface-elevated);
-    border-color: var(--border-subtle);
+.c-cvModal__closeBtn:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-surface-hover);
+  border-color: var(--border-subtle);
 }
 
-.cv-modal-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-    margin: 0;
+.c-cvModal__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0;
 }
 
-.cv-modal-subtitle {
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: var(--text-secondary);
-    margin: 0;
+.c-cvModal__subtitle {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
 }
 
-/* Option Cards Grid */
-.cv-modal-options-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+.c-cvModal__optionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 }
 
-.cv-option-card {
-    background-color: var(--bg-surface-elevated);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--border-radius-xs);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 20px;
-    text-decoration: none !important;
-    color: inherit;
-    cursor: pointer;
-    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-    position: relative;
-    overflow: hidden;
+.c-cvModal__optionCard {
+  background-color: var(--bg-surface-hover);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs, 4px);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  text-decoration: none !important;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-.cv-option-card:hover {
-    border-color: var(--color-accent);
-    background-color: var(--bg-surface-active);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+.c-cvModal__optionCard:hover {
+  border-color: var(--accent-primary);
+  background-color: var(--bg-surface);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
 }
 
-.cv-option-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.6875rem;
-    letter-spacing: 0.06em;
+.c-cvModal__optionTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
 }
 
-.cv-lang-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--text-muted);
+.c-cvModal__langBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
 }
 
-.cv-badge-highlight {
-    color: var(--color-accent);
+.c-cvModal__langBadge--highlight {
+  color: var(--accent-primary);
 }
 
-.cv-option-body {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+.c-cvModal__optionBody {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.cv-option-title {
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0;
-    line-height: 1.35;
+.c-cvModal__optionTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.35;
 }
 
-.cv-option-action {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 14px;
-    border-top: 1px solid var(--border-subtle);
-    font-size: 0.6875rem;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    transition: color 0.2s ease;
+.c-cvModal__optionAction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
 }
 
-.cv-option-card:hover .cv-option-action {
-    color: var(--color-accent);
+.c-cvModal__optionCard:hover .c-cvModal__optionAction {
+  color: var(--accent-primary);
 }
 
-.action-icon-circle {
-    width: 28px;
-    height: 28px;
-    border-radius: var(--border-radius-xs);
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    transition: all 0.2s ease;
+.c-cvModal__actionIconCircle {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-xs, 4px);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s ease;
 }
 
-.action-icon-circle .download-icon {
-    display: block;
-    transition: transform 0.2s ease;
+.c-cvModal__downloadIcon {
+  display: block;
+  transition: transform 0.2s ease;
 }
 
-.action-icon-circle .arrow-icon {
-    display: none;
+.c-cvModal__optionCard:hover .c-cvModal__actionIconCircle {
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #ffffff;
 }
 
-.cv-option-card:hover .action-icon-circle {
-    background-color: var(--color-accent);
-    border-color: var(--color-accent);
-    color: #ffffff;
+.c-cvModal__optionCard:hover .c-cvModal__downloadIcon {
+  transform: translateY(2px);
 }
 
-.cv-option-card:hover .action-icon-circle .download-icon {
-    transform: translateY(2px);
-}
-
-/* Mobile Responsiveness */
 @media (max-width: 600px) {
-    .cv-modal-card {
-        padding: 24px 20px;
-    }
+  .c-cvModal__card {
+    padding: 24px 20px;
+  }
 
-    .cv-modal-options-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
+  .c-cvModal__optionsGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 
-    .cv-option-card {
-        padding: 16px;
-        gap: 16px;
-    }
+  .c-cvModal__optionCard {
+    padding: 16px;
+    gap: 16px;
+  }
 }

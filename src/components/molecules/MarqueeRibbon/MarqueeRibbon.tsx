@@ -1,30 +1,32 @@
-import './MarqueeRibbon.css';
+import { FC } from 'react';
+import './marqueeRibbon.css';
 
-export default function MarqueeRibbon() {
+const ITEMS: string[] = [
+  'FULLSTACK DEVELOPER',
+  'REACT 19',
+  'TYPESCRIPT',
+  'PYTHON / FLASK',
+  'POSTGRESQL',
+  'NODE.JS & APIS',
+  'UI/UX CRAFT',
+  'FRAMER MOTION',
+  'AI INTEGRATION & RAG',
+  'CLEAN CODE'
+];
 
-    const items: string[] = [
-        'FULLSTACK DEVELOPER',
-        'REACT 19',
-        'TYPESCRIPT',
-        'PYTHON / FLASK',
-        'POSTGRESQL',
-        'NODE.JS & APIS',
-        'UI/UX CRAFT',
-        'FRAMER MOTION',
-        'AI INTEGRATION & RAG',
-        'CLEAN CODE'
-    ];
+export const MarqueeRibbon: FC = () => {
+  return (
+    <div className="c-marqueeRibbon" aria-hidden="true">
+      <div className="c-marqueeRibbon__content">
+        {[...ITEMS, ...ITEMS, ...ITEMS, ...ITEMS].map((item, idx) => (
+          <div key={idx} className="c-marqueeRibbon__item">
+            <span className="c-marqueeRibbon__star">✦</span>
+            <span className="c-marqueeRibbon__text">{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
-    return (
-        <div className="marquee-ribbon-wrapper" aria-hidden="true">
-            <div className="marquee-ribbon-content">
-                {[...items, ...items, ...items, ...items].map((item, idx) => (
-                    <div key={idx} className="marquee-item">
-                        <span className="marquee-star">✦</span>
-                        <span className="marquee-text">{item}</span>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-}
+export default MarqueeRibbon;
