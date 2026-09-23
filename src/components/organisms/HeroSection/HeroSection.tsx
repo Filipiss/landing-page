@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
-import './heroSection.css';
+import './HeroSection.css';
 
 export const HeroSection: FC = () => {
   const { t } = useLanguage();

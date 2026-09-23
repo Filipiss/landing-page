@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import gsap from 'gsap';
-import './depthCarousel.css';
+import './DepthCarousel.css';
 
 export interface DepthCarouselItem {
   image: string;

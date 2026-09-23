@@ -1,5 +1,5 @@
 import { CSSProperties, FC } from 'react';
-import './githubIcon.css';
+import './GithubIcon.css';
 
 interface GithubIconProps {
   size?: number;

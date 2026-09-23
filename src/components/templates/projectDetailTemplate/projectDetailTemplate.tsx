@@ -14,9 +14,9 @@ import {
   ChevronLeft, 
   ChevronRight 
 } from 'lucide-react';
-import GithubIcon from '../../atoms/githubIcon/githubIcon';
-import Folder from '../../atoms/folder/folder';
-import DepthCarousel from '../../atoms/depthCarousel/depthCarousel';
+import GithubIcon from '../../atoms/GithubIcon/GithubIcon';
+import Folder from '../../atoms/Folder/Folder';
+import DepthCarousel from '../../atoms/DepthCarousel/DepthCarousel';
 import ButtonCta from '../../atoms/buttonCta/buttonCta';
 import { 
   PROJECT_SCREENS_MAP as SCREENS_BY_PROJECT, 

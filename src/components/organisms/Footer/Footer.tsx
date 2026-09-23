@@ -1,7 +1,7 @@
 import { MouseEvent, FC } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import { ArrowUp } from 'lucide-react';
-import './footer.css';
+import './Footer.css';
 
 export interface FooterProps {
   onOpenCookiesSettings: () => void;

@@ -1,7 +1,7 @@
 import { useState, ReactNode, FC } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import { Clock, Terminal, ArrowLeft } from 'lucide-react';
-import ProjectCard from '../../molecules/projectCard/projectCard';
+import ProjectCard from '../../molecules/ProjectCard/ProjectCard';
 import './portfolioTemplate.css';
 
 interface ProjectsSectionList {

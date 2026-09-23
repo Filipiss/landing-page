@@ -3,7 +3,7 @@ import { useLanguage } from '../../../context/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { PROJECT_SCREENS_MAP } from '../../../data/projectsScreenshots';
-import './projectsSection.css';
+import './ProjectsSection.css';
 
 interface ProjectItem {
   id: string;

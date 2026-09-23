@@ -3,7 +3,7 @@ import { useLanguage } from '../../../context/LanguageContext';
 import { ArrowUpRight, Check, AlertCircle, Copy } from 'lucide-react';
 import { submitContactMessage } from '../../../services/contactService';
 import { ContactStatus } from '../../../types/contact';
-import './contactSection.css';
+import './ContactSection.css';
 
 interface ContactSectionProps {
   onOpenCvModal?: () => void;

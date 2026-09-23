@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { MessageCircle, Mail, ArrowUpRight } from 'lucide-react';
 import filipiImg from '../../../assets/filipi.jpg';
 import chicoImg from '../../../assets/CHICO WAGNER.png';
-import './aboutSection.css';
+import './AboutSection.css';
 
 export const AboutSection: FC = () => {
   const { t } = useLanguage();

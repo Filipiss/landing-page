@@ -3,7 +3,7 @@ import { useLanguage } from '../../../context/LanguageContext';
 import { ShieldCheck, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ButtonCta } from '../../atoms/buttonCta/buttonCta';
-import './cookiesModal.css';
+import './CookiesModal.css';
 
 export interface CookiesModalProps {
   isOpen: boolean;

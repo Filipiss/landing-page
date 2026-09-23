@@ -13,7 +13,7 @@ import {
     Sparkles
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import './accessibilityWidget.css';
+import './AccessibilityWidget.css';
 
 interface AccessibilitySettings {
     zoomStep: number;

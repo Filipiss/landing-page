@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import './marqueeRibbon.css';
+import './MarqueeRibbon.css';
 
 const ITEMS: string[] = [
   'FULLSTACK DEVELOPER',

@@ -1,5 +1,5 @@
 import { ReactNode, FC } from 'react';
-import './profileCard.css';
+import './ProfileCard.css';
 
 export interface ProfileCardProps {
   avatar: ReactNode;

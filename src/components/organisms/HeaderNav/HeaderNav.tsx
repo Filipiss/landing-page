@@ -2,7 +2,7 @@ import { useState, useEffect, FC } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import { useTheme } from '../../../context/ThemeContext';
 import { Menu, X, Sun, Moon, ArrowUpRight } from 'lucide-react';
-import './headerNav.css';
+import './HeaderNav.css';
 
 export interface HeaderNavProps {
   currentProjectId?: string | null;

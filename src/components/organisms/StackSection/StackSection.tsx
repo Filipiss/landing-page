@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import { motion } from 'framer-motion';
-import './stackSection.css';
+import './StackSection.css';
 
 export const StackSection: FC = () => {
   const { t, language } = useLanguage();

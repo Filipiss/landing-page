@@ -1,7 +1,7 @@
 import { ReactNode, FC } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import './projectCard.css';
+import './ProjectCard.css';
 
 export interface ProjectCardProps {
   id: string;

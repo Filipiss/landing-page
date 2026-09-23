@@ -2,7 +2,7 @@ import { useEffect, FC } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../../context/LanguageContext';
 import { Download, X, ArrowUpRight, Globe } from 'lucide-react';
-import './cvDownloadModal.css';
+import './CvDownloadModal.css';
 
 export interface CvDownloadModalProps {
   isOpen: boolean;

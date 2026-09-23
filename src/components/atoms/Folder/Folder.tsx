@@ -1,5 +1,5 @@
 import React, { useState, FC } from 'react';
-import './folder.css';
+import './Folder.css';
 
 const darkenColor = (hex: string, percent: number) => {
   let color = hex.startsWith('#') ? hex.slice(1) : hex;

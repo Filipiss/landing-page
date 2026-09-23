@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import { motion } from 'framer-motion';
-import './experienceSection.css';
+import './ExperienceSection.css';
 
 interface ExperienceItemData {
   company: string;
