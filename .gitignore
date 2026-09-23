@@ -29,4 +29,5 @@ dist-ssr
 *.sw?
 
 # Ignore Markdown files
-*.md
+*AGENTS.MD
+*arquitetura_e_funcionalidades.md
