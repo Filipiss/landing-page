@@ -9,7 +9,7 @@
 
 High-end personal portfolio and software engineering landing page. Built with an uncompromising focus on clean code, rigorous Atomic Design hierarchy, camelCase-adapted BEMIT namespaces, strict TypeScript typings, and digital accessibility compliance (WCAG AA).
 
-[Live Demo](https://filipiss.github.io) • [Report Bug](https://github.com/Filipiss/personal-landing-page/issues) • [Request Feature](https://github.com/Filipiss/personal-landing-page/issues)
+[Report Bug](https://github.com/Filipiss/landing-page/issues) • [Request Feature](https://github.com/Filipiss/landing-page/issues)
 
 ---
 
@@ -50,7 +50,7 @@ Drawing visual inspiration from high-craft tools such as Linear, Raycast, and Ve
 - **3D Depth Gallery & Lightbox:** Hardware-accelerated 3D carousel with full keyboard and mobile gesture controls, paired with a modal lightbox inspecting production screenshots.
 - **Asynchronous Contact Pipeline:** Direct serverless integration with Web3Forms API including validation, submission loaders, and notification states.
 - **Curriculum Vitae Downloader:** Interactive modal enabling quick preview and download of verified resumes in English and Portuguese.
-- **Privacy & GDPR Compliance:** Granular cookie management and consent system.
+- **Privacy:** No tracking cookies or analytics. A notice explains that only theme, language and accessibility options are stored in the browser.
 
 ---
 
@@ -130,14 +130,16 @@ src/
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Filipiss/personal-landing-page.git
-   cd personal-landing-page
+   git clone https://github.com/Filipiss/landing-page.git
+   cd landing-page
    ```
 
 2. **Install project dependencies:**
    ```bash
    npm install
    ```
+
+   For the contact form to work, copy `.env.example` to `.env` and fill in `VITE_WEB3FORMS_ACCESS_KEY` (on Vercel, add the same variable under *Settings › Environment Variables*). Without it, the form shows the email address for direct contact.
 
 3. **Start the local development server:**
    ```bash
@@ -164,12 +166,17 @@ src/
 
 ## Featured Case Studies
 
-1. **Time Tracker & Analytics Platform:**
+1. **CWU App (Chico Wagner Utility):**
+   - Windows desktop app combining post-install setup and gaming optimization, with every change logged and reversible.
+   - **Stack:** Electron, Node.js (zero production dependencies), PowerShell/WMI, winget, Supabase.
+   - **Key Features:** Hardware score and SMART drive health, batch install through winget, driver and blue-screen diagnostics, gaming tweaks with a revert history, and an FPS overlay.
+
+2. **Time Tracker & Analytics Platform:**
    - Fullstack application for tracking engineering hours, productivity analytics, and billing.
    - **Stack:** Python, Flask, PostgreSQL, React, TypeScript.
    - **Key Features:** Live session timer with reload persistence, multi-currency support (€ EUR / R$ BRL), task breakdown, and calendar views.
 
-2. **AI Assistant Integrator (Ozlo / Multi-Provider):**
+3. **AI Assistant Integrator (Ozlo / Multi-Provider):**
    - Intelligent multi-model conversational assistant with real-time SSE streaming.
    - **Stack:** Python, FastAPI, Server-Sent Events (SSE), Google Gemini, Groq Llama, React.
    - **Key Features:** Token streaming, autonomous resident fallback agent with circuit breaker logic, and Time-to-First-Token (TTFT) telemetry.

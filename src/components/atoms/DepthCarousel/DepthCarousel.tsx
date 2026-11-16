@@ -75,15 +75,18 @@ export const DepthCarousel: React.FC<DepthCarouselProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const tintRefs = useRef<Array<HTMLDivElement | null>>([]);
+  // O ref guarda o índice para os callbacks do GSAP e do autoplay; o state
+  // espelha o mesmo valor para a renderização (dots, tabIndex, clique).
   const activeIndexRef = useRef<number>(focusIndex);
-  const [, setRerender] = useState<number>(0);
+  const [activeIndex, setActiveIndex] = useState<number>(focusIndex);
 
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState<boolean>(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState<boolean>(
+    () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(media.matches);
     const listener = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
     media.addEventListener('change', listener);
     return () => media.removeEventListener('change', listener);
@@ -196,7 +199,7 @@ export const DepthCarousel: React.FC<DepthCarouselProps> = ({
         return;
       }
       activeIndexRef.current = clamped;
-      setRerender((v) => v + 1);
+      setActiveIndex(clamped);
       layoutCards();
       if (onChange) {
         onChange(clamped, normalizedItems[clamped]);
@@ -254,8 +257,6 @@ export const DepthCarousel: React.FC<DepthCarouselProps> = ({
       next();
     }
   };
-
-  const activeIndex = activeIndexRef.current;
 
   return (
     <div

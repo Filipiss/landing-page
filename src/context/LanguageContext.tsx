@@ -1,52 +1,73 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import pt from '../translations/pt.json';
-import en from '../translations/en.json';
-
-export type Language = 'pt' | 'en';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, ReactNode, FC } from 'react';
+import { translations, Language } from '../translations';
+import { safeStorage } from '../utils/safeStorage';
 
 interface LanguageContextProps {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (path: string, options?: any) => any;
+  /** Texto da chave. Se a chave não existir, devolve a própria chave (e avisa no console em dev). */
+  t: (path: string) => string;
+  /** Texto da chave, ou undefined se ela não existir. Para campos opcionais, como live_url. */
+  tOptional: (path: string) => string | undefined;
+  /** Valor bruto da chave (listas, objetos), ou undefined se não existir. */
+  tRaw: <T = unknown>(path: string) => T | undefined;
 }
 
 const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
 
-const translations: Record<Language, any> = { pt, en };
+function lookup(source: unknown, path: string): unknown {
+  let value = source;
+  for (const key of path.split('.')) {
+    if (value === null || typeof value !== 'object' || !(key in value)) return undefined;
+    value = (value as Record<string, unknown>)[key];
+  }
+  return value;
+}
 
-export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>(() => {
-    const saved = localStorage.getItem('language');
-    if (saved === 'pt' || saved === 'en') return saved as Language;
+function initialLanguage(): Language {
+  const saved = safeStorage.get('language');
+  if (saved === 'pt' || saved === 'en') return saved;
+  return (navigator.language || '').toLowerCase().startsWith('pt') ? 'pt' : 'en';
+}
 
-    const browserLang = navigator.language || '';
-    if (browserLang.toLowerCase().startsWith('pt')) return 'pt';
-    return 'en';
-  });
+export const LanguageProvider: FC<{ children: ReactNode }> = ({ children }) => {
+  const [language, setLanguage] = useState<Language>(initialLanguage);
 
   useEffect(() => {
-    localStorage.setItem('language', language);
+    safeStorage.set('language', language);
     document.documentElement.lang = language === 'pt' ? 'pt-BR' : 'en';
   }, [language]);
 
-  const t = (path: string, _options?: any): any => {
-    const keys = path.split('.');
-    let value: any = translations[language];
-    for (const key of keys) {
-      if (value && value[key] !== undefined) {
-        value = value[key];
-      } else {
-        return path;
-      }
-    }
-    return value !== undefined ? value : path;
-  };
-
-  return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
-      {children}
-    </LanguageContext.Provider>
+  const tRaw = useCallback(
+    <T,>(path: string): T | undefined => lookup(translations[language], path) as T | undefined,
+    [language]
   );
+
+  const tOptional = useCallback(
+    (path: string): string | undefined => {
+      const value = lookup(translations[language], path);
+      return typeof value === 'string' && value !== '' ? value : undefined;
+    },
+    [language]
+  );
+
+  const t = useCallback(
+    (path: string): string => {
+      const value = tOptional(path);
+      if (value === undefined && import.meta.env.DEV) {
+        console.warn(`[i18n] Chave ausente em "${language}": ${path}`);
+      }
+      return value ?? path;
+    },
+    [tOptional, language]
+  );
+
+  const value = useMemo(
+    () => ({ language, setLanguage, t, tOptional, tRaw }),
+    [language, t, tOptional, tRaw]
+  );
+
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 };
 
 export const useLanguage = (): LanguageContextProps => {

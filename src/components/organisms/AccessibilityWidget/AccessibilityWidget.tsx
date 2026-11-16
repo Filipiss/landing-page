@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import { 
-    Accessibility, 
     X, 
     Minus, 
     Plus, 
@@ -13,6 +12,7 @@ import {
     Sparkles
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import AccessibilityIcon from '../../atoms/AccessibilityIcon/AccessibilityIcon';
 import './AccessibilityWidget.css';
 
 interface AccessibilitySettings {
@@ -43,7 +43,7 @@ export default function AccessibilityWidget() {
         try {
             const saved = localStorage.getItem('accessibility_settings');
             if (saved) {
-                return JSON.parse(saved);
+                return { ...DEFAULT_SETTINGS, ...JSON.parse(saved) };
             }
         } catch {
         }
@@ -159,7 +159,7 @@ export default function AccessibilityWidget() {
                 title={t('accessibility.title')}
                 aria-expanded={isOpen}
             >
-                <Accessibility size={22} className="c-accessibilityWidget__icon" />
+                <AccessibilityIcon size={24} className="c-accessibilityWidget__icon" />
             </button>
 
             <AnimatePresence>
@@ -177,7 +177,7 @@ export default function AccessibilityWidget() {
                     >
                         <div className="c-accessibilityWidget__header">
                             <div className="c-accessibilityWidget__titleGroup">
-                                <Accessibility size={16} className="u-colorAccent" />
+                                <AccessibilityIcon size={16} className="u-colorAccent" />
                                 <h3 className="c-accessibilityWidget__title">{t('accessibility.title')}</h3>
                                 <span className="c-accessibilityWidget__badge u-fontMono">WCAG AA</span>
                             </div>

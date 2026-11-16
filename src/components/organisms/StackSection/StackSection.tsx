@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import './StackSection.css';
 
 export const StackSection: FC = () => {
-  const { t, language } = useLanguage();
+  const { t, tOptional, language } = useLanguage();
 
   const softSkillsItems = language === 'pt' ? [
     'Comunicação Clara & Alinhamento Assíncrono',
@@ -94,7 +94,7 @@ export const StackSection: FC = () => {
 
         <div className="c-stackSection__matrix">
           {stackGroups.map((group, idx) => {
-            const title = t(group.titleKey) !== group.titleKey ? t(group.titleKey) : group.fallbackTitle;
+            const title = tOptional(group.titleKey) ?? group.fallbackTitle;
 
             return (
               <motion.div

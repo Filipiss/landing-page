@@ -33,11 +33,20 @@ export const ProjectCard: FC<ProjectCardProps> = ({
       viewport={{ once: true }}
       transition={{ duration: 0.3, delay: index * 0.08 }}
       onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`${viewProjectText}: ${title}`}
       className={`c-projectCard c-projectCard--${id}`}
     >
       <div className="c-projectCard__header u-fontMono">
         <span className="c-projectCard__category">{category}</span>
-        <span className="c-projectCard__num">0{index + 1} //</span>
+        <span className="c-projectCard__num">{String(index + 1).padStart(2, '0')} //</span>
       </div>
 
       <div className="c-projectCard__content">
@@ -52,8 +61,8 @@ export const ProjectCard: FC<ProjectCardProps> = ({
 
         <div className="c-projectCard__footer u-fontMono">
           <div className="c-projectCard__tags">
-            {tags.map((tag, idx) => (
-              <span key={idx} className="c-projectCard__tag">
+            {tags.map((tag) => (
+              <span key={tag} className="c-projectCard__tag">
                 {tag}
               </span>
             ))}

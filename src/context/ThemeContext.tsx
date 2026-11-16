@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { safeStorage } from '../utils/safeStorage';
 
 export type Theme = 'light' | 'dark';
 
@@ -12,7 +13,7 @@ const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [theme, setTheme] = useState<Theme>(() => {
-        const saved = localStorage.getItem('theme');
+        const saved = safeStorage.get('theme');
         if (saved === 'light' || saved === 'dark') return saved;
         const preference = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
         return preference;
@@ -20,7 +21,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
+        safeStorage.set('theme', theme);
     }, [theme]);
 
     const toggleTheme = () => {

@@ -1,9 +1,11 @@
-import { useState, ChangeEvent, FormEvent, FC } from 'react';
+import { useState, ChangeEvent, FormEvent, MouseEvent, FC } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import { ArrowUpRight, Check, AlertCircle, Copy } from 'lucide-react';
-import { submitContactMessage } from '../../../services/contactService';
+import { submitContactMessage, ContactError } from '../../../services/contactService';
 import { ContactStatus } from '../../../types/contact';
 import './ContactSection.css';
+
+const CONTACT_EMAIL = 'filipi.soares.silva@gmail.com';
 
 interface ContactSectionProps {
   onOpenCvModal?: () => void;
@@ -24,11 +26,15 @@ export const ContactSection: FC<ContactSectionProps> = ({ onOpenCvModal }) => {
     }
   };
 
-  const handleCopyEmail = (e: React.MouseEvent) => {
+  const handleCopyEmail = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    navigator.clipboard.writeText('filipi.soares.silva@gmail.com');
-    setCopiedEmail(true);
-    setTimeout(() => setCopiedEmail(false), 2000);
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2000);
+    } catch {
+      // Sem permissão de área de transferência: o link mailto ao lado continua funcionando.
+    }
   };
 
   const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -44,9 +50,10 @@ export const ContactSection: FC<ContactSectionProps> = ({ onOpenCvModal }) => {
       await submitContactMessage(formData);
       setStatus('success');
       setFormData({ name: '', email: '', message: '' });
-    } catch (err: any) {
+    } catch (err) {
       setStatus('error');
-      setErrorMessage(err.message || t('contact.error'));
+      const code = err instanceof ContactError ? err.code : 'network';
+      setErrorMessage(t(`contact.errors.${code}`));
     }
   };
 
@@ -70,14 +77,14 @@ export const ContactSection: FC<ContactSectionProps> = ({ onOpenCvModal }) => {
             <div className="c-contactSection__channelsList">
               <div className="c-contactSection__channelRow u-fontMono">
                 <span className="c-contactSection__channelTag">{t('contact.email_label')} //</span>
-                <a href="mailto:filipi.soares.silva@gmail.com" className="c-contactSection__channelValue">
-                  filipi.soares.silva@gmail.com
+                <a href={`mailto:${CONTACT_EMAIL}`} className="c-contactSection__channelValue">
+                  {CONTACT_EMAIL}
                 </a>
                 <button
                   type="button"
                   onClick={handleCopyEmail}
                   className="c-contactSection__copyBtn"
-                  title="Copiar email"
+                  title={t('contact.copy_email')}
                 >
                   {copiedEmail ? (
                     <>
@@ -206,14 +213,14 @@ export const ContactSection: FC<ContactSectionProps> = ({ onOpenCvModal }) => {
                 </button>
 
                 {status === 'success' && (
-                  <div className="c-contactSection__feedbackStrip c-contactSection__feedbackStrip--success u-fontMono">
+                  <div role="status" className="c-contactSection__feedbackStrip c-contactSection__feedbackStrip--success u-fontMono">
                     <Check size={14} />
                     <span>{t('contact.success')}</span>
                   </div>
                 )}
 
                 {status === 'error' && (
-                  <div className="c-contactSection__feedbackStrip c-contactSection__feedbackStrip--error u-fontMono">
+                  <div role="alert" className="c-contactSection__feedbackStrip c-contactSection__feedbackStrip--error u-fontMono">
                     <AlertCircle size={14} />
                     <span>{errorMessage || t('contact.error')}</span>
                   </div>

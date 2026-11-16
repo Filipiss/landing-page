@@ -2,45 +2,26 @@ import { useState, useEffect, FC } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import { PROJECT_SCREENS_MAP } from '../../../data/projectsScreenshots';
+import { PROJECT_SCREENS_MAP, EMPTY_SCREENS } from '../../../data/projectsScreenshots';
+import { PROJECTS, projectNumber } from '../../../data/projects';
 import './ProjectsSection.css';
 
-interface ProjectItem {
-  id: string;
-  num: string;
-  techTags: string[];
-}
+const goToProject = (id: string) => {
+  window.location.hash = `#/project/${id}`;
+};
 
-const EMPTY_SCREENS: any[] = [];
+const goToPortfolio = () => {
+  window.location.hash = '#/portfolio';
+};
 
 export const ProjectsSection: FC = () => {
-  const { t } = useLanguage();
   const [hoveredProjectId, setHoveredProjectId] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const projects: ProjectItem[] = [
-    {
-      id: 'time-tracker',
-      num: '01',
-      techTags: ['React', 'TypeScript', 'Flask', 'SQLAlchemy', 'PostgreSQL']
-    },
-    {
-      id: 'ai-assistant-integrator',
-      num: '02',
-      techTags: ['FastAPI', 'Python', 'SSE Streaming', 'Gemini & OpenAI API', 'React']
-    }
-  ];
-
-  const handleProjectClick = (id: string) => {
-    window.location.hash = `#/project/${id}`;
-  };
-
-  const handleGoToPortfolio = () => {
-    window.location.hash = '#/portfolio';
-  };
-
-  const activeProject = projects.find(p => p.id === hoveredProjectId) || projects[0];
+  const { t, tOptional } = useLanguage();
+  const activeProject = PROJECTS.find(p => p.id === hoveredProjectId) || PROJECTS[0];
   const projectScreens = PROJECT_SCREENS_MAP[activeProject.id] || EMPTY_SCREENS;
+  const screenCount = projectScreens.length;
 
   const [prevActiveProjectId, setPrevActiveProjectId] = useState(activeProject.id);
 
@@ -50,14 +31,14 @@ export const ProjectsSection: FC = () => {
   }
 
   useEffect(() => {
-    if (!projectScreens || projectScreens.length <= 1) return;
+    if (screenCount <= 1) return;
 
     const interval = setInterval(() => {
-      setCurrentImageIndex(prev => (prev + 1) % projectScreens.length);
+      setCurrentImageIndex(prev => (prev + 1) % screenCount);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [activeProject.id, projectScreens.length]);
+  }, [activeProject.id, screenCount]);
 
   return (
     <section id="work" className="l-section c-projectsSection">
@@ -76,7 +57,7 @@ export const ProjectsSection: FC = () => {
 
             <button
               type="button"
-              onClick={handleGoToPortfolio}
+              onClick={goToPortfolio}
               className="c-projectsSection__archiveLink u-fontMono"
             >
               <span>{t('projects.view_all')}</span>
@@ -87,11 +68,11 @@ export const ProjectsSection: FC = () => {
 
         <div className="c-projectsSection__grid">
           <div className="c-projectsSection__list">
-            {projects.map((item) => {
+            {PROJECTS.map((item) => {
               const title = t(`projects.items.${item.id}.title`);
               const category = t(`projects.items.${item.id}.category`);
               const shortDesc = t(`projects.items.${item.id}.short_desc`);
-              const year = t(`projects.items.${item.id}.year`) || '2026';
+              const year = tOptional(`projects.items.${item.id}.year`);
               const tagline = t(`projects.items.${item.id}.tagline`);
               const isHovered = hoveredProjectId === item.id;
 
@@ -100,16 +81,24 @@ export const ProjectsSection: FC = () => {
                   key={item.id}
                   onMouseEnter={() => setHoveredProjectId(item.id)}
                   onMouseLeave={() => setHoveredProjectId(null)}
-                  onClick={() => handleProjectClick(item.id)}
+                  onFocus={() => setHoveredProjectId(item.id)}
+                  onBlur={() => setHoveredProjectId(null)}
+                  onClick={() => goToProject(item.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      goToProject(item.id);
+                    }
+                  }}
                   className={`c-projectsSection__row ${isHovered ? 'isActive' : ''}`}
                   role="button"
                   tabIndex={0}
-                  aria-label={`Ver case study ${title}`}
+                  aria-label={`${t('projects.view_project')}: ${title}`}
                 >
                   <div className="c-projectsSection__rowTopline u-fontMono">
-                    <span className="c-projectsSection__numBadge">{item.num} //</span>
+                    <span className="c-projectsSection__numBadge">{projectNumber(item.id)} //</span>
                     <span className="c-projectsSection__categoryBadge">{category}</span>
-                    <span className="c-projectsSection__yearBadge">{year}</span>
+                    {year && <span className="c-projectsSection__yearBadge">{year}</span>}
                   </div>
 
                   <div className="c-projectsSection__rowMain">
@@ -123,8 +112,8 @@ export const ProjectsSection: FC = () => {
 
                   <div className="c-projectsSection__rowFooter u-fontMono">
                     <div className="c-projectsSection__tagsGroup">
-                      {item.techTags.map((tag, idx) => (
-                        <span key={idx} className="c-projectsSection__techChip">
+                      {item.tags.map((tag) => (
+                        <span key={tag} className="c-projectsSection__techChip">
                           {tag}
                         </span>
                       ))}
@@ -158,10 +147,10 @@ export const ProjectsSection: FC = () => {
                   exit={{ opacity: 0, scale: 0.98, y: -10 }}
                   transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                   className={`c-projectsSection__previewCard c-projectsSection__previewCard--${activeProject.id}`}
-                  onClick={() => handleProjectClick(activeProject.id)}
+                  onClick={() => goToProject(activeProject.id)}
                 >
                   <div className="c-projectsSection__previewTopBar u-fontMono">
-                    <span className="c-projectsSection__previewStatusTag">CASE PREVIEW // {activeProject.num}</span>
+                    <span className="c-projectsSection__previewStatusTag">CASE PREVIEW // {projectNumber(activeProject.id)}</span>
                     {projectScreens.length > 0 && (
                       <span className="c-projectsSection__previewCounter u-fontMono">
                         {String(currentImageIndex + 1).padStart(2, '0')} / {String(projectScreens.length).padStart(2, '0')}

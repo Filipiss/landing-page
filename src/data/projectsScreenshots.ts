@@ -1,20 +1,29 @@
-import ttDashboard from '../assets/projects/time-tracker/timetracker__dashboard.png';
-import ttTimer from '../assets/projects/time-tracker/timetracker__timer.png';
-import ttTasks from '../assets/projects/time-tracker/timertracker__tasks.png';
-import ttCalendar from '../assets/projects/time-tracker/timetracker__calendar.png';
-import ttHistory from '../assets/projects/time-tracker/timetracker__history.png';
-import ttAdmin from '../assets/projects/time-tracker/timetracker__admin.png';
-import ttProfile from '../assets/projects/time-tracker/timetracker__profile.png';
-import ttWhiteTheme from '../assets/projects/time-tracker/timetracker__whitetheme.png';
-import ttSupport from '../assets/projects/time-tracker/timetracker__support.png';
+import ttDashboard from '../assets/projects/time-tracker/timetracker__dashboard.webp';
+import ttTimer from '../assets/projects/time-tracker/timetracker__timer.webp';
+import ttTasks from '../assets/projects/time-tracker/timetracker__tasks.webp';
+import ttCalendar from '../assets/projects/time-tracker/timetracker__calendar.webp';
+import ttHistory from '../assets/projects/time-tracker/timetracker__history.webp';
+import ttAdmin from '../assets/projects/time-tracker/timetracker__admin.webp';
+import ttProfile from '../assets/projects/time-tracker/timetracker__profile.webp';
+import ttWhiteTheme from '../assets/projects/time-tracker/timetracker__whitetheme.webp';
+import ttSupport from '../assets/projects/time-tracker/timetracker__support.webp';
 
-import aiGemini from '../assets/projects/ai-assistant-integrator/chatbot__gemini.png';
-import aiGroq from '../assets/projects/ai-assistant-integrator/chatbot__groq.png';
-import aiOzlo from '../assets/projects/ai-assistant-integrator/chatbot__ozlo.png';
-import aiStats from '../assets/projects/ai-assistant-integrator/chatbot__stats.png';
-import aiConfig from '../assets/projects/ai-assistant-integrator/chatbot__config.png';
-import aiLight from '../assets/projects/ai-assistant-integrator/chatbot__light.png';
-import aiAccessibility from '../assets/projects/ai-assistant-integrator/chatbot_accessibility.png';
+import aiGemini from '../assets/projects/ai-assistant-integrator/chatbot__gemini.webp';
+import aiGroq from '../assets/projects/ai-assistant-integrator/chatbot__groq.webp';
+import aiOzlo from '../assets/projects/ai-assistant-integrator/chatbot__ozlo.webp';
+import aiStats from '../assets/projects/ai-assistant-integrator/chatbot__stats.webp';
+import aiConfig from '../assets/projects/ai-assistant-integrator/chatbot__config.webp';
+import aiLight from '../assets/projects/ai-assistant-integrator/chatbot__light.webp';
+import aiAccessibility from '../assets/projects/ai-assistant-integrator/chatbot_accessibility.webp';
+
+import cwuSpecs from '../assets/projects/cwu-app/cwu__specs.webp';
+import cwuSoftware from '../assets/projects/cwu-app/cwu__software.webp';
+import cwuBoost from '../assets/projects/cwu-app/cwu__boost.webp';
+import cwuCompetitive from '../assets/projects/cwu-app/cwu__competitive.webp';
+import cwuNetwork from '../assets/projects/cwu-app/cwu__network.webp';
+import cwuMonitor from '../assets/projects/cwu-app/cwu__monitor.webp';
+import cwuLogs from '../assets/projects/cwu-app/cwu__logs.webp';
+import cwuMyList from '../assets/projects/cwu-app/cwu__mylist.webp';
 
 export interface ScreenshotItem {
   id: string;
@@ -159,7 +168,77 @@ export const AI_ASSISTANT_SCREENS: ScreenshotItem[] = [
   },
 ];
 
+export const CWU_APP_SCREENS: ScreenshotItem[] = [
+  {
+    id: 'specs',
+    tag: 'DIAGNÓSTICO',
+    title: 'System Specs & Nota do PC',
+    route: 'cwu-app://system-specs',
+    caption: 'Leitura real de CPU, GPU, RAM e discos com nota de 0 a 10 por componente e saúde de cada SSD, NVMe e HD pelos contadores SMART do Windows.',
+    src: cwuSpecs,
+  },
+  {
+    id: 'software',
+    tag: 'PÓS-FORMATAÇÃO',
+    title: 'Catálogo de Programas & Instalação em Lote',
+    route: 'cwu-app://post-format-software',
+    caption: 'Runtimes e programas essenciais com links oficiais, detecção do que já está instalado e instalação de vários de uma vez pelo winget, com fila e progresso.',
+    src: cwuSoftware,
+  },
+  {
+    id: 'boost',
+    tag: 'REVERSÍVEL',
+    title: 'Boost com Confirmação Antes de Alterar',
+    route: 'cwu-app://gamer-boost',
+    caption: 'Toda ação que mexe no Windows pede confirmação, explica o que faz e fica registrada para ser desfeita depois.',
+    src: cwuBoost,
+  },
+  {
+    id: 'competitive',
+    tag: 'INPUT LAG',
+    title: 'Modo Competitivo: Mouse, Overlays & Energia',
+    route: 'cwu-app://gamer-boost/competitive',
+    caption: 'Teste de polling rate do mouse, overlays em execução que somam trabalho a cada quadro, plano Desempenho Máximo e suspensão seletiva de USB.',
+    src: cwuCompetitive,
+  },
+  {
+    id: 'network',
+    tag: 'REDE',
+    title: 'Teste de Conexão para Jogos Online',
+    route: 'cwu-app://gamer-boost/network',
+    caption: 'Ping, jitter e perda de pacotes contra vários servidores, com os ajustes de economia de energia da placa de rede ao lado.',
+    src: cwuNetwork,
+  },
+  {
+    id: 'monitor',
+    tag: 'TEMPO REAL',
+    title: 'Monitor de Desempenho & Temperaturas',
+    route: 'cwu-app://performance',
+    caption: 'Uso de CPU, GPU, RAM e disco, temperaturas e processos que mais consomem, alimentados por um único processo PowerShell contínuo para não pesar o PC.',
+    src: cwuMonitor,
+  },
+  {
+    id: 'logs',
+    tag: 'AUDITORIA',
+    title: 'Histórico de Alterações com Reverter',
+    route: 'cwu-app://logs',
+    caption: 'Cada mudança feita pelo app fica listada por categoria, com botão para reverter e criação de ponto de restauração.',
+    src: cwuLogs,
+  },
+  {
+    id: 'mylist',
+    tag: 'TEMA NÉVOA',
+    title: 'Minha Conta & Lista Pós-Formatação',
+    route: 'cwu-app://account',
+    caption: 'Login opcional via Supabase para salvar a sua lista de programas e levá-la para qualquer PC, aqui no tema claro Névoa.',
+    src: cwuMyList,
+  },
+];
+
 export const PROJECT_SCREENS_MAP: Record<string, ScreenshotItem[]> = {
   'time-tracker': TIME_TRACKER_SCREENS,
   'ai-assistant-integrator': AI_ASSISTANT_SCREENS,
+  'cwu-app': CWU_APP_SCREENS,
 };
+
+export const EMPTY_SCREENS: ScreenshotItem[] = [];

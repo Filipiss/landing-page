@@ -3,7 +3,7 @@ import { useLanguage } from '../../../context/LanguageContext';
 import { motion } from 'framer-motion';
 import { MessageCircle, Mail, ArrowUpRight } from 'lucide-react';
 import filipiImg from '../../../assets/filipi.jpg';
-import chicoImg from '../../../assets/CHICO WAGNER.png';
+import chicoImg from '../../../assets/chico-wagner.webp';
 import './AboutSection.css';
 
 export const AboutSection: FC = () => {

@@ -3,41 +3,39 @@ import { useLanguage } from '../../../context/LanguageContext';
 import { ShieldCheck, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ButtonCta } from '../../atoms/buttonCta/buttonCta';
+import { safeStorage } from '../../../utils/safeStorage';
 import './CookiesModal.css';
 
 export interface CookiesModalProps {
   isOpen: boolean;
+  onOpen: () => void;
   onClose: () => void;
 }
 
-export const CookiesModal: FC<CookiesModalProps> = ({ isOpen, onClose }) => {
-  const { t } = useLanguage();
-  const [showBanner, setShowBanner] = useState(false);
+const CONSENT_KEY = 'cookie_consent';
 
-  const [preferences, setPreferences] = useState({
-    functional: true,
-    performance: false,
-    analytics: true
-  });
+/**
+ * O site só usa armazenamento local essencial (tema, idioma e acessibilidade).
+ * Não há analytics nem cookies de terceiros, então não existem categorias
+ * opcionais para o visitante ligar ou desligar: o painel apenas informa.
+ */
+export const CookiesModal: FC<CookiesModalProps> = ({ isOpen, onOpen, onClose }) => {
+  const { t } = useLanguage();
+  const [showBanner, setShowBanner] = useState(() => !safeStorage.get(CONSENT_KEY));
 
   useEffect(() => {
-    const isConsentGiven = localStorage.getItem('cookie_consent');
-    if (!isConsentGiven) {
-      setShowBanner(true);
-    }
-  }, []);
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
-  const handleAcceptAll = () => {
-    localStorage.setItem('cookie_consent', 'accepted');
+  const handleAcknowledge = () => {
+    safeStorage.set(CONSENT_KEY, 'essential');
     setShowBanner(false);
     if (isOpen) onClose();
-  };
-
-  const handleSavePreferences = () => {
-    localStorage.setItem('cookie_consent', 'custom');
-    localStorage.setItem('cookie_preferences', JSON.stringify(preferences));
-    setShowBanner(false);
-    onClose();
   };
 
   return (
@@ -49,6 +47,8 @@ export const CookiesModal: FC<CookiesModalProps> = ({ isOpen, onClose }) => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.95 }}
             className="c-cookiesBanner"
+            role="region"
+            aria-label={t('footer.cookies_title')}
           >
             <div className="c-cookiesBanner__content">
               <ShieldCheck size={24} className="c-cookiesBanner__icon" />
@@ -60,14 +60,14 @@ export const CookiesModal: FC<CookiesModalProps> = ({ isOpen, onClose }) => {
               <ButtonCta
                 variant="secondary"
                 size="sm"
-                onClick={onClose}
+                onClick={onOpen}
               >
                 {t('footer.cookies_settings')}
               </ButtonCta>
               <ButtonCta
                 variant="primary"
                 size="sm"
-                onClick={handleAcceptAll}
+                onClick={handleAcknowledge}
               >
                 {t('footer.cookies_accept')}
               </ButtonCta>
@@ -78,19 +78,28 @@ export const CookiesModal: FC<CookiesModalProps> = ({ isOpen, onClose }) => {
 
       <AnimatePresence>
         {isOpen && (
-          <div className="c-cookiesModal__overlay">
+          <div className="c-cookiesModal__overlay" onClick={onClose}>
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               className="c-cookiesModal__dialog"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="cookies-modal-title"
+              onClick={(e) => e.stopPropagation()}
             >
               <div className="c-cookiesModal__header">
                 <div className="c-cookiesModal__title">
                   <ShieldCheck size={22} />
-                  <h3>{t('footer.cookies_title')}</h3>
+                  <h3 id="cookies-modal-title">{t('footer.cookies_title')}</h3>
                 </div>
-                <button onClick={onClose} className="c-cookiesModal__closeBtn" aria-label="Close">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="c-cookiesModal__closeBtn"
+                  aria-label={t('footer.cookies_close')}
+                >
                   <X size={20} />
                 </button>
               </div>
@@ -102,64 +111,36 @@ export const CookiesModal: FC<CookiesModalProps> = ({ isOpen, onClose }) => {
 
                 <div className="c-cookiesModal__option">
                   <div className="c-cookiesModal__optionInfo">
-                    <strong>Necessários & Funcionais</strong>
-                    <p>Armazena seu tema visual (Dark/Light) e a preferência de tradução de linguagem (PT/EN).</p>
+                    <strong>{t('footer.cookies_essential_title')}</strong>
+                    <p>{t('footer.cookies_essential_desc')}</p>
                   </div>
                   <div className="c-cookiesModal__optionControl">
-                    <input type="checkbox" checked={preferences.functional} disabled readOnly />
-                    <span className="c-cookiesModal__badge">Ativo</span>
+                    <input
+                      type="checkbox"
+                      checked
+                      disabled
+                      readOnly
+                      aria-label={t('footer.cookies_essential_title')}
+                    />
+                    <span className="c-cookiesModal__badge">{t('footer.cookies_always_on')}</span>
                   </div>
                 </div>
 
                 <div className="c-cookiesModal__option">
                   <div className="c-cookiesModal__optionInfo">
-                    <strong>Performance da Engine</strong>
-                    <p>Habilita caches de renderização e controle de taxa de quadro adaptativos.</p>
-                  </div>
-                  <div className="c-cookiesModal__optionControl">
-                    <label className="c-cookiesModal__switch">
-                      <input
-                        type="checkbox"
-                        checked={preferences.performance}
-                        onChange={(e) => setPreferences({ ...preferences, performance: e.target.checked })}
-                      />
-                      <span className="c-cookiesModal__slider" />
-                    </label>
-                  </div>
-                </div>
-
-                <div className="c-cookiesModal__option">
-                  <div className="c-cookiesModal__optionInfo">
-                    <strong>Estatísticas Anônimas</strong>
-                    <p>Ajuda-nos a entender o tráfego do portfólio de forma totalmente agregada e anônima.</p>
-                  </div>
-                  <div className="c-cookiesModal__optionControl">
-                    <label className="c-cookiesModal__switch">
-                      <input
-                        type="checkbox"
-                        checked={preferences.analytics}
-                        onChange={(e) => setPreferences({ ...preferences, analytics: e.target.checked })}
-                      />
-                      <span className="c-cookiesModal__slider" />
-                    </label>
+                    <strong>{t('footer.cookies_tracking_title')}</strong>
+                    <p>{t('footer.cookies_tracking_desc')}</p>
                   </div>
                 </div>
               </div>
 
               <div className="c-cookiesModal__footer">
                 <ButtonCta
-                  variant="secondary"
-                  size="md"
-                  onClick={handleAcceptAll}
-                >
-                  {t('footer.cookies_accept_all')}
-                </ButtonCta>
-                <ButtonCta
                   variant="primary"
                   size="md"
-                  onClick={handleSavePreferences}
+                  onClick={handleAcknowledge}
                 >
-                  {t('footer.cookies_save')}
+                  {t('footer.cookies_accept')}
                 </ButtonCta>
               </div>
             </motion.div>

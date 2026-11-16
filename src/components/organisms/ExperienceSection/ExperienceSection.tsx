@@ -12,24 +12,8 @@ interface ExperienceItemData {
 }
 
 export const ExperienceSection: FC = () => {
-  const { t } = useLanguage();
-  const itemsRaw = t('experience.items');
-  const items: ExperienceItemData[] = Array.isArray(itemsRaw) ? itemsRaw : [
-    {
-      company: 'Projetos Freelance',
-      role: 'Frontend / Creative Developer',
-      period: 'Irlanda (Remoto)',
-      stack: 'React · TypeScript · UI/UX Design · Performance · Web & App Solutions',
-      desc: 'Projetos internacionais focados em entregar soluções web, aplicativos e produtos digitais que impulsionam o crescimento de negócios. Atuação no desenvolvimento de interfaces interativas de alto impacto visual, design de produto e experiências digitais modernas.'
-    },
-    {
-      company: 'Eitree',
-      role: 'Full Stack Developer',
-      period: '2025 — 2026',
-      stack: 'Python · Flask · SQLAlchemy · React · TypeScript · Docker',
-      desc: 'Desenvolvimento e manutenção de aplicações web full stack, modelagem de banco de dados relacional, criação de APIs RESTful e construção de interfaces interativas com rigor em clareza de código e arquitetura modular.'
-    }
-  ];
+  const { t, tRaw } = useLanguage();
+  const items = tRaw<ExperienceItemData[]>('experience.items') ?? [];
 
   return (
     <section id="experience" className="l-section c-experienceSection">
@@ -66,7 +50,7 @@ export const ExperienceSection: FC = () => {
               </div>
 
               <div className="c-experienceSection__stackCol u-fontMono">
-                <span className="c-experienceSection__stackLabel">{t('experience.stack_label') || 'STACK & PRÁTICAS //'}</span>
+                <span className="c-experienceSection__stackLabel">{t('experience.stack_label')}</span>
                 <span className="c-experienceSection__stackContent">{exp.stack}</span>
               </div>
             </motion.article>

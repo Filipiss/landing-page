@@ -1,42 +1,31 @@
-import { useState, ReactNode, FC } from 'react';
+import { useState, FC, ReactNode } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
-import { Clock, Terminal, ArrowLeft } from 'lucide-react';
+import { Clock, Terminal, MonitorCog, ArrowLeft } from 'lucide-react';
 import ProjectCard from '../../molecules/ProjectCard/ProjectCard';
+import { PROJECTS, ProjectCategory, ProjectIcon } from '../../../data/projects';
 import './portfolioTemplate.css';
 
-interface ProjectsSectionList {
-  id: string;
-  tags: string[];
-  icon: ReactNode;
-  categoryType: 'fullstack' | 'ai' | 'enterprise';
-}
+type Filter = 'all' | ProjectCategory;
+
+const FILTERS: Filter[] = ['all', 'fullstack', 'ai', 'desktop'];
+
+const ICONS: Record<ProjectIcon, ReactNode> = {
+  clock: <Clock size={28} />,
+  terminal: <Terminal size={28} />,
+  monitor: <MonitorCog size={28} />,
+};
+
+const goToProject = (id: string) => {
+  window.location.hash = `#/project/${id}`;
+};
 
 export const PortfolioTemplate: FC = () => {
   const { t } = useLanguage();
-  const [filter, setFilter] = useState<'all' | 'fullstack' | 'ai'>('all');
-
-  const projectsList: ProjectsSectionList[] = [
-    {
-      id: 'time-tracker',
-      tags: ['Python', 'Flask', 'PostgreSQL', 'React', 'TypeScript'],
-      icon: <Clock size={28} />,
-      categoryType: 'fullstack'
-    },
-    {
-      id: 'ai-assistant-integrator',
-      tags: ['Python', 'FastAPI', 'SSE Streaming', 'Gemini & OpenAI', 'React'],
-      icon: <Terminal size={28} />,
-      categoryType: 'ai'
-    }
-  ];
+  const [filter, setFilter] = useState<Filter>('all');
 
   const filteredProjects = filter === 'all'
-    ? projectsList
-    : projectsList.filter(p => p.categoryType === filter);
-
-  const handleCardClick = (id: string) => {
-    window.location.hash = `#/project/${id}`;
-  };
+    ? PROJECTS
+    : PROJECTS.filter(p => p.category === filter);
 
   return (
     <div className="l-portfolioTemplate">
@@ -44,35 +33,23 @@ export const PortfolioTemplate: FC = () => {
         <header className="l-portfolioTemplate__header">
           <a href="#/" className="l-portfolioTemplate__backBtn u-fontMono">
             <ArrowLeft size={16} />
-            {t('portfolio.back_to_home') || 'Voltar para Home'}
+            {t('portfolio.back_to_home')}
           </a>
-          <h1 className="l-portfolioTemplate__title u-fontDisplay">{t('portfolio.title') || 'Portfólio & Obras'}</h1>
-          <p className="l-portfolioTemplate__subtitle">
-            {t('portfolio.subtitle') || 'Sistemas reais construídos de ponta a ponta: APIs assíncronas em Python, plataformas corporativas e interfaces reativas.'}
-          </p>
+          <h1 className="l-portfolioTemplate__title u-fontDisplay">{t('portfolio.title')}</h1>
+          <p className="l-portfolioTemplate__subtitle">{t('portfolio.subtitle')}</p>
 
-          <div className="l-portfolioTemplate__filters u-fontMono">
-            <button
-              type="button"
-              className={`l-portfolioTemplate__filterBtn ${filter === 'all' ? 'isActive' : ''}`}
-              onClick={() => setFilter('all')}
-            >
-              {t('portfolio.filter_all') || 'Todos'}
-            </button>
-            <button
-              type="button"
-              className={`l-portfolioTemplate__filterBtn ${filter === 'fullstack' ? 'isActive' : ''}`}
-              onClick={() => setFilter('fullstack')}
-            >
-              {t('portfolio.filter_fullstack') || 'Full Stack'}
-            </button>
-            <button
-              type="button"
-              className={`l-portfolioTemplate__filterBtn ${filter === 'ai' ? 'isActive' : ''}`}
-              onClick={() => setFilter('ai')}
-            >
-              {t('portfolio.filter_ai') || 'IA & Streaming'}
-            </button>
+          <div className="l-portfolioTemplate__filters u-fontMono" role="group" aria-label={t('portfolio.filter_label')}>
+            {FILTERS.map((f) => (
+              <button
+                key={f}
+                type="button"
+                className={`l-portfolioTemplate__filterBtn ${filter === f ? 'isActive' : ''}`}
+                aria-pressed={filter === f}
+                onClick={() => setFilter(f)}
+              >
+                {t(`portfolio.filter_${f}`)}
+              </button>
+            ))}
           </div>
         </header>
 
@@ -82,12 +59,12 @@ export const PortfolioTemplate: FC = () => {
               key={proj.id}
               id={proj.id}
               tags={proj.tags}
-              icon={proj.icon}
+              icon={ICONS[proj.icon]}
               category={t(`projects.items.${proj.id}.category`)}
               title={t(`projects.items.${proj.id}.title`)}
               shortDesc={t(`projects.items.${proj.id}.short_desc`)}
               viewProjectText={t('projects.view_project')}
-              onClick={() => handleCardClick(proj.id)}
+              onClick={() => goToProject(proj.id)}
               index={index}
             />
           ))}

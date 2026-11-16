@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import HeaderNav from './components/organisms/HeaderNav/HeaderNav';
 import HomeTemplate from './components/templates/homeTemplate/homeTemplate';
-import ProjectDetailTemplate from './components/templates/projectDetailTemplate/projectDetailTemplate';
-import PortfolioTemplate from './components/templates/portfolioTemplate/portfolioTemplate';
 import ContactSection from './components/organisms/ContactSection/ContactSection';
 import Footer from './components/organisms/Footer/Footer';
 import CookiesModal from './components/organisms/CookiesModal/CookiesModal';
 import CvDownloadModal from './components/organisms/CvDownloadModal/CvDownloadModal';
 import AccessibilityWidget from './components/organisms/AccessibilityWidget/AccessibilityWidget';
+import { useDocumentMeta } from './hooks/useDocumentMeta';
+
+// Páginas secundárias carregadas sob demanda: quem só vê a home não baixa esse código.
+const ProjectDetailTemplate = lazy(() => import('./components/templates/projectDetailTemplate/projectDetailTemplate'));
+const PortfolioTemplate = lazy(() => import('./components/templates/portfolioTemplate/portfolioTemplate'));
 
 function App() {
   const [currentProjectId, setCurrentProjectId] = useState<string | null>(() => {
@@ -85,6 +88,8 @@ function App() {
     ? 'portfolio' 
     : 'home';
 
+  useDocumentMeta(currentProjectId, isPortfolio);
+
   return (
     <>
       <HeaderNav
@@ -103,7 +108,9 @@ function App() {
               transition={{ duration: 0.35, ease: 'easeInOut' }}
               className="l-pageTransition"
             >
-              <ProjectDetailTemplate projectId={currentProjectId} />
+              <Suspense fallback={<div className="l-pageFallback" aria-busy="true" />}>
+                <ProjectDetailTemplate projectId={currentProjectId} />
+              </Suspense>
             </motion.div>
           ) : isPortfolio ? (
             <motion.div
@@ -114,7 +121,9 @@ function App() {
               transition={{ duration: 0.35, ease: 'easeInOut' }}
               className="l-pageTransition"
             >
-              <PortfolioTemplate />
+              <Suspense fallback={<div className="l-pageFallback" aria-busy="true" />}>
+                <PortfolioTemplate />
+              </Suspense>
             </motion.div>
           ) : (
             <motion.div
@@ -141,6 +150,7 @@ function App() {
 
       <CookiesModal
         isOpen={cookiesModalOpen}
+        onOpen={() => setCookiesModalOpen(true)}
         onClose={() => setCookiesModalOpen(false)}
       />
 

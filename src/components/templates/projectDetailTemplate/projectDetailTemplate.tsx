@@ -18,21 +18,19 @@ import GithubIcon from '../../atoms/GithubIcon/GithubIcon';
 import Folder from '../../atoms/Folder/Folder';
 import DepthCarousel from '../../atoms/DepthCarousel/DepthCarousel';
 import ButtonCta from '../../atoms/buttonCta/buttonCta';
-import { 
-  PROJECT_SCREENS_MAP as SCREENS_BY_PROJECT, 
-  ScreenshotItem 
+import {
+  PROJECT_SCREENS_MAP as SCREENS_BY_PROJECT,
+  EMPTY_SCREENS,
 } from '../../../data/projectsScreenshots';
+import { PROJECT_IDS } from '../../../data/projects';
 import './projectDetailTemplate.css';
-
-const PROJECT_IDS = ['time-tracker', 'ai-assistant-integrator'];
-const EMPTY_SCREENS: ScreenshotItem[] = [];
 
 interface ProjectDetailTemplateProps {
   projectId: string;
 }
 
 export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectId }) => {
-  const { t } = useLanguage();
+  const { t, tOptional } = useLanguage();
   const [activeScreenIndex, setActiveScreenIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [prevProjectId, setPrevProjectId] = useState(projectId);
@@ -94,9 +92,9 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
   if (currentIndex === -1) {
     return (
       <div className="l-container u-textCenter" style={{ padding: '100px 0' }}>
-        <h2>Projeto não encontrado</h2>
+        <h2>{t('project_detail.not_found')}</h2>
         <ButtonCta href="#/" variant="primary" style={{ marginTop: '24px' }}>
-          Voltar para Home
+          {t('portfolio.back_to_home')}
         </ButtonCta>
       </div>
     );
@@ -111,6 +109,10 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
   };
 
   const activeScreen = currentScreens[activeScreenIndex] || currentScreens[0];
+  const item = (key: string) => tOptional(`projects.items.${projectId}.${key}`);
+  const liveUrl = item('live_url');
+  const liveLabel = item('live_label') ?? t('projects.live_demo');
+  const repoUrl = item('repo_url') ?? 'https://github.com/Filipiss';
 
   const renderScreenshotsSection = () => {
     if (!activeScreen || currentScreens.length === 0) {
@@ -130,15 +132,15 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
             <span>{activeScreen.route}</span>
           </div>
           <div className="c-mockupScreen__actions">
-            {t(`projects.items.${projectId}.live_url`) && (
-              <a 
-                href={t(`projects.items.${projectId}.live_url`)}
+            {liveUrl && (
+              <a
+                href={liveUrl}
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="c-mockupScreen__actionBtn u-fontMono"
               >
                 <ExternalLink size={12} />
-                <span>{t('project_detail.live_app_btn') || 'APP AO VIVO ↗'}</span>
+                <span>{item('live_label') ? `${liveLabel.toUpperCase()} ↗` : t('project_detail.live_app_btn')}</span>
               </a>
             )}
             <button 
@@ -147,7 +149,7 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
               onClick={() => setLightboxOpen(true)}
             >
               <Maximize2 size={13} />
-              <span>{t('project_detail.expand_btn') || 'EXPANDIR'}</span>
+              <span>{t('project_detail.expand_btn')}</span>
             </button>
           </div>
         </div>
@@ -181,7 +183,7 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
 
           <div className="c-mockupScreen__hint u-fontMono">
             <Maximize2 size={12} />
-            <span>CLIQUE NO CARD PARA AMPLIAR</span>
+            <span>{t('project_detail.expand_hint')}</span>
           </div>
         </div>
 
@@ -207,7 +209,10 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
               exit={{ opacity: 0 }}
               onClick={() => setLightboxOpen(false)}
             >
-              <div 
+              <div
+                role="dialog"
+                aria-modal="true"
+                aria-label={activeScreen.title}
                 className="c-lightboxModal"
                 onClick={(e) => e.stopPropagation()}
               >
@@ -224,7 +229,7 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
                       type="button" 
                       className="c-lightboxModal__closeBtn"
                       onClick={() => setLightboxOpen(false)}
-                      aria-label="Fechar modal"
+                      aria-label={t('project_detail.close_aria')}
                     >
                       <X size={20} />
                     </button>
@@ -242,7 +247,7 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
                     type="button"
                     className="c-lightboxModal__navBtn c-lightboxModal__navBtn--prev"
                     onClick={() => setActiveScreenIndex((prev) => (prev - 1 + currentScreens.length) % currentScreens.length)}
-                    aria-label="Anterior"
+                    aria-label={t('project_detail.prev_aria')}
                   >
                     <ChevronLeft size={28} />
                   </button>
@@ -250,7 +255,7 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
                     type="button"
                     className="c-lightboxModal__navBtn c-lightboxModal__navBtn--next"
                     onClick={() => setActiveScreenIndex((prev) => (prev + 1) % currentScreens.length)}
-                    aria-label="Próximo"
+                    aria-label={t('project_detail.next_aria')}
                   >
                     <ChevronRight size={28} />
                   </button>
@@ -282,7 +287,7 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
           <div className="l-projectDetailTemplate__topNav">
             <a href="#/portfolio" className="l-projectDetailTemplate__backLink">
               <ArrowLeft size={16} />
-              <span>{t('projects.back_to_portfolio') || 'Voltar para Portfólio'}</span>
+              <span>{t('projects.back_to_portfolio')}</span>
               <Folder
                 size={0.22}
                 color="#3B82F6"
@@ -304,11 +309,11 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
             {t(`projects.items.${projectId}.short_desc`)}
           </p>
 
-          {t(`projects.items.${projectId}.metric_highlight`) && (
+          {item('metric_highlight') && (
             <div className="l-projectDetailTemplate__metricBar">
               <div>
                 <span className="l-projectDetailTemplate__metricTag">
-                  {t('project_detail.metric_label') || 'ENGENHARIA & IMPACTO // MÉTRICA DE PRODUÇÃO'}
+                  {t('project_detail.metric_label')}
                 </span>
                 <p className="l-projectDetailTemplate__metricText">
                   {t(`projects.items.${projectId}.metric_highlight`)}
@@ -318,25 +323,25 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
           )}
 
           <div className="l-projectDetailTemplate__actions">
-            {t(`projects.items.${projectId}.live_url`) && (
-              <ButtonCta 
-                href={t(`projects.items.${projectId}.live_url`)} 
+            {liveUrl && (
+              <ButtonCta
+                href={liveUrl}
                 target="_blank" 
                 rel="noopener noreferrer" 
                 variant="primary"
                 icon={<ExternalLink size={16} />}
               >
-                <span>{t('projects.live_demo') || 'Aplicação ao Vivo'} ↗</span>
+                <span>{liveLabel} ↗</span>
               </ButtonCta>
             )}
             <ButtonCta 
-              href={t(`projects.items.${projectId}.repo_url`) || 'https://github.com/Filipiss'} 
+              href={repoUrl}
               target="_blank" 
               rel="noopener noreferrer" 
               variant="outline"
               icon={<GithubIcon size={18} />}
             >
-              <span>{t(`projects.items.${projectId}.repo_type`) || 'Repositório GitHub'} ↗</span>
+              <span>{t(`projects.items.${projectId}.repo_type`)} ↗</span>
             </ButtonCta>
           </div>
         </motion.div>
@@ -350,19 +355,19 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
       >
         <div className="l-container l-projectDetailTemplate__subnavContainer">
           <a href={`#/project/${projectId}#intro`} onClick={(e) => handleSubLinkClick(e, 'intro')} className="l-projectDetailTemplate__subnavLink">
-            {t('project_detail.subnav_overview') || 'Visão Geral'}
+            {t('project_detail.subnav_overview')}
           </a>
           <a href={`#/project/${projectId}#stack`} onClick={(e) => handleSubLinkClick(e, 'stack')} className="l-projectDetailTemplate__subnavLink">
-            {t('project_detail.subnav_stack') || 'Tecnologias'}
+            {t('project_detail.subnav_stack')}
           </a>
           <a href={`#/project/${projectId}#architecture`} onClick={(e) => handleSubLinkClick(e, 'architecture')} className="l-projectDetailTemplate__subnavLink">
-            {t('project_detail.subnav_architecture') || 'Arquitetura'}
+            {t('project_detail.subnav_architecture')}
           </a>
           <a href={`#/project/${projectId}#challenges`} onClick={(e) => handleSubLinkClick(e, 'challenges')} className="l-projectDetailTemplate__subnavLink">
-            {t('project_detail.subnav_challenges') || 'Desafios & Soluções'}
+            {t('project_detail.subnav_challenges')}
           </a>
           <a href={`#/project/${projectId}#screenshots`} onClick={(e) => handleSubLinkClick(e, 'screenshots')} className="l-projectDetailTemplate__subnavLink">
-            {t('project_detail.subnav_visual') || 'Interface / Telas'}
+            {t('project_detail.subnav_visual')}
           </a>
         </div>
       </motion.nav>
@@ -376,45 +381,45 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
         <section id="detail-intro" className="l-projectDetailTemplate__section">
           <div className="l-projectDetailTemplate__sectionHeader">
             <BookOpen size={22} className="u-colorAccent" />
-            <h2>{t('project_detail.overview_title') || 'Visão Geral do Projeto'}</h2>
+            <h2>{t('project_detail.overview_title')}</h2>
           </div>
-          <p>{t(`projects.items.${projectId}.overview`) || t(`projects.items.${projectId}.short_desc`)}</p>
+          <p>{item('overview') ?? item('short_desc')}</p>
         </section>
 
         <section id="detail-stack" className="l-projectDetailTemplate__section">
           <div className="l-projectDetailTemplate__sectionHeader">
             <Settings size={22} className="u-colorAccent" />
-            <h2>{t('project_detail.stack_title') || 'Tecnologias & Execução'}</h2>
+            <h2>{t('project_detail.stack_title')}</h2>
           </div>
           <p>
-            {t(`projects.items.${projectId}.stack_text`) || 'Construído com foco em código limpo, tipagem estrita com TypeScript, arquitetura desacoplada e alta velocidade de resposta tanto no servidor quanto na interface.'}
+            {t(`projects.items.${projectId}.stack_text`)}
           </p>
         </section>
 
         <section id="detail-architecture" className="l-projectDetailTemplate__section">
           <div className="l-projectDetailTemplate__sectionHeader">
             <Award size={22} className="u-colorAccent" />
-            <h2>{t('project_detail.architecture_title') || 'Decisões Arquiteturais'}</h2>
+            <h2>{t('project_detail.architecture_title')}</h2>
           </div>
           <p>
-            {t(`projects.items.${projectId}.architecture_text`) || 'Adoção de padrões modulares com separação clara entre camada de apresentação, cliente HTTP e lógica de negócios.'}
+            {t(`projects.items.${projectId}.architecture_text`)}
           </p>
         </section>
 
         <section id="detail-challenges" className="l-projectDetailTemplate__section">
           <div className="l-projectDetailTemplate__sectionHeader">
             <ShieldAlert size={22} className="u-colorAccent" />
-            <h2>{t('project_detail.challenges_title') || 'Desafios Superados'}</h2>
+            <h2>{t('project_detail.challenges_title')}</h2>
           </div>
           <p>
-            {t(`projects.items.${projectId}.challenges_text`) || 'Garantia de consistência no estado reativo, persistência relacional sem gargalos e interface acessível com performance sólida em todas as resoluções.'}
+            {t(`projects.items.${projectId}.challenges_text`)}
           </p>
         </section>
 
         <section id="detail-screenshots" className="l-projectDetailTemplate__section">
           <div className="l-projectDetailTemplate__sectionHeader">
             <ExternalLink size={22} className="u-colorAccent" />
-            <h2>{t('project_detail.visual_title') || 'Arquitetura Visual'}</h2>
+            <h2>{t('project_detail.visual_title')}</h2>
           </div>
           <div className="l-projectDetailTemplate__gallery">
             {renderScreenshotsSection()}
@@ -427,14 +432,14 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
           <a href={`#/project/${prevId}`} className="l-projectDetailTemplate__navBtn">
             <ArrowLeft size={18} />
             <span>
-              <small>{t('project_detail.prev_project') || 'PROJETO ANTERIOR'}</small>
+              <small>{t('project_detail.prev_project')}</small>
               <strong>{t(`projects.items.${prevId}.title`)}</strong>
             </span>
           </a>
 
           <a href={`#/project/${nextId}`} className="l-projectDetailTemplate__navBtn l-projectDetailTemplate__navBtn--next">
             <span>
-              <small>{t('project_detail.next_project') || 'PRÓXIMO PROJETO'}</small>
+              <small>{t('project_detail.next_project')}</small>
               <strong>{t(`projects.items.${nextId}.title`)}</strong>
             </span>
             <ArrowRight size={18} />

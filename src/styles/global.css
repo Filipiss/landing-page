@@ -211,3 +211,8 @@ input, textarea, select {
 .u-colorAccent {
   color: var(--accent-primary);
 }
+
+/* Espaço reservado enquanto uma página carregada sob demanda chega */
+.l-pageFallback {
+  min-height: 100vh;
+}
