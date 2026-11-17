@@ -1,6 +1,6 @@
 import { useState, FC, ReactNode } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
-import { Clock, Terminal, MonitorCog, ArrowLeft } from 'lucide-react';
+import { Clock, Terminal, MonitorCog, Trophy, ArrowLeft } from 'lucide-react';
 import ProjectCard from '../../molecules/ProjectCard/ProjectCard';
 import { PROJECTS, ProjectCategory, ProjectIcon } from '../../../data/projects';
 import './portfolioTemplate.css';
@@ -13,6 +13,7 @@ const ICONS: Record<ProjectIcon, ReactNode> = {
   clock: <Clock size={28} />,
   terminal: <Terminal size={28} />,
   monitor: <MonitorCog size={28} />,
+  trophy: <Trophy size={28} />,
 };
 
 const goToProject = (id: string) => {

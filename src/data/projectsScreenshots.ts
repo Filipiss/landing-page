@@ -16,6 +16,14 @@ import aiConfig from '../assets/projects/ai-assistant-integrator/chatbot__config
 import aiLight from '../assets/projects/ai-assistant-integrator/chatbot__light.webp';
 import aiAccessibility from '../assets/projects/ai-assistant-integrator/chatbot_accessibility.webp';
 
+import cravadaHero from '../assets/projects/cravada-fc/cravada__hero.webp';
+import cravadaSteps from '../assets/projects/cravada-fc/cravada__steps.webp';
+import cravadaScoring from '../assets/projects/cravada-fc/cravada__scoring.webp';
+import cravadaRound from '../assets/projects/cravada-fc/cravada__round.webp';
+import cravadaCompetitions from '../assets/projects/cravada-fc/cravada__competitions.webp';
+import cravadaRanking from '../assets/projects/cravada-fc/cravada__ranking.webp';
+import cravadaHelp from '../assets/projects/cravada-fc/cravada__help.webp';
+
 import cwuSpecs from '../assets/projects/cwu-app/cwu__specs.webp';
 import cwuDrivers from '../assets/projects/cwu-app/cwu__drivers.webp';
 import cwuSoftware from '../assets/projects/cwu-app/cwu__software.webp';
@@ -244,10 +252,70 @@ export const CWU_APP_SCREENS: ScreenshotItem[] = [
   },
 ];
 
+export const CRAVADA_FC_SCREENS: ScreenshotItem[] = [
+  {
+    id: 'hero',
+    tag: 'PRODUTO NO AR',
+    title: 'Landing Page & Proposta do Jogo',
+    route: 'cravadafc.com',
+    caption: 'A primeira dobra resume o jogo em uma frase: cravar o placar e ganhar a resenha. O card ao lado simula uma rodada real, com palpites errados, acertos e o selo de CRAVADA! valendo +5.',
+    src: cravadaHero,
+  },
+  {
+    id: 'steps',
+    tag: 'COMO FUNCIONA',
+    title: 'Três Passos por Rodada',
+    route: 'cravadafc.com',
+    caption: 'Palpite antes do jogo, trava automática no apito inicial e pontuação no apito final. A trava é feita por um trigger no Postgres, então nenhum palpite entra depois que a bola rola.',
+    src: cravadaSteps,
+  },
+  {
+    id: 'scoring',
+    tag: 'REGRAS',
+    title: 'Sistema de Pontuação',
+    route: 'cravadafc.com',
+    caption: 'Regra que cabe em uma linha: 5 pontos para o placar exato, 3 para o resultado certo e 0 para o erro. A tabela mostra como cada palpite vira pontos na rodada.',
+    src: cravadaScoring,
+  },
+  {
+    id: 'round',
+    tag: 'FLUXO PRINCIPAL',
+    title: 'Palpites da Rodada & Classificação',
+    route: 'cravadafc.com/rodada/35',
+    caption: 'Tela onde o jogador crava os placares da rodada. Ao lado, a classificação real do Brasileirão e a opção de simular a tabela com os próprios palpites.',
+    src: cravadaRound,
+  },
+  {
+    id: 'competitions',
+    tag: 'MULTI-COMPETIÇÃO',
+    title: 'Champions League & Premier League',
+    route: 'cravadafc.com/champions/rodada/5',
+    caption: 'A mesma experiência para três competições: Brasileirão, Premier League e Champions League, cada uma com rodadas, tabela e pontuação próprias.',
+    src: cravadaCompetitions,
+  },
+  {
+    id: 'ranking',
+    tag: 'COMPETIÇÃO',
+    title: 'Ranking das Ligas',
+    route: 'cravadafc.com/ranking',
+    caption: 'Ranking da Liga Cravada, das ligas de torcida e das ligas privadas, com filtro por competição e rodada. A classificação vem de um cache materializado no banco que só é refeito quando algo muda.',
+    src: cravadaRanking,
+  },
+  {
+    id: 'help',
+    tag: 'SUPORTE',
+    title: 'Central de Ajuda',
+    route: 'cravadafc.com/ajuda',
+    caption: 'Regras, perguntas frequentes, privacidade, termos e contato. As mensagens do formulário chegam ao time por um bot do Telegram, disparado por trigger e pg_net.',
+    src: cravadaHelp,
+  },
+];
+
 export const PROJECT_SCREENS_MAP: Record<string, ScreenshotItem[]> = {
   'time-tracker': TIME_TRACKER_SCREENS,
   'ai-assistant-integrator': AI_ASSISTANT_SCREENS,
   'cwu-app': CWU_APP_SCREENS,
+  'cravada-fc': CRAVADA_FC_SCREENS,
 };
 
 export const EMPTY_SCREENS: ScreenshotItem[] = [];

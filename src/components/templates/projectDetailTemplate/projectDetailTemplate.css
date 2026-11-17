@@ -79,6 +79,19 @@
   margin-bottom: 20px;
 }
 
+.l-projectDetailTemplate__partner {
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.l-projectDetailTemplate__partner a {
+  color: var(--accent-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .l-projectDetailTemplate__metricBar {
   display: flex;
   align-items: flex-start;

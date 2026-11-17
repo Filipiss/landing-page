@@ -4,7 +4,7 @@
  * (projects.items.<id>) e, se tiver prints, em projectsScreenshots.ts.
  */
 export type ProjectCategory = 'fullstack' | 'ai' | 'desktop';
-export type ProjectIcon = 'clock' | 'terminal' | 'monitor';
+export type ProjectIcon = 'clock' | 'terminal' | 'monitor' | 'trophy';
 
 export interface Project {
   id: string;
@@ -15,6 +15,12 @@ export interface Project {
 }
 
 export const PROJECTS: Project[] = [
+  {
+    id: 'cravada-fc',
+    category: 'fullstack',
+    icon: 'trophy',
+    tags: ['Next.js 15', 'React 19', 'TypeScript', 'Supabase', 'PostgreSQL', 'Express'],
+  },
   {
     id: 'cwu-app',
     category: 'desktop',

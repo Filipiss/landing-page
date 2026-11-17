@@ -56,6 +56,22 @@
         "live_demo": "APLICAÇÃO AO VIVO",
         "back_to_portfolio": "VOLTAR PARA PORTFÓLIO",
         "items": {
+            "cravada-fc": {
+                "title": "Cravada FC",
+                "category": "FULL STACK // NEXT.JS & SUPABASE",
+                "short_desc": "Jogo gratuito de palpites de futebol, no ar em cravadafc.com: o jogador crava o placar antes do apito, soma pontos rodada a rodada e disputa rankings com o Brasil inteiro, com a sua torcida e com os amigos.",
+                "year": "2026",
+                "tagline": "Palpites de futebol entre amigos, sem aposta e sem cartão",
+                "overview": "O Cravada FC é um produto real, em produção, que construí em dupla com o meu amigo Guilherme Laureano: ele cuida do produto, do design e do front, e eu do backend e do banco de dados. Antes de cada jogo do Brasileirão, da Premier League ou da Champions League, o jogador crava o placar. Acertou o placar exato, ganha 5 pontos; acertou só o resultado, 3. Os pontos alimentam a Liga Cravada, que reúne todos os jogadores, a liga da torcida do time do coração e ligas privadas criadas por código, com reações aos palpites, duelos entre rivais e títulos como Rei e Zikado da rodada.",
+                "stack_text": "Front em Next.js 15 com React 19 e TypeScript, CSS próprio em atomic design e BEM, instalável como PWA, com imagens de compartilhamento geradas em canvas e previews para o WhatsApp via next/og. O Supabase é a fonte da verdade: Postgres com RLS, Auth com e-mail, link mágico e Google, pg_cron, pg_net, Vault e uma Edge Function de web push. Um backend em Express e TypeScript, rodando como function na Vercel, entrega os dados públicos das partidas: classificação, escalações, gols e minuto ao vivo.",
+                "architecture_text": "Toda regra que importa mora no banco. O navegador fala direto com o Postgres por funções RPC security definer, com search_path vazio e checagem de auth.uid(), e as tabelas ficam fechadas para a API. A trava do palpite no apito inicial é um trigger, então não dá para burlar pelo cliente, e quem vê o palpite de quem também é decidido no banco. Jobs no pg_cron sincronizam os jogos, pontuam os palpites, reconstroem o ranking só quando algo muda e disparam lembretes push. Segredos como chaves VAPID e o token do Telegram ficam no Vault, nunca no repositório nem no front.",
+                "challenges_text": "Pontuar todos os palpites assim que o jogo acaba, sem manter um servidor ligado o tempo todo. A solução foi um pipeline dentro do próprio Postgres: um cron pede as rodadas abertas, outro aplica os resultados e chama a função de pontuação, e o ranking fica num cache materializado que só é refeito quando houve mudança, mantendo as consultas rápidas mesmo em ligas grandes. O outro desafio foi o lado social com segurança: ligas privadas com convite por código, moderação de apelidos com termos bloqueados, banimento pelo dono da liga e regras de visibilidade que só revelam os palpites depois que a bola rola.",
+                "metric_highlight": "3 competições (Brasileirão, Premier League e Champions League), pontos calculados em até um minuto após o apito final e 5 jobs agendados no Postgres cuidando de jogos, rankings e notificações, sem servidor dedicado.",
+                "partner_name": "Guilherme Laureano",
+                "partner_url": "https://www.linkedin.com/in/guilherme-laureano/",
+                "live_url": "https://cravadafc.com",
+                "live_label": "Jogar no Cravada"
+            },
             "cwu-app": {
                 "title": "CWU App",
                 "category": "DESKTOP // ELECTRON & NODE.JS",
@@ -245,7 +261,8 @@
         "expand_hint": "CLIQUE NO CARD PARA AMPLIAR",
         "close_aria": "Fechar visualização",
         "prev_aria": "Tela anterior",
-        "next_aria": "Próxima tela"
+        "next_aria": "Próxima tela",
+        "partner_label": "PROJETO EM PARCERIA COM"
     },
     "meta": {
         "title": "Filipi Soares | Desenvolvedor Full Stack",

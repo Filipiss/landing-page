@@ -112,7 +112,9 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
   const item = (key: string) => tOptional(`projects.items.${projectId}.${key}`);
   const liveUrl = item('live_url');
   const liveLabel = item('live_label') ?? t('projects.live_demo');
-  const repoUrl = item('repo_url') ?? 'https://github.com/Filipiss';
+  const repoUrl = item('repo_url');
+  const partnerName = item('partner_name');
+  const partnerUrl = item('partner_url');
 
   const renderScreenshotsSection = () => {
     if (!activeScreen || currentScreens.length === 0) {
@@ -311,6 +313,19 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
             {t(`projects.items.${projectId}.short_desc`)}
           </p>
 
+          {partnerName && (
+            <p className="l-projectDetailTemplate__partner u-fontMono">
+              {t('project_detail.partner_label')}{' '}
+              {partnerUrl ? (
+                <a href={partnerUrl} target="_blank" rel="noopener noreferrer">
+                  {partnerName} ↗
+                </a>
+              ) : (
+                partnerName
+              )}
+            </p>
+          )}
+
           {item('metric_highlight') && (
             <div className="l-projectDetailTemplate__metricBar">
               <div>
@@ -336,15 +351,17 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
                 <span>{liveLabel} ↗</span>
               </ButtonCta>
             )}
-            <ButtonCta 
-              href={repoUrl}
-              target="_blank" 
-              rel="noopener noreferrer" 
-              variant="outline"
-              icon={<GithubIcon size={18} />}
-            >
-              <span>{t(`projects.items.${projectId}.repo_type`)} ↗</span>
-            </ButtonCta>
+            {repoUrl && (
+              <ButtonCta
+                href={repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outline"
+                icon={<GithubIcon size={18} />}
+              >
+                <span>{t(`projects.items.${projectId}.repo_type`)} ↗</span>
+              </ButtonCta>
+            )}
           </div>
         </motion.div>
       </header>

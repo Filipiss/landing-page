@@ -56,6 +56,22 @@
         "live_demo": "LIVE APPLICATION",
         "back_to_portfolio": "BACK TO PORTFOLIO",
         "items": {
+            "cravada-fc": {
+                "title": "Cravada FC",
+                "category": "FULL STACK // NEXT.JS & SUPABASE",
+                "short_desc": "A free football score-prediction game, live at cravadafc.com: players call the exact score before kickoff, earn points round by round and compete in rankings against the whole country, their club's fans and their friends.",
+                "year": "2026",
+                "tagline": "Football predictions among friends, no betting and no credit card",
+                "overview": "Cravada FC is a real product in production that I built with my friend Guilherme Laureano: he owns product, design and front end, and I own the backend and the database. Before every Brasileirão, Premier League or Champions League match, players call the score. Nail the exact score and you get 5 points; get only the outcome right and you get 3. Points feed the Liga Cravada, which includes every player, a league for each club's fans and private leagues joined by code, with reactions to picks, rival duels and titles like King and Jinx of the round.",
+                "stack_text": "Front end in Next.js 15 with React 19 and TypeScript, hand-written CSS following atomic design and BEM, installable as a PWA, with share images drawn on canvas and WhatsApp previews through next/og. Supabase is the source of truth: Postgres with RLS, Auth with email, magic link and Google, pg_cron, pg_net, Vault and a web push Edge Function. An Express and TypeScript backend, running as a Vercel function, serves public match data: standings, line-ups, goals and the live minute.",
+                "architecture_text": "Every rule that matters lives in the database. The browser talks straight to Postgres through security definer RPC functions with an empty search_path and auth.uid() checks, while the tables stay closed to the API. Locking picks at kickoff is a trigger, so it cannot be bypassed from the client, and who can see whose picks is also decided in the database. pg_cron jobs sync matches, score predictions, rebuild rankings only when something changed and send push reminders. Secrets such as VAPID keys and the Telegram token live in Vault, never in the repository or the front end.",
+                "challenges_text": "Scoring every prediction as soon as a match ends without keeping a server running all the time. The answer was a pipeline inside Postgres itself: one cron asks for the open rounds, another applies the results and calls the scoring function, and rankings sit in a materialized cache that is only rebuilt when something changed, keeping queries fast even in large leagues. The other challenge was making the social side safe: private leagues with invite codes, nickname moderation with blocked terms, bans by the league owner and visibility rules that only reveal picks once the ball is rolling.",
+                "metric_highlight": "3 competitions (Brasileirão, Premier League and Champions League), points settled within a minute of the final whistle and 5 scheduled Postgres jobs handling matches, rankings and notifications with no dedicated server.",
+                "partner_name": "Guilherme Laureano",
+                "partner_url": "https://www.linkedin.com/in/guilherme-laureano/",
+                "live_url": "https://cravadafc.com",
+                "live_label": "Play Cravada"
+            },
             "cwu-app": {
                 "title": "CWU App",
                 "category": "DESKTOP // ELECTRON & NODE.JS",
@@ -245,7 +261,8 @@
         "expand_hint": "CLICK THE CARD TO ENLARGE",
         "close_aria": "Close preview",
         "prev_aria": "Previous screen",
-        "next_aria": "Next screen"
+        "next_aria": "Next screen",
+        "partner_label": "BUILT IN PARTNERSHIP WITH"
     },
     "meta": {
         "title": "Filipi Soares | Full Stack Developer",
