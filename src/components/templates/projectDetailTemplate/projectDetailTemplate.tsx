@@ -129,7 +129,7 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
           </div>
           <div className="c-mockupScreen__browserBar u-fontMono">
             <span>🔒</span>
-            <span>{activeScreen.route}</span>
+            <span className="c-mockupScreen__route">{activeScreen.route}</span>
           </div>
           <div className="c-mockupScreen__actions">
             {liveUrl && (
@@ -138,18 +138,20 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="c-mockupScreen__actionBtn u-fontMono"
+                aria-label={liveLabel}
               >
                 <ExternalLink size={12} />
-                <span>{item('live_label') ? `${liveLabel.toUpperCase()} ↗` : t('project_detail.live_app_btn')}</span>
+                <span className="c-mockupScreen__actionLabel">{item('live_label') ? `${liveLabel.toUpperCase()} ↗` : t('project_detail.live_app_btn')}</span>
               </a>
             )}
             <button 
               type="button" 
               className="c-mockupScreen__actionBtn u-fontMono"
               onClick={() => setLightboxOpen(true)}
+              aria-label={t('project_detail.expand_btn')}
             >
               <Maximize2 size={13} />
-              <span>{t('project_detail.expand_btn')}</span>
+              <span className="c-mockupScreen__actionLabel">{t('project_detail.expand_btn')}</span>
             </button>
           </div>
         </div>
@@ -159,7 +161,7 @@ export const ProjectDetailTemplate: FC<ProjectDetailTemplateProps> = ({ projectI
             items={carouselItems}
             focusIndex={activeScreenIndex}
             cardWidth={1000}
-            cardHeight={562}
+            cardHeight={521}
             radius={8}
             tint="#090C10"
             depth={210}

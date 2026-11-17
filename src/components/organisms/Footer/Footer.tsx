@@ -8,7 +8,7 @@ export interface FooterProps {
 }
 
 export const Footer: FC<FooterProps> = ({ onOpenCookiesSettings }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const handleBackToTop = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -34,7 +34,7 @@ export const Footer: FC<FooterProps> = ({ onOpenCookiesSettings }) => {
                 LINKEDIN ↗
               </a>
               <a href="mailto:filipi.soares.silva@gmail.com" className="c-footer__link">
-                EMAIL ↗
+                {language === 'pt' ? 'E-MAIL ↗' : 'EMAIL ↗'}
               </a>
               <button type="button" onClick={onOpenCookiesSettings} className="c-footer__linkBtn">
                 {t('footer.cookies_settings')}

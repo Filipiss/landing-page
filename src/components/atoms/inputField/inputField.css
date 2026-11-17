@@ -34,6 +34,9 @@
 
 .c-inputField__control::placeholder {
   color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.8125rem;
 }
 
 .c-inputField__control:hover:not(:disabled) {

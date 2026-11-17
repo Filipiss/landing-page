@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FormEvent, MouseEvent, FC } from 'react';
 import { useLanguage } from '../../../context/LanguageContext';
-import { ArrowUpRight, Check, AlertCircle, Copy } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, Check, AlertCircle, Copy } from 'lucide-react';
 import { submitContactMessage, ContactError } from '../../../services/contactService';
 import { ContactStatus } from '../../../types/contact';
 import './ContactSection.css';
@@ -199,7 +199,7 @@ export const ContactSection: FC<ContactSectionProps> = ({ onOpenCvModal }) => {
 
                 <button
                   type="submit"
-                  className="c-contactSection__submitBtn u-fontMono"
+                  className="c-contactSection__submitBtn"
                   disabled={status === 'sending'}
                 >
                   {status === 'sending' ? (
@@ -207,7 +207,9 @@ export const ContactSection: FC<ContactSectionProps> = ({ onOpenCvModal }) => {
                   ) : (
                     <>
                       <span>{t('contact.send_btn')}</span>
-                      <ArrowUpRight size={14} />
+                      <span className="c-contactSection__submitCircle">
+                        <ArrowRight size={13} />
+                      </span>
                     </>
                   )}
                 </button>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import gsap from 'gsap';
 import './DepthCarousel.css';
 
@@ -92,6 +92,30 @@ export const DepthCarousel: React.FC<DepthCarouselProps> = ({
     return () => media.removeEventListener('change', listener);
   }, []);
 
+  // O card encolhe junto com a largura disponível, mantendo a proporção.
+  const [containerWidth, setContainerWidth] = useState<number>(0);
+
+  // useLayoutEffect mede antes da primeira pintura, para o card não "pular" de tamanho.
+  useLayoutEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    setContainerWidth(el.getBoundingClientRect().width);
+    if (typeof ResizeObserver === 'undefined') return;
+    const observer = new ResizeObserver(([entry]) => setContainerWidth(entry.contentRect.width));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const isNarrow = containerWidth > 0 && containerWidth < 640;
+  const scale = containerWidth > 0
+    ? Math.min(1, (containerWidth * (isNarrow ? 0.9 : 0.76)) / cardWidth)
+    : 1;
+  const cardW = Math.round(cardWidth * scale);
+  const cardH = Math.round(cardHeight * scale);
+  const scaledSpread = spread * scale;
+  const scaledDepth = depth * scale;
+  const dotsSpace = showIndicators && items.length > 1 ? 52 : 0;
+
   const normalizedItems: DepthCarouselItem[] = useMemo(
     () => (items && items.length > 0 ? items.map(normalizeItem) : DEFAULT_ITEMS),
     [items]
@@ -108,10 +132,11 @@ export const DepthCarousel: React.FC<DepthCarouselProps> = ({
   );
 
   const layoutCards = useCallback(() => {
-    if (!total || prefersReducedMotion) return;
+    if (!total) return;
 
     const active = activeIndexRef.current;
-    const animDuration = duration / 1000;
+    // Com "reduzir movimento" os cards vão direto para a posição, sem animar.
+    const animDuration = prefersReducedMotion ? 0 : duration / 1000;
     const halfVis = Math.floor(visibleCards / 2);
     const sideMultiplier = tiltDirection === 'right' ? 1 : -1;
 
@@ -133,8 +158,8 @@ export const DepthCarousel: React.FC<DepthCarouselProps> = ({
         gsap.to(card, {
           opacity: 0,
           scale: 0.7,
-          x: dist * (spread * 0.8),
-          z: -Math.abs(dist) * depth,
+          x: dist * (scaledSpread * 0.8),
+          z: -Math.abs(dist) * scaledDepth,
           rotationY: 0,
           duration: animDuration,
           ease,
@@ -147,8 +172,8 @@ export const DepthCarousel: React.FC<DepthCarouselProps> = ({
         continue;
       }
 
-      const x = dist * spread;
-      const z = -Math.abs(dist) * depth;
+      const x = dist * scaledSpread;
+      const z = -Math.abs(dist) * scaledDepth;
       const rotY = -Math.sign(dist) * tilt * sideMultiplier;
       const opacity = isCurrent ? 1 : Math.max(0.2, 1 - Math.abs(dist) * falloff);
       const blurAmount = isCurrent ? 0 : Math.min(10, Math.abs(dist) * blur);
@@ -179,13 +204,13 @@ export const DepthCarousel: React.FC<DepthCarouselProps> = ({
     }
   }, [
     blur,
-    depth,
+    scaledDepth,
     duration,
     ease,
     falloff,
     loop,
     prefersReducedMotion,
-    spread,
+    scaledSpread,
     tilt,
     tiltDirection,
     total,
@@ -265,8 +290,10 @@ export const DepthCarousel: React.FC<DepthCarouselProps> = ({
       style={
         {
           '--dc-perspective': `${perspective}px`,
-          '--dc-card-width': `${cardWidth}px`,
-          '--dc-card-height': `${cardHeight}px`,
+          '--dc-card-width': `${cardW}px`,
+          '--dc-card-height': `${cardH}px`,
+          '--dc-dots-space': `${dotsSpace}px`,
+          height: `${cardH + 24 + dotsSpace}px`,
           '--dc-card-radius': `${radius}px`,
           '--dc-tint': tint,
         } as React.CSSProperties

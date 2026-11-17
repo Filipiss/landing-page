@@ -10,7 +10,7 @@
 .c-accessibilityWidget__trigger {
     width: 44px;
     height: 44px;
-    border-radius: var(--border-radius-sm);
+    border-radius: var(--border-radius-sm, 6px);
     background-color: var(--bg-surface);
     color: var(--text-primary);
     display: flex;
@@ -28,6 +28,7 @@
     color: var(--accent-primary);
     background-color: var(--bg-hover);
     transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25);
 }
 
 .c-accessibilityWidget__trigger.isActive {
@@ -38,7 +39,14 @@
 }
 
 .c-accessibilityWidget__icon {
-    stroke-width: 2px;
+    display: block;
+}
+
+@media (max-width: 480px) {
+    .c-accessibilityWidget__trigger {
+        width: 40px;
+        height: 40px;
+    }
 }
 
 .c-accessibilityWidget__panel {

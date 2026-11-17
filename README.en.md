@@ -77,7 +77,7 @@ Pure Vanilla CSS with strict specificity controls and clean namespacing:
 ### 3. Design System & Global Tokens
 Centrally governed in `src/styles/global.css`:
 - Native CSS variable-driven Dark and Light themes.
-- Typography: **Syne** (Monumental display headings), **Inter** (High-legibility body copy), and **IBM Plex Mono** (Engineering metadata and stats).
+- Typography: **Inter** (Clean, ultra-legible display headings with 700/800 weight, body copy, and UI controls in a single webfont family), and **System Monospace** (Zero network download for technical metadata and stats).
 - **Zero Front-end Comments:** Code is self-explanatory, clean, and concise across all `.tsx`, `.ts`, `.css`, and `.html` files.
 
 ---

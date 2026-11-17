@@ -315,7 +315,7 @@
 .c-mockupScreen__stageContainer {
   position: relative;
   background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 70%), #050608;
-  padding: 40px 20px;
+  padding: 32px 16px 20px;
 }
 
 .c-mockupScreen__hint {
@@ -325,7 +325,7 @@
   gap: 6px;
   font-size: 0.6875rem;
   color: var(--text-muted);
-  margin-top: 16px;
+  margin-top: 8px;
   letter-spacing: 0.06em;
 }
 
@@ -487,4 +487,42 @@
 .c-lightboxModal__captionDesc {
   font-size: 0.875rem;
   color: var(--text-secondary);
+}
+
+.c-mockupScreen__browserBar {
+  min-width: 0;
+}
+
+.c-mockupScreen__route {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.c-mockupScreen__actionBtn {
+  white-space: nowrap;
+}
+
+/* Celular: barra de navegador enxuta, botões só com ícone */
+@media (max-width: 640px) {
+  .c-mockupScreen__header {
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .c-mockupScreen__dots {
+    display: none;
+  }
+
+  .c-mockupScreen__actionBtn {
+    padding: 6px 8px;
+  }
+
+  .c-mockupScreen__actionLabel {
+    display: none;
+  }
+
+  .c-mockupScreen__stageContainer {
+    padding: 20px 8px 14px;
+  }
 }

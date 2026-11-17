@@ -11,7 +11,7 @@ export const StackSection: FC = () => {
     'Visão de Produto & Foco na Experiência do Usuário',
     'Resolução Analítica de Problemas Complexos',
     'Autonomia, Proatividade & Aprendizado Rápido',
-    'Atenção Meticulosa aos Detalhes & UI Sensibility',
+    'Atenção Meticulosa aos Detalhes & Sensibilidade Visual',
     'Colaboração Ágil & Respeito a Prazos'
   ] : [
     'Clear Communication & Async Alignment',
@@ -26,59 +26,50 @@ export const StackSection: FC = () => {
     {
       num: '01',
       titleKey: 'stack.groups.systems',
-      fallbackTitle: 'SISTEMAS & BACKEND',
+      fallbackTitle: language === 'pt' ? 'SISTEMAS & BACKEND' : 'SYSTEMS & BACKEND',
       items: [
         'Python 3.11+',
-        'FastAPI & Async Pipelines',
+        language === 'pt' ? 'FastAPI & Processamento Assíncrono' : 'FastAPI & Async Pipelines',
         'Flask',
-        'SQLAlchemy & ORM Modeling',
+        language === 'pt' ? 'SQLAlchemy & Modelagem ORM' : 'SQLAlchemy & ORM Modeling',
         'PostgreSQL & SQLite',
         'Server-Sent Events (SSE)',
-        'Docker & Containerization'
+        language === 'pt' ? 'Docker & Conteinerização' : 'Docker & Containerization'
       ]
     },
     {
       num: '02',
       titleKey: 'stack.groups.interfaces',
-      fallbackTitle: 'INTERFACE & FRONT-END',
+      fallbackTitle: language === 'pt' ? 'INTERFACES & FRONT-END' : 'INTERFACE & FRONT-END',
       items: [
         'React & Next.js',
         'TypeScript & JavaScript',
         'Tailwind CSS & Styled-Components',
-        'HTML5 & CSS3 Semântico',
-        'Framer Motion & Microinterações',
-        'Acessibilidade & Boas Práticas (WCAG)'
+        language === 'pt' ? 'HTML5 & CSS3 Semântico' : 'Semantic HTML5 & CSS3',
+        language === 'pt' ? 'Framer Motion & Microinterações' : 'Framer Motion & Micro-interactions',
+        language === 'pt' ? 'Acessibilidade & Boas Práticas (WCAG)' : 'Accessibility & Best Practices (WCAG)'
       ]
     },
     {
       num: '03',
       titleKey: 'stack.groups.tooling',
-      fallbackTitle: 'DEVOPS, TOOLING & WORKFLOW',
+      fallbackTitle: language === 'pt' ? 'DEVOPS, FERRAMENTAS & FLUXOS' : 'DEVOPS, TOOLING & WORKFLOW',
       items: [
-        'Git & GitHub Workflows',
-        'Docker & Containerization',
-        'AI Multi-Provider APIs (Gemini / OpenAI / Groq)',
-        'Postman & Testes de API',
-        'Figma (Inspeção & Handoff de UI)',
-        'Clean Architecture & Padrões de Projeto',
-        'Vite & Build Tooling'
+        language === 'pt' ? 'Git & Fluxos no GitHub' : 'Git & GitHub Workflows',
+        language === 'pt' ? 'Docker & Conteinerização' : 'Docker & Containerization',
+        language === 'pt' ? 'APIs Multi-Provedores de IA (Gemini / OpenAI / Groq)' : 'AI Multi-Provider APIs (Gemini / OpenAI / Groq)',
+        language === 'pt' ? 'Postman & Testes de API' : 'Postman & API Testing',
+        language === 'pt' ? 'Figma (Inspeção & Entrega de Interface)' : 'Figma (UI Inspection & Handoff)',
+        language === 'pt' ? 'Arquitetura Limpa & Padrões de Projeto' : 'Clean Architecture & Design Patterns',
+        language === 'pt' ? 'Vite & Ferramentas de Compilação' : 'Vite & Build Tooling'
       ]
     },
     {
       num: '04',
       titleKey: 'stack.groups.soft_skills',
-      fallbackTitle: 'SOFT SKILLS & PRODUTO',
+      fallbackTitle: language === 'pt' ? 'COMPETÊNCIAS & GESTÃO DE PRODUTO' : 'SOFT SKILLS & PRODUCT',
       items: softSkillsItems
     }
-  ];
-
-  const learningTopics = [
-    'Docker Engine & Daemon',
-    'Dockerfile Multi-Stage',
-    'Volumes Persistentes',
-    'Bridge Networks',
-    'Docker Compose',
-    'Multi-Service Orchestration'
   ];
 
   return (
@@ -122,62 +113,6 @@ export const StackSection: FC = () => {
             );
           })}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-          className="c-stackSection__learningCard"
-        >
-          <div className="c-stackSection__learningHeader u-fontMono">
-            <div className="c-stackSection__learningHeaderLeft">
-              <span className="c-stackSection__learningKicker">{t('stack.learning_kicker')}</span>
-              <h3 className="c-stackSection__learningTitle u-fontDisplay">{t('stack.learning_title')}</h3>
-            </div>
-            <div className="c-stackSection__learningStatusPill">
-              <span className="c-stackSection__learningPulseDot" />
-              <span>{t('stack.learning_badge')}</span>
-            </div>
-          </div>
-
-          <div className="c-stackSection__learningContent">
-            <div className="c-stackSection__learningMainRow">
-              <div className="c-stackSection__learningNarrativeCol">
-                <h4 className="c-stackSection__learningCourseName u-fontDisplay">{t('stack.learning_course')}</h4>
-                <p className="c-stackSection__learningCourseDesc">{t('stack.learning_desc')}</p>
-
-                <div className="c-stackSection__learningProgressBlock u-fontMono">
-                  <div className="c-stackSection__learningProgressMeta">
-                    <span>{language === 'pt' ? 'PROGRESSO DO CURSO' : 'COURSE PROGRESS'}</span>
-                    <span className="c-stackSection__learningProgressNum">25%</span>
-                  </div>
-                  <div className="c-stackSection__learningProgressTrack">
-                    <div className="c-stackSection__learningProgressFill" style={{ width: '25%' }} />
-                  </div>
-                </div>
-              </div>
-
-              <div className="c-stackSection__learningSideCol u-fontMono">
-                <div className="c-stackSection__learningTopicsBox">
-                  <span className="c-stackSection__learningTopicsTitle">{t('stack.learning_topics_label')}</span>
-                  <div className="c-stackSection__learningChipsGroup">
-                    {learningTopics.map((topic, i) => (
-                      <span key={i} className="c-stackSection__learningTopicChip">
-                        {topic}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="c-stackSection__learningMilestoneBox">
-                  <span className="c-stackSection__learningMilestoneTag">{t('stack.learning_goal_label')}</span>
-                  <p className="c-stackSection__learningMilestoneText">{t('stack.learning_goal')}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

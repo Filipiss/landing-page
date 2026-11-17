@@ -83,7 +83,7 @@ Vanilla CSS puro, com especificidade controlada e namespaces explícitos:
 ### 3. Design System & Tokens
 Centralizados em `src/styles/global.css`:
 - Paleta semântica Dark e Light com suporte completo a variáveis nativas.
-- Tipografia: **Syne** (Títulos e display), **Inter** (Texto base e leitura) e **IBM Plex Mono** (Dados analíticos e marcadores técnicos).
+- Tipografia: **Inter** (Títulos com peso 700/800, texto base, interface e botões com máxima legibilidade e 1 única família webfont) e **System Monospace** (Zero download de rede para marcadores técnicos e métricas).
 - **Regra de Zero Comentários:** O código front-end não possui nenhum comentário em arquivos `.tsx`, `.ts`, `.css` ou `.html`, sendo 100% autoexplicativo, limpo e enxuto.
 
 ---
@@ -294,7 +294,7 @@ Pure Vanilla CSS with strict specificity controls and clean namespacing:
 ### 3. Design System & Global Tokens
 Centrally governed in `src/styles/global.css`:
 - Native CSS variable-driven Dark and Light themes.
-- Typography: **Syne** (Monumental display headings), **Inter** (High-legibility body copy), and **IBM Plex Mono** (Engineering metadata and stats).
+- Typography: **Inter** (Clean, ultra-legible display headings with 700/800 weight, body copy, and UI controls in a single webfont family), and **System Monospace** (Zero network download for technical metadata and stats).
 - **Zero Front-end Comments:** Code is self-explanatory, clean, and concise across all `.tsx`, `.ts`, `.css`, and `.html` files.
 
 ---

@@ -15,6 +15,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import AccessibilityIcon from '../../atoms/AccessibilityIcon/AccessibilityIcon';
 import './AccessibilityWidget.css';
 
+
 interface AccessibilitySettings {
     zoomStep: number;
     highContrast: boolean;
@@ -159,7 +160,7 @@ export default function AccessibilityWidget() {
                 title={t('accessibility.title')}
                 aria-expanded={isOpen}
             >
-                <AccessibilityIcon size={24} className="c-accessibilityWidget__icon" />
+                <AccessibilityIcon size={20} className="c-accessibilityWidget__icon" />
             </button>
 
             <AnimatePresence>

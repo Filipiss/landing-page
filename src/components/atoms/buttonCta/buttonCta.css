@@ -8,7 +8,7 @@
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  border-radius: var(--border-radius-sm, 4px);
+  border-radius: var(--radius-pill, 9999px);
   border: 1px solid transparent;
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -19,30 +19,31 @@
 }
 
 .c-buttonCta--sm {
-  padding: 6px 12px;
+  padding: 6px 14px;
   font-size: 0.75rem;
 }
 
 .c-buttonCta--md {
-  padding: 10px 20px;
+  padding: 9px 20px;
   font-size: 0.8125rem;
 }
 
 .c-buttonCta--lg {
-  padding: 14px 24px;
+  padding: 12px 26px;
   font-size: 0.875rem;
 }
 
 .c-buttonCta--primary {
-  background-color: var(--text-primary);
-  color: var(--bg-primary);
-  border-color: var(--text-primary);
+  background: var(--accent-gradient);
+  color: #FFFFFF;
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .c-buttonCta--primary:hover:not(:disabled) {
-  background-color: var(--accent-primary);
-  color: #ffffff;
-  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.25);
+  color: #FFFFFF;
 }
 
 .c-buttonCta--primary:active:not(:disabled) {

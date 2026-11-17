@@ -7,6 +7,7 @@ import Footer from './components/organisms/Footer/Footer';
 import CookiesModal from './components/organisms/CookiesModal/CookiesModal';
 import CvDownloadModal from './components/organisms/CvDownloadModal/CvDownloadModal';
 import AccessibilityWidget from './components/organisms/AccessibilityWidget/AccessibilityWidget';
+import BackToTopButton from './components/atoms/BackToTopButton/BackToTopButton';
 import { useDocumentMeta } from './hooks/useDocumentMeta';
 
 // Páginas secundárias carregadas sob demanda: quem só vê a home não baixa esse código.
@@ -146,6 +147,7 @@ function App() {
 
       <Footer onOpenCookiesSettings={() => setCookiesModalOpen(true)} />
 
+      <BackToTopButton />
       <AccessibilityWidget />
 
       <CookiesModal

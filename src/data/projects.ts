@@ -25,13 +25,13 @@ export const PROJECTS: Project[] = [
     id: 'time-tracker',
     category: 'fullstack',
     icon: 'clock',
-    tags: ['React', 'TypeScript', 'Flask', 'SQLAlchemy', 'PostgreSQL'],
+    tags: ['Flask', 'PostgreSQL', 'React', 'TypeScript', 'Docker', 'Alembic'],
   },
   {
     id: 'ai-assistant-integrator',
     category: 'ai',
     icon: 'terminal',
-    tags: ['FastAPI', 'Python', 'SSE Streaming', 'Gemini & OpenAI', 'React'],
+    tags: ['FastAPI', 'Python 3.12', 'SSE Streaming', 'OpenAI & Gemini', 'React'],
   },
 ];
 

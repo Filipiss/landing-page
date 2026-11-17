@@ -51,13 +51,13 @@ export const HeaderNav: FC<HeaderNavProps> = ({ currentProjectId, onOpenCvModal 
           role="button"
           tabIndex={0}
         >
-          <div className="c-headerNav__brandMark" aria-hidden="true">
-            <img src="/favicon.svg" alt="FS Logo" className="c-headerNav__logoImg" />
-          </div>
           <span className="c-headerNav__brandName u-fontDisplay">{t('nav.brand_name')}</span>
         </div>
 
-        <nav className="c-headerNav__nav u-fontMono">
+        <nav className="c-headerNav__nav">
+          <button type="button" onClick={goToPortfolio} className="c-headerNav__navLink">
+            {t('nav.portfolio')}
+          </button>
           <button type="button" onClick={() => scrollToSection('experience')} className="c-headerNav__navLink">
             {t('nav.experience')}
           </button>
@@ -70,21 +70,9 @@ export const HeaderNav: FC<HeaderNavProps> = ({ currentProjectId, onOpenCvModal 
           <button type="button" onClick={() => scrollToSection('contact')} className="c-headerNav__navLink">
             {t('nav.contact')}
           </button>
-          <button type="button" onClick={goToPortfolio} className="c-headerNav__navLink">
-            {t('nav.portfolio')}
-          </button>
-          <button
-            type="button"
-            onClick={onOpenCvModal}
-            className="c-headerNav__navLink c-headerNav__navLink--cv u-fontMono"
-            title={t('cv_modal.title')}
-          >
-            <span>{t('nav.cv')}</span>
-            <ArrowUpRight size={13} />
-          </button>
         </nav>
 
-        <div className="c-headerNav__actions u-fontMono">
+        <div className="c-headerNav__actions">
           <div className="c-headerNav__langSegmented" role="group" aria-label="Idioma">
             <button
               type="button"
@@ -92,7 +80,7 @@ export const HeaderNav: FC<HeaderNavProps> = ({ currentProjectId, onOpenCvModal 
               className={`c-headerNav__langBtn ${language === 'pt' ? 'isActive' : ''}`}
               aria-pressed={language === 'pt'}
             >
-              PT-BR
+              PT
             </button>
             <button
               type="button"
@@ -108,16 +96,26 @@ export const HeaderNav: FC<HeaderNavProps> = ({ currentProjectId, onOpenCvModal 
             type="button"
             onClick={toggleTheme}
             className="c-headerNav__utilBtn"
-            title="Toggle Theme"
+            title={language === 'pt' ? 'Alternar tema' : 'Toggle theme'}
           >
-            {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+            {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
+          </button>
+
+          <button
+            type="button"
+            onClick={onOpenCvModal}
+            className="c-headerNav__ctaPill"
+            title={t('cv_modal.title')}
+          >
+            <span>{t('nav.cv')}</span>
+            <ArrowUpRight size={13} />
           </button>
 
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="c-headerNav__mobileToggle"
-            aria-label="Toggle menu"
+            aria-label={language === 'pt' ? 'Alternar menu' : 'Toggle menu'}
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>

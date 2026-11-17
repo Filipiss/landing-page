@@ -17,13 +17,14 @@ import aiLight from '../assets/projects/ai-assistant-integrator/chatbot__light.w
 import aiAccessibility from '../assets/projects/ai-assistant-integrator/chatbot_accessibility.webp';
 
 import cwuSpecs from '../assets/projects/cwu-app/cwu__specs.webp';
+import cwuDrivers from '../assets/projects/cwu-app/cwu__drivers.webp';
 import cwuSoftware from '../assets/projects/cwu-app/cwu__software.webp';
 import cwuBoost from '../assets/projects/cwu-app/cwu__boost.webp';
 import cwuCompetitive from '../assets/projects/cwu-app/cwu__competitive.webp';
-import cwuNetwork from '../assets/projects/cwu-app/cwu__network.webp';
 import cwuMonitor from '../assets/projects/cwu-app/cwu__monitor.webp';
 import cwuLogs from '../assets/projects/cwu-app/cwu__logs.webp';
-import cwuMyList from '../assets/projects/cwu-app/cwu__mylist.webp';
+import cwuVersions from '../assets/projects/cwu-app/cwu__versions.webp';
+import cwuThemes from '../assets/projects/cwu-app/cwu__themes.webp';
 
 export interface ScreenshotItem {
   id: string;
@@ -37,10 +38,10 @@ export interface ScreenshotItem {
 export const TIME_TRACKER_SCREENS: ScreenshotItem[] = [
   {
     id: 'dashboard',
-    tag: 'ANALYTICS',
-    title: 'Dashboard Geral & Distribuição de Horas',
+    tag: 'MÉTRICAS',
+    title: 'Painel Geral & Distribuição de Horas',
     route: 'time-trackerigena.vercel.app/dashboard',
-    caption: 'Métricas analíticas em tempo real: proporção de horas por categoria (Empresa vs. Freelance), gráfico semanal de produtividade e apuração de tempo por tarefa.',
+    caption: 'Métricas analíticas em tempo real: proporção de horas por categoria (Empresa vs. Autônomo), gráfico semanal de produtividade e apuração de tempo por tarefa.',
     src: ttDashboard,
   },
   {
@@ -53,34 +54,34 @@ export const TIME_TRACKER_SCREENS: ScreenshotItem[] = [
   },
   {
     id: 'tasks',
-    tag: 'CORE WORKFLOW',
+    tag: 'FLUXO PRINCIPAL',
     title: 'Gerenciamento Modular de Projetos e Tarefas',
     route: 'time-trackerigena.vercel.app/tasks',
-    caption: 'Cadastro de categorias, projetos e tasks com parametrização de moedas (€ EUR / R$ BRL), valor por hora e horas orçadas.',
+    caption: 'Cadastro de categorias, projetos e tarefas com parametrização de moedas (€ EUR / R$ BRL), valor por hora e horas orçadas.',
     src: ttTasks,
   },
   {
     id: 'calendar',
     tag: 'PLANEJAMENTO',
-    title: 'Calendário de Compromissos & Deadlines',
+    title: 'Calendário de Compromissos & Prazos',
     route: 'time-trackerigena.vercel.app/calendar',
-    caption: 'Visão mensal de entregas com tags semânticas coloridas: Aguardando Cliente, Em Andamento, Em Revisão, Deadline e Entregue.',
+    caption: 'Visão mensal de entregas com tags semânticas coloridas: Aguardando Cliente, Em Andamento, Em Revisão, Prazo e Entregue.',
     src: ttCalendar,
   },
   {
     id: 'history',
     tag: 'FATURAMENTO',
-    title: 'Histórico Detalhado & Logs de Sessões',
+    title: 'Histórico Detalhado & Registros de Sessões',
     route: 'time-trackerigena.vercel.app/history',
     caption: 'Tabela analítica com histórico cronológico de apontamentos, duração exata, notas de trabalho e separação por faturamento.',
     src: ttHistory,
   },
   {
     id: 'admin',
-    tag: 'BACKOFFICE',
+    tag: 'ADMINISTRAÇÃO',
     title: 'Painel de Administração & Gestão de Acessos',
     route: 'time-trackerigena.vercel.app/admin/users',
-    caption: 'Controle de usuários com atribuição de papéis (Admin / Membro), ativação de contas e auditoria do sistema.',
+    caption: 'Controle de usuários com atribuição de papéis (Administrador / Membro), ativação de contas e auditoria do sistema.',
     src: ttAdmin,
   },
   {
@@ -88,7 +89,7 @@ export const TIME_TRACKER_SCREENS: ScreenshotItem[] = [
     tag: 'CONFIGURAÇÕES',
     title: 'Perfil do Operador & Credenciais de Segurança',
     route: 'time-trackerigena.vercel.app/profile',
-    caption: 'Edição de identidade do desenvolvedor, upload de avatar, dados de contato e fluxo seguro de redefinição de credenciais.',
+    caption: 'Edição de identidade do desenvolvedor, envio de foto de perfil, dados de contato e fluxo seguro de redefinição de credenciais.',
     src: ttProfile,
   },
   {
@@ -101,10 +102,10 @@ export const TIME_TRACKER_SCREENS: ScreenshotItem[] = [
   },
   {
     id: 'support',
-    tag: 'HELPDESK',
+    tag: 'SUPORTE TÉCNICO',
     title: 'Central de Suporte & Chamados Internos',
     route: 'time-trackerigena.vercel.app/admin/support',
-    caption: 'Sistema integrado de tickets com fila de chamados (Novos, Em Andamento, Resolvidos) e mensageria direta com administradores.',
+    caption: 'Sistema integrado de tíquetes com fila de chamados (Novos, Em Andamento, Resolvidos) e mensageria direta com administradores.',
     src: ttSupport,
   },
 ];
@@ -112,10 +113,10 @@ export const TIME_TRACKER_SCREENS: ScreenshotItem[] = [
 export const AI_ASSISTANT_SCREENS: ScreenshotItem[] = [
   {
     id: 'gemini',
-    tag: 'STREAMING SSE',
-    title: 'Interface de Conversação & Streaming Gemini',
+    tag: 'TRANSMISSÃO SSE',
+    title: 'Interface de Conversação & Transmissão Gemini',
     route: 'chatbot-ia-rose.vercel.app/?provider=gemini',
-    caption: 'Chat interativo com consumo contínuo de tokens via Server-Sent Events (SSE) da API Google Gemini, com renderização reativa de Markdown e syntax highlighting.',
+    caption: 'Chat interativo com consumo contínuo de dados via Server-Sent Events (SSE) da API Google Gemini, com renderização reativa de Markdown e destaque de sintaxe.',
     src: aiGemini,
   },
   {
@@ -129,17 +130,17 @@ export const AI_ASSISTANT_SCREENS: ScreenshotItem[] = [
   {
     id: 'ozlo',
     tag: 'IA RESIDENTE',
-    title: 'Ozlo: Chatbot Orgânico & Fallback Resiliente',
+    title: 'Ozlo: Chatbot Orgânico & Contingência Resiliente',
     route: 'chatbot-ia-rose.vercel.app/?provider=ozlo',
-    caption: 'Assistente residente autônomo acionado de forma inteligente via circuit breaker em caso de instabilidade de rede ou esgotamento de quota em APIs externas.',
+    caption: 'Assistente residente autônomo acionado de forma inteligente via mecanismo de contingência em caso de instabilidade de rede ou esgotamento de cota em APIs externas.',
     src: aiOzlo,
   },
   {
     id: 'stats',
     tag: 'TELEMETRIA',
-    title: 'Dashboard de Métricas & Monitor de Latência',
+    title: 'Painel de Métricas & Monitor de Latência',
     route: 'chatbot-ia-rose.vercel.app/analytics',
-    caption: 'Telemetria em tempo real: Time-to-First-Token (TTFT), contagem de tokens por segundo gerados, gráfico de latência comparativa e logs analíticos.',
+    caption: 'Telemetria em tempo real: Tempo até Primeiro Token, contagem de tokens por segundo gerados, gráfico de latência comparativa e registros analíticos.',
     src: aiStats,
   },
   {
@@ -147,15 +148,15 @@ export const AI_ASSISTANT_SCREENS: ScreenshotItem[] = [
     tag: 'GOVERNANÇA',
     title: 'Painel de Configuração & Chaves de API',
     route: 'chatbot-ia-rose.vercel.app/settings',
-    caption: 'Gerenciamento seguro de provedores de IA, seleção de temperatura, modelos dinâmicos e persistência segura em localStorage.',
+    caption: 'Gerenciamento seguro de provedores de IA, seleção de temperatura, modelos dinâmicos e persistência segura em armazenamento local.',
     src: aiConfig,
   },
   {
     id: 'light',
-    tag: 'DESIGN SYSTEM',
+    tag: 'SISTEMA VISUAL',
     title: 'Modo Claro & Refinamento Cromático',
     route: 'chatbot-ia-rose.vercel.app/?theme=light',
-    caption: 'Design system adaptativo em tema claro com bordas finas, paleta Studio Noir e contraste conforme WCAG AA.',
+    caption: 'Sistema visual adaptativo em tema claro com bordas finas, paleta Studio Noir e contraste conforme diretrizes WCAG AA.',
     src: aiLight,
   },
   {
@@ -174,64 +175,72 @@ export const CWU_APP_SCREENS: ScreenshotItem[] = [
     tag: 'DIAGNÓSTICO',
     title: 'System Specs & Nota do PC',
     route: 'cwu-app://system-specs',
-    caption: 'Leitura real de CPU, GPU, RAM e discos com nota de 0 a 10 por componente e saúde de cada SSD, NVMe e HD pelos contadores SMART do Windows.',
+    caption: 'Leitura real de CPU, GPU, RAM e discos com nota de 0 a 10 por componente e vida útil de cada SSD, NVMe e HD pelos contadores SMART do Windows.',
     src: cwuSpecs,
+  },
+  {
+    id: 'drivers',
+    tag: 'DRIVERS',
+    title: 'Scanner de Drivers com Atualizações Reais',
+    route: 'cwu-app://scan-drivers',
+    caption: 'Dispositivos com erro, drivers genéricos e atualizações conferidas no Windows Update e no serviço oficial da NVIDIA, em tabela ordenável e com links diretos do fabricante.',
+    src: cwuDrivers,
   },
   {
     id: 'software',
     tag: 'PÓS-FORMATAÇÃO',
     title: 'Catálogo de Programas & Instalação em Lote',
     route: 'cwu-app://post-format-software',
-    caption: 'Runtimes e programas essenciais com links oficiais, detecção do que já está instalado e instalação de vários de uma vez pelo winget, com fila e progresso.',
+    caption: 'Sugestões de programas pós-formatação já marcadas, detecção do que está instalado e instalação de vários de uma vez pelo winget.',
     src: cwuSoftware,
   },
   {
     id: 'boost',
-    tag: 'REVERSÍVEL',
-    title: 'Boost com Confirmação Antes de Alterar',
+    tag: 'BOOST GAMER',
+    title: 'Otimizações Explicadas e Reversíveis',
     route: 'cwu-app://gamer-boost',
-    caption: 'Toda ação que mexe no Windows pede confirmação, explica o que faz e fica registrada para ser desfeita depois.',
+    caption: 'Baixa latência NVIDIA/AMD, limpeza de memória e plano de energia, cada ajuste com o passo a passo do que faz. Toda alteração fica registrada para ser desfeita.',
     src: cwuBoost,
   },
   {
     id: 'competitive',
     tag: 'INPUT LAG',
-    title: 'Modo Competitivo: Mouse, Overlays & Energia',
+    title: 'Modo Competitivo: Monitor, Mouse & Energia',
     route: 'cwu-app://gamer-boost/competitive',
-    caption: 'Teste de polling rate do mouse, overlays em execução que somam trabalho a cada quadro, plano Desempenho Máximo e suspensão seletiva de USB.',
+    caption: 'Taxa máxima do monitor, aceleração e velocidade 1:1 do mouse, teste de polling rate, overlays em execução e economia de energia de CPU e USB.',
     src: cwuCompetitive,
-  },
-  {
-    id: 'network',
-    tag: 'REDE',
-    title: 'Teste de Conexão para Jogos Online',
-    route: 'cwu-app://gamer-boost/network',
-    caption: 'Ping, jitter e perda de pacotes contra vários servidores, com os ajustes de economia de energia da placa de rede ao lado.',
-    src: cwuNetwork,
   },
   {
     id: 'monitor',
     tag: 'TEMPO REAL',
     title: 'Monitor de Desempenho & Temperaturas',
     route: 'cwu-app://performance',
-    caption: 'Uso de CPU, GPU, RAM e disco, temperaturas e processos que mais consomem, alimentados por um único processo PowerShell contínuo para não pesar o PC.',
+    caption: 'Uso de CPU, GPU, RAM e disco com gráfico ao vivo, temperatura de processador, placa de vídeo e cada disco, e os processos que mais consomem. Tudo vem de um único processo PowerShell contínuo, para não pesar o PC.',
     src: cwuMonitor,
   },
   {
     id: 'logs',
-    tag: 'AUDITORIA',
+    tag: 'TEMA NÉVOA',
     title: 'Histórico de Alterações com Reverter',
     route: 'cwu-app://logs',
-    caption: 'Cada mudança feita pelo app fica listada por categoria, com botão para reverter e criação de ponto de restauração.',
+    caption: 'Cada mudança feita pelo app aparece por categoria, com botão para reverter e criação de ponto de restauração, aqui no tema claro Névoa.',
     src: cwuLogs,
   },
   {
-    id: 'mylist',
-    tag: 'TEMA NÉVOA',
-    title: 'Minha Conta & Lista Pós-Formatação',
-    route: 'cwu-app://account',
-    caption: 'Login opcional via Supabase para salvar a sua lista de programas e levá-la para qualquer PC, aqui no tema claro Névoa.',
-    src: cwuMyList,
+    id: 'versions',
+    tag: 'ATUALIZAÇÕES',
+    title: 'Novas Versões & Atualização Automática',
+    route: 'cwu-app://versions',
+    caption: 'Consulta a última release no GitHub, baixa e confere a atualização por SHA-512 e mostra o histórico de mudanças de cada versão.',
+    src: cwuVersions,
+  },
+  {
+    id: 'themes',
+    tag: 'TEMA ÍNDIGO',
+    title: 'Três Temas: Grafite, Névoa e Índigo',
+    route: 'cwu-app://settings/themes',
+    caption: 'Escolha entre o escuro Grafite, o claro Névoa e o novo Índigo, azul-marinho com cartões de vidro, aplicado também à sobreposição de FPS.',
+    src: cwuThemes,
   },
 ];
 

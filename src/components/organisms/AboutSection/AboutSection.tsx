@@ -7,7 +7,7 @@ import chicoImg from '../../../assets/chico-wagner.webp';
 import './AboutSection.css';
 
 export const AboutSection: FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section id="about" className="l-section c-aboutSection">
@@ -110,7 +110,7 @@ export const AboutSection: FC = () => {
               </div>
 
               <div className="c-aboutSection__chicoCore">
-                <div className="c-aboutSection__chicoPhotoFrame" title="Chico Wagner (CEO)">
+                <div className="c-aboutSection__chicoPhotoFrame" title={language === 'pt' ? 'Chico Wagner (Diretoria de Qualidade)' : 'Chico Wagner (CEO)'}>
                   <img
                     src={chicoImg}
                     alt={t('about.chico_name')}
